@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "sprout",
+  "form": [
+    {
+      "key": "age",
+      "type": "number",
+      "view": {
+        "label": "Age"
+      }
+    },
+    {
+      "key": "adult_notice",
+      "type": "text",
+      "view": {
+        "label": "Adult notice"
+      },
+      "hidden": true,
+      "rules": [
+        {
+          "when": {
+            "property": "age",
+            "operation": "GEqt",
+            "value": {
+              "ref": "minimum_age"
+            }
+          },
+          "then": [
+            {
+              "kind": "set_hidden",
+              "hidden": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

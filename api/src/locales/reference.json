@@ -1,0 +1,3774 @@
+[
+  {
+    "key": "tg_validation_required",
+    "area": "Field validation",
+    "purpose": "Required-field validation feedback.",
+    "default": "This field is required.",
+    "parameters": []
+  },
+  {
+    "key": "tg_validation_min_length",
+    "area": "Field validation",
+    "purpose": "Text minimum-length validation feedback.",
+    "default": "Must contain at least {min} characters.",
+    "parameters": ["min"]
+  },
+  {
+    "key": "tg_validation_max_length",
+    "area": "Field validation",
+    "purpose": "Text maximum-length validation feedback.",
+    "default": "Must contain at most {max} characters.",
+    "parameters": ["max"]
+  },
+  {
+    "key": "tg_validation_min",
+    "area": "Field validation",
+    "purpose": "Numeric minimum validation feedback.",
+    "default": "Must be at least {min}.",
+    "parameters": ["min"]
+  },
+  {
+    "key": "tg_validation_max",
+    "area": "Field validation",
+    "purpose": "Numeric maximum validation feedback.",
+    "default": "Must be at most {max}.",
+    "parameters": ["max"]
+  },
+  {
+    "key": "tg_validation_email",
+    "area": "Field validation",
+    "purpose": "Email-address validation feedback.",
+    "default": "Enter a valid email address.",
+    "parameters": []
+  },
+  {
+    "key": "tg_validation_must_be_true",
+    "area": "Field validation",
+    "purpose": "Boolean affirmative-value validation feedback.",
+    "default": "This field must be true.",
+    "parameters": []
+  },
+  {
+    "key": "tg_validation_option",
+    "area": "Field validation",
+    "purpose": "Unavailable selection validation feedback.",
+    "default": "Select an available option.",
+    "parameters": []
+  },
+  {
+    "key": "tg_validation_file_required",
+    "area": "Field validation",
+    "purpose": "Required-file validation feedback.",
+    "default": "At least one file is required.",
+    "parameters": []
+  },
+  {
+    "key": "tg_validation_max_files",
+    "area": "Field validation",
+    "purpose": "File-count validation feedback.",
+    "default": "At most {max} files are allowed.",
+    "parameters": ["max"]
+  },
+  {
+    "key": "tg_validation_max_size",
+    "area": "Field validation",
+    "purpose": "File-size validation feedback.",
+    "default": "A selected file exceeds the size limit.",
+    "parameters": []
+  },
+  {
+    "key": "tg_validation_file_type",
+    "area": "Field validation",
+    "purpose": "File-type validation feedback.",
+    "default": "A selected file type is not allowed.",
+    "parameters": []
+  },
+  {
+    "key": "tg_validation_date",
+    "area": "Field validation",
+    "purpose": "Date/time value-format validation feedback; format can be a nested message.",
+    "default": "Enter a valid {format}.",
+    "parameters": ["format"]
+  },
+  {
+    "key": "tg_validation_date_min",
+    "area": "Field validation",
+    "purpose": "Date/time lower-bound validation feedback.",
+    "default": "Must be on or after {min}.",
+    "parameters": ["min"]
+  },
+  {
+    "key": "tg_validation_date_max",
+    "area": "Field validation",
+    "purpose": "Date/time upper-bound validation feedback.",
+    "default": "Must be on or before {max}.",
+    "parameters": ["max"]
+  },
+  {
+    "key": "tg_validation_repeater_min",
+    "area": "Field validation",
+    "purpose": "Repeater minimum-instance validation feedback.",
+    "default": "At least {min} instances are required.",
+    "parameters": ["min"]
+  },
+  {
+    "key": "tg_validation_repeater_max",
+    "area": "Field validation",
+    "purpose": "Repeater maximum-instance validation feedback.",
+    "default": "At most {max} instances are allowed.",
+    "parameters": ["max"]
+  },
+  {
+    "key": "tg_ui_submit",
+    "area": "Form controls and accessibility",
+    "purpose": "Submit button.",
+    "default": "Submit",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_submitting",
+    "area": "Form controls and accessibility",
+    "purpose": "Submit button while submission is in progress.",
+    "default": "Submitting…",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_updating",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Updating…",
+    "default": "Updating…",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_preparing_form",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Preparing your form…",
+    "default": "Preparing your form…",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_load_failed",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: The form could not be loaded.",
+    "default": "The form could not be loaded.",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_something_went_wrong",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Something went wrong",
+    "default": "Something went wrong",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_loading_data",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Loading data…",
+    "default": "Loading data…",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_retry_loading",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Retry loading",
+    "default": "Retry loading",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_hidden_errors",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: The form contains validation errors in hidden fields.",
+    "default": "The form contains validation errors in hidden fields.",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_clear",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Clear",
+    "default": "Clear",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_clear_all",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Clear all",
+    "default": "Clear all",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_yes",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Yes",
+    "default": "Yes",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_no",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: No",
+    "default": "No",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_no_options",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: No options available",
+    "default": "No options available",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_select",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Select…",
+    "default": "Select…",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_choose_options",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Choose options",
+    "default": "Choose options",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_loading_options",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Loading options",
+    "default": "Loading options",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_unavailable",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: {value} (Unavailable)",
+    "default": "{value} (Unavailable)",
+    "parameters": ["value"]
+  },
+  {
+    "key": "tg_ui_remove",
+    "area": "Form controls and accessibility",
+    "purpose": "Accessible label for removing a selected option or file.",
+    "default": "Remove {label}",
+    "parameters": ["label"]
+  },
+  {
+    "key": "tg_ui_errors",
+    "area": "Form controls and accessibility",
+    "purpose": "Error count in form and group summaries.",
+    "default": {
+      "one": "{count} error",
+      "other": "{count} errors"
+    },
+    "parameters": ["count"]
+  },
+  {
+    "key": "tg_ui_file_expects_a_file_reference_object",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: File expects a file reference object.",
+    "default": "File expects a file reference object.",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_one_file",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: One file",
+    "default": "One file",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_replace_selected_files",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Replace selected files",
+    "default": "Replace selected files",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_attach_your_files",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Attach your files",
+    "default": "Attach your files",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_browse_files_on_your_device",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Browse files on your device",
+    "default": "Browse files on your device",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_replace",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Replace",
+    "default": "Replace",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_browse",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Browse",
+    "default": "Browse",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_uploaded",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Uploaded",
+    "default": "Uploaded",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_uploading",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Uploading…",
+    "default": "Uploading…",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_pending_upload",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Pending upload",
+    "default": "Pending upload",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_boolean_radio_options_must_use_boolean_values",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Boolean radio options must use boolean values.",
+    "default": "Boolean radio options must use boolean values.",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_mon",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Mon",
+    "default": "Mon",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_tue",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Tue",
+    "default": "Tue",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_wed",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Wed",
+    "default": "Wed",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_thu",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Thu",
+    "default": "Thu",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_fri",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Fri",
+    "default": "Fri",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_sat",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Sat",
+    "default": "Sat",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_sun",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Sun",
+    "default": "Sun",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_january",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: January",
+    "default": "January",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_february",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: February",
+    "default": "February",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_march",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: March",
+    "default": "March",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_april",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: April",
+    "default": "April",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_may",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: May",
+    "default": "May",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_june",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: June",
+    "default": "June",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_july",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: July",
+    "default": "July",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_august",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: August",
+    "default": "August",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_september",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: September",
+    "default": "September",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_october",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: October",
+    "default": "October",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_november",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: November",
+    "default": "November",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_december",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: December",
+    "default": "December",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_previous_month",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Previous month",
+    "default": "Previous month",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_next_month",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Next month",
+    "default": "Next month",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_choose_time",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Choose time",
+    "default": "Choose time",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_choose_date",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Choose date",
+    "default": "Choose date",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_choose_date_and_time",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Choose date and time",
+    "default": "Choose date and time",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_hours",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Hours",
+    "default": "Hours",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_minutes",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Minutes",
+    "default": "Minutes",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_seconds",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Seconds",
+    "default": "Seconds",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_close",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Close",
+    "default": "Close",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_steps",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Steps",
+    "default": "Steps",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_select_option_values_must_be_strings",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Select option values must be strings.",
+    "default": "Select option values must be strings.",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_multiple_select_expects_a_string_array",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Multiple select expects a string array.",
+    "default": "Multiple select expects a string array.",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_select_expects_string_or_null",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Select expects string or null.",
+    "default": "Select expects string or null.",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_textarea_requires_the_plain_text_variant",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Textarea requires the plain text variant.",
+    "default": "Textarea requires the plain text variant.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_loading_core_catalog",
+    "area": "Form editor",
+    "purpose": "Form editor: Loading core catalog…",
+    "default": "Loading core catalog…",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_ready_to_build",
+    "area": "Form editor",
+    "purpose": "Form editor: Ready to build",
+    "default": "Ready to build",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_schema_accepted",
+    "area": "Form editor",
+    "purpose": "Form editor: Schema accepted",
+    "default": "Schema accepted",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_draft_needs_attention",
+    "area": "Form editor",
+    "purpose": "Form editor: Draft needs attention",
+    "default": "Draft needs attention",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_checking_schema",
+    "area": "Form editor",
+    "purpose": "Form editor: Checking schema…",
+    "default": "Checking schema…",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_schema_accepted_initial_values_reset",
+    "area": "Form editor",
+    "purpose": "Form editor: Schema accepted · initial values reset",
+    "default": "Schema accepted · initial values reset",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_text_inputs",
+    "area": "Form editor",
+    "purpose": "Form editor: Text inputs",
+    "default": "Text inputs",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_numbers_choices",
+    "area": "Form editor",
+    "purpose": "Form editor: Numbers & choices",
+    "default": "Numbers & choices",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_other_fields",
+    "area": "Form editor",
+    "purpose": "Form editor: Other fields",
+    "default": "Other fields",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_structure",
+    "area": "Form editor",
+    "purpose": "Form editor: Structure",
+    "default": "Structure",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_group",
+    "area": "Form editor",
+    "purpose": "Form editor: Group",
+    "default": "Group",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_a_layout_containing_fields_or_sections",
+    "area": "Form editor",
+    "purpose": "Form editor: A layout containing fields or sections.",
+    "default": "A layout containing fields or sections.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_repeater",
+    "area": "Form editor",
+    "purpose": "Form editor: Repeater",
+    "default": "Repeater",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_an_array_of_instances_of_one_template",
+    "area": "Form editor",
+    "purpose": "Form editor: An array of instances of one template.",
+    "default": "An array of instances of one template.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_schema_copied",
+    "area": "Form editor",
+    "purpose": "Form editor: Schema copied",
+    "default": "Schema copied",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_copy_is_unavailable_here_use_download_json_or_select_the_json_text",
+    "area": "Form editor",
+    "purpose": "Form editor: Copy is unavailable here. Use Download JSON or select the JSON text.",
+    "default": "Copy is unavailable here. Use Download JSON or select the JSON text.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_form_root",
+    "area": "Form editor",
+    "purpose": "Form editor: form root",
+    "default": "form root",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_editor_mode",
+    "area": "Form editor",
+    "purpose": "Form editor: Editor mode",
+    "default": "Editor mode",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_build",
+    "area": "Form editor",
+    "purpose": "Form editor: Build",
+    "default": "Build",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_undo_schema_change",
+    "area": "Form editor",
+    "purpose": "Form editor: Undo schema change",
+    "default": "Undo schema change",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_redo_schema_change",
+    "area": "Form editor",
+    "purpose": "Form editor: Redo schema change",
+    "default": "Redo schema change",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_the_preview_shows_the_last_accepted_schema",
+    "area": "Form editor",
+    "purpose": "Form editor: The preview shows the last accepted schema.",
+    "default": " The preview shows the last accepted schema.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_field_palette_and_outline",
+    "area": "Form editor",
+    "purpose": "Form editor: Field palette and outline",
+    "default": "Field palette and outline",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_schema_json_editor",
+    "area": "Form editor",
+    "purpose": "Form editor: Schema JSON editor",
+    "default": "Schema JSON editor",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_component_settings",
+    "area": "Form editor",
+    "purpose": "Form editor: Component settings",
+    "default": "Component settings",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_component_lists_optional",
+    "area": "Form editor",
+    "purpose": "Form editor: Component lists (optional)",
+    "default": "Component lists (optional)",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_schema",
+    "area": "Form editor",
+    "purpose": "Form editor: Schema",
+    "default": "Schema",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_your_form",
+    "area": "Form editor",
+    "purpose": "Form editor: Your form",
+    "default": "Your form",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_settings_use_the_same_engine_as_your_form",
+    "area": "Form editor",
+    "purpose": "Form editor: Settings use the same engine as your form.",
+    "default": "Settings use the same engine as your form.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_use_the_component_list_to_arrange_your_form_select_a_field_in_the_outline_to_edit_it",
+    "area": "Form editor",
+    "purpose": "Form editor: Use the component list to arrange your form. Select a field in the outline to edit it.",
+    "default": "Use the component list to arrange your form. Select a field in the outline to edit it.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_live_preview",
+    "area": "Form editor",
+    "purpose": "Form editor: Live preview",
+    "default": "Live preview",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_preview_panels",
+    "area": "Form editor",
+    "purpose": "Form editor: Preview panels",
+    "default": "Preview panels",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_initial_values_must_be_an_object_or_null",
+    "area": "Form editor",
+    "purpose": "Form editor: Initial values must be an object or null.",
+    "default": "Initial values must be an object or null.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_values_loaded",
+    "area": "Form editor",
+    "purpose": "Form editor: Values loaded",
+    "default": "Values loaded",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_waiting_for_the_preview",
+    "area": "Form editor",
+    "purpose": "Form editor: Waiting for the preview…",
+    "default": "Waiting for the preview…",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_the_form_is_valid",
+    "area": "Form editor",
+    "purpose": "Form editor: The form is valid.",
+    "default": "The form is valid.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_the_form_has_validation_errors",
+    "area": "Form editor",
+    "purpose": "Form editor: The form has validation errors.",
+    "default": "The form has validation errors.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_drop_into_the_form_a_group_or_a_repeater_template",
+    "area": "Form editor",
+    "purpose": "Form editor: Drop into the form, a group or a repeater template.",
+    "default": "Drop into the form, a group or a repeater template.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_this_position_is_no_longer_available",
+    "area": "Form editor",
+    "purpose": "Form editor: This position is no longer available.",
+    "default": "This position is no longer available.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_this_component_is_no_longer_available",
+    "area": "Form editor",
+    "purpose": "Form editor: This component is no longer available.",
+    "default": "This component is no longer available.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_a_component_cannot_be_moved_inside_itself",
+    "area": "Form editor",
+    "purpose": "Form editor: A component cannot be moved inside itself.",
+    "default": "A component cannot be moved inside itself.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_sectioned_layouts_contain_basic_groups_drop_a_group_here_first",
+    "area": "Form editor",
+    "purpose": "Form editor: Sectioned layouts contain basic groups. Drop a group here first.",
+    "default": "Sectioned layouts contain basic groups. Drop a group here first.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_choose_a_registered_component_from_the_palette",
+    "area": "Form editor",
+    "purpose": "Form editor: Choose a registered component from the palette.",
+    "default": "Choose a registered component from the palette.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_drop_here",
+    "area": "Form editor",
+    "purpose": "Form editor: Drop here",
+    "default": "Drop here",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_drag_to_move",
+    "area": "Form editor",
+    "purpose": "Form editor: Drag to move",
+    "default": "Drag to move",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_template",
+    "area": "Form editor",
+    "purpose": "Form editor: Template",
+    "default": "Template",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_repeating_template_design_one_instance",
+    "area": "Form editor",
+    "purpose": "Form editor: Repeating template · design one instance",
+    "default": "Repeating template · design one instance",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_drop_basic_groups_as_sections",
+    "area": "Form editor",
+    "purpose": "Form editor: Drop basic groups as sections",
+    "default": "Drop basic groups as sections",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_group_contents",
+    "area": "Form editor",
+    "purpose": "Form editor: Group contents",
+    "default": "Group contents",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_form_layout",
+    "area": "Form editor",
+    "purpose": "Form editor: Form layout",
+    "default": "Form layout",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_applying",
+    "area": "Form editor",
+    "purpose": "Form editor: Applying…",
+    "default": "Applying…",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_apply_changes",
+    "area": "Form editor",
+    "purpose": "Form editor: Apply changes",
+    "default": "Apply changes",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_use_a_schema_object_with_schemaversion_and_a_form_array",
+    "area": "Form editor",
+    "purpose": "Form editor: Use a schema object with schemaVersion and a form array.",
+    "default": "Use a schema object with schemaVersion and a form array.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_every_component_needs_a_type_and_string_key",
+    "area": "Form editor",
+    "purpose": "Form editor: Every component needs a type and string key.",
+    "default": "Every component needs a type and string key.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_section",
+    "area": "Form editor",
+    "purpose": "Form editor: Section",
+    "default": "Section",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_items",
+    "area": "Form editor",
+    "purpose": "Form editor: Items",
+    "default": "Items",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_template_components",
+    "area": "Form editor",
+    "purpose": "Form editor: Template components",
+    "default": "Template components",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_components",
+    "area": "Form editor",
+    "purpose": "Form editor: Components",
+    "default": "Components",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_add_remove_or_reorder_here_select_a_component_in_the_outline_to_edit_its_details",
+    "area": "Form editor",
+    "purpose": "Form editor: Add, remove or reorder here. Select a component in the outline to edit its details.",
+    "default": "Add, remove or reorder here. Select a component in the outline to edit its details.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_component_type",
+    "area": "Form editor",
+    "purpose": "Form editor: Component type",
+    "default": "Component type",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_component_key",
+    "area": "Form editor",
+    "purpose": "Form editor: Component key",
+    "default": "Component key",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_component_label",
+    "area": "Form editor",
+    "purpose": "Form editor: Component label",
+    "default": "Component label",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_presentation",
+    "area": "Form editor",
+    "purpose": "Form editor: Presentation",
+    "default": "Presentation",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_custom_settings_json",
+    "area": "Form editor",
+    "purpose": "Form editor: Custom settings (JSON)",
+    "default": "Custom settings (JSON)",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_default_array_json",
+    "area": "Form editor",
+    "purpose": "Form editor: Default array (JSON)",
+    "default": "Default array (JSON)",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_use_a_default_array",
+    "area": "Form editor",
+    "purpose": "Form editor: Use a default array",
+    "default": "Use a default array",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_field_type",
+    "area": "Form editor",
+    "purpose": "Form editor: Field type",
+    "default": "Field type",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_placeholder",
+    "area": "Form editor",
+    "purpose": "Form editor: Placeholder",
+    "default": "Placeholder",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_disabled",
+    "area": "Form editor",
+    "purpose": "Form editor: Disabled",
+    "default": "Disabled",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_read_only",
+    "area": "Form editor",
+    "purpose": "Form editor: Read only",
+    "default": "Read only",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_initially_hidden",
+    "area": "Form editor",
+    "purpose": "Form editor: Initially hidden",
+    "default": "Initially hidden",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_use_a_default_value",
+    "area": "Form editor",
+    "purpose": "Form editor: Use a default value",
+    "default": "Use a default value",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_default_value_json",
+    "area": "Form editor",
+    "purpose": "Form editor: Default value (JSON)",
+    "default": "Default value (JSON)",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_custom_field_settings_json",
+    "area": "Form editor",
+    "purpose": "Form editor: Custom field settings (JSON)",
+    "default": "Custom field settings (JSON)",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_rules",
+    "area": "Form editor",
+    "purpose": "Form editor: Rules",
+    "default": "Rules",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_a_rule_reads_another_field_and_acts_on_this_field_use_explicit_indexes_or_current_insi",
+    "area": "Form editor",
+    "purpose": "Form editor: A rule reads another field and acts on this field. Use explicit indexes or [current] inside templates.",
+    "default": "A rule reads another field and acts on this field. Use explicit indexes or [current] inside templates.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_source_field",
+    "area": "Form editor",
+    "purpose": "Form editor: Source field",
+    "default": "Source field",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_comparison",
+    "area": "Form editor",
+    "purpose": "Form editor: Comparison",
+    "default": "Comparison",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_compare_with",
+    "area": "Form editor",
+    "purpose": "Form editor: Compare with",
+    "default": "Compare with",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_comparison_value_json",
+    "area": "Form editor",
+    "purpose": "Form editor: Comparison value (JSON)",
+    "default": "Comparison value (JSON)",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_reference_field",
+    "area": "Form editor",
+    "purpose": "Form editor: Reference field",
+    "default": "Reference field",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_actions",
+    "area": "Form editor",
+    "purpose": "Form editor: Actions",
+    "default": "Actions",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_action",
+    "area": "Form editor",
+    "purpose": "Form editor: Action",
+    "default": "Action",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_sectioned_groups_need_basic_groups_as_their_direct_children",
+    "area": "Form editor",
+    "purpose": "Form editor: Sectioned groups need basic groups as their direct children.",
+    "default": "Sectioned groups need basic groups as their direct children.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_renderer_settings",
+    "area": "Form editor",
+    "purpose": "Form editor: Renderer settings",
+    "default": "Renderer settings",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_default_array",
+    "area": "Form editor",
+    "purpose": "Form editor: Default array",
+    "default": "Default array",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_field_settings",
+    "area": "Form editor",
+    "purpose": "Form editor: Field settings",
+    "default": "Field settings",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_comparison_value",
+    "area": "Form editor",
+    "purpose": "Form editor: Comparison value",
+    "default": "Comparison value",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_action_value",
+    "area": "Form editor",
+    "purpose": "Form editor: Action value",
+    "default": "Action value",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_errors",
+    "area": "Form editor",
+    "purpose": "Form editor: Errors",
+    "default": "Errors",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_default_value",
+    "area": "Form editor",
+    "purpose": "Form editor: Default value",
+    "default": "Default value",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_invalid_compiled_section",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Invalid compiled section.",
+    "default": "Invalid compiled section.",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_uploading_files",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Uploading files…",
+    "default": "Uploading files…",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_retry_upload",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Retry upload",
+    "default": "Retry upload",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_today",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Today",
+    "default": "Today",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_done",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Done",
+    "default": "Done",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_previous",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Previous",
+    "default": "Previous",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_next",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Next",
+    "default": "Next",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_copy_json",
+    "area": "Form editor",
+    "purpose": "Form editor: Copy JSON",
+    "default": "Copy JSON",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_download",
+    "area": "Form editor",
+    "purpose": "Form editor: Download",
+    "default": "Download",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_check_your_draft",
+    "area": "Form editor",
+    "purpose": "Form editor: Check your draft.",
+    "default": "Check your draft.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_grow_your_form",
+    "area": "Form editor",
+    "purpose": "Form editor: Grow your form",
+    "default": "Grow your form",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_adding_to",
+    "area": "Form editor",
+    "purpose": "Form editor: Adding to",
+    "default": "Adding to",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_loading_available_fields",
+    "area": "Form editor",
+    "purpose": "Form editor: Loading available fields…",
+    "default": "Loading available fields…",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_form_outline",
+    "area": "Form editor",
+    "purpose": "Form editor: Form outline",
+    "default": "Form outline",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_root",
+    "area": "Form editor",
+    "purpose": "Form editor: Root",
+    "default": "Root",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_a_little_room_to_grow_add_your_first_field_above",
+    "area": "Form editor",
+    "purpose": "Form editor: A little room to grow. Add your first field above.",
+    "default": "A little room to grow. Add your first field above.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_your_portable_schema",
+    "area": "Form editor",
+    "purpose": "Form editor: Your portable schema",
+    "default": "Your portable schema",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_json_editor",
+    "area": "Form editor",
+    "purpose": "Form editor: JSON editor",
+    "default": "JSON editor",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_import_or_edit_a_sprout_schema_invalid_drafts_stay_editable",
+    "area": "Form editor",
+    "purpose": "Form editor: Import or edit a Sprout schema. Invalid drafts stay editable.",
+    "default": "Import or edit a Sprout schema. Invalid drafts stay editable.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_schema_json",
+    "area": "Form editor",
+    "purpose": "Form editor: Schema JSON",
+    "default": "Schema JSON",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_apply_json",
+    "area": "Form editor",
+    "purpose": "Form editor: Apply JSON",
+    "default": "Apply JSON",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_remove",
+    "area": "Form editor",
+    "purpose": "Form editor: Remove",
+    "default": "Remove",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_use_json_mode_to_repair_this_draft",
+    "area": "Form editor",
+    "purpose": "Form editor: Use JSON mode to repair this draft:",
+    "default": "Use JSON mode to repair this draft:",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_see_it_take_shape",
+    "area": "Form editor",
+    "purpose": "Form editor: See it take shape",
+    "default": "See it take shape",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_reset",
+    "area": "Form editor",
+    "purpose": "Form editor: Reset",
+    "default": "Reset",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_a_valid_schema_will_appear_here",
+    "area": "Form editor",
+    "purpose": "Form editor: A valid schema will appear here.",
+    "default": "A valid schema will appear here.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_submitted_values",
+    "area": "Form editor",
+    "purpose": "Form editor: Submitted values",
+    "default": "Submitted values",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_load_initial_values",
+    "area": "Form editor",
+    "purpose": "Form editor: Load initial values",
+    "default": "Load initial values",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_the_keys_are_filled_from_your_schema_empty_collections_include_one_sample_item_to_show",
+    "area": "Form editor",
+    "purpose": "Form editor: The keys are filled from your schema. Empty collections include one sample item to show their keys; loading it creates that instance. Use [] for no instances, or null for schema defaults.",
+    "default": "The keys are filled from your schema. Empty collections include one sample item to show their keys; loading it creates that instance. Use [] for no instances, or null for schema defaults.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_initial_values_json",
+    "area": "Form editor",
+    "purpose": "Form editor: Initial values JSON",
+    "default": "Initial values JSON",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_load_values",
+    "area": "Form editor",
+    "purpose": "Form editor: Load values",
+    "default": "Load values",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_fill_keys_from_schema",
+    "area": "Form editor",
+    "purpose": "Form editor: Fill keys from schema",
+    "default": "Fill keys from schema",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_current_draft_export_this_directly_to_tungsten",
+    "area": "Form editor",
+    "purpose": "Form editor: Current draft. Export this directly to Tungsten.",
+    "default": "Current draft. Export this directly to Tungsten.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_current_evaluated_values_updated_as_you_type",
+    "area": "Form editor",
+    "purpose": "Form editor: Current evaluated values, updated as you type.",
+    "default": "Current evaluated values, updated as you type.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_visibility_errors_and_collection_metadata",
+    "area": "Form editor",
+    "purpose": "Form editor: Visibility, errors and collection metadata.",
+    "default": "Visibility, errors and collection metadata.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_move_selected_here",
+    "area": "Form editor",
+    "purpose": "Form editor: Move selected here",
+    "default": "Move selected here",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_arrange_your_form",
+    "area": "Form editor",
+    "purpose": "Form editor: Arrange your form",
+    "default": "Arrange your form",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_select_root",
+    "area": "Form editor",
+    "purpose": "Form editor: Select root",
+    "default": "Select root",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_drag_components_from_the_palette_drop_inside_a_group_or_template_or_between_fields_to_",
+    "area": "Form editor",
+    "purpose": "Form editor: Drag components from the palette. Drop inside a group or template, or between fields to set their order.",
+    "default": "Drag components from the palette. Drop inside a group or template, or between fields to set their order.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_choose",
+    "area": "Form editor",
+    "purpose": "Form editor: Choose…",
+    "default": "Choose…",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_group_renderer_is_already_registered",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: group renderer '{name}' is already registered",
+    "default": "group renderer '{name}' is already registered",
+    "parameters": ["name"]
+  },
+  {
+    "key": "tg_schema_unknown_group_renderer",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: unknown group renderer '{p0}'",
+    "default": "unknown group renderer '{p0}'",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_schema_initialsection_is_not_a_direct_child",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: initialSection '{initial}' is not a direct child",
+    "default": "initialSection '{initial}' is not a direct child",
+    "parameters": ["initial"]
+  },
+  {
+    "key": "tg_schema_render_settings_must_be_an_object",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: render.settings must be an object",
+    "default": "render.settings must be an object",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_gap_must_be_an_integer_from_0_to_128_pixels",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: gap must be an integer from 0 to 128 pixels",
+    "default": "gap must be an integer from 0 to 128 pixels",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_columns_must_be_an_integer_from_1_to_12",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: columns must be an integer from 1 to 12",
+    "default": "columns must be an integer from 1 to 12",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_registered_custom_field_authoring_metadata_has_not_been_supplied",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Registered custom field. Authoring metadata has not been supplied.",
+    "default": "Registered custom field. Authoring metadata has not been supplied.",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_field_key",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Field key",
+    "default": "Field key",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_fully_qualified_dot_separated_key",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Fully qualified, dot-separated key.",
+    "default": "Fully qualified, dot-separated key.",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_label",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Label",
+    "default": "Label",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_description",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Description",
+    "default": "Description",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_minimum_instances",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Minimum instances",
+    "default": "Minimum instances",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_defaults_to_0",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Defaults to 0.",
+    "default": "Defaults to 0.",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_maximum_instances",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Maximum instances",
+    "default": "Maximum instances",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_leave_empty_for_no_limit",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Leave empty for no limit.",
+    "default": "Leave empty for no limit.",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_allow_reordering",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Allow reordering",
+    "default": "Allow reordering",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_set_value",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Set value",
+    "default": "Set value",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_value_json",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Value (JSON)",
+    "default": "Value (JSON)",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_clear_value",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Clear value",
+    "default": "Clear value",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_set_visibility",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Set visibility",
+    "default": "Set visibility",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_hidden",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Hidden",
+    "default": "Hidden",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_show_field",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Show field",
+    "default": "Show field",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_set_behavior_errors",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Set behavior errors",
+    "default": "Set behavior errors",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_errors_json_array",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Errors (JSON array)",
+    "default": "Errors (JSON array)",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_limit",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Limit",
+    "default": "Limit",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_required",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Required",
+    "default": "Required",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_a_nonempty_string_is_required",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: A nonempty string is required.",
+    "default": "A nonempty string is required.",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_minimum_length",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Minimum length",
+    "default": "Minimum length",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_counts_unicode_characters_does_not_trim_text",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Counts Unicode characters; does not trim text.",
+    "default": "Counts Unicode characters; does not trim text.",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_maximum_length",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Maximum length",
+    "default": "Maximum length",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_counts_unicode_characters",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Counts Unicode characters.",
+    "default": "Counts Unicode characters.",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_gap_px",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Gap (px)",
+    "default": "Gap (px)",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_initial_section_key",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Initial section key",
+    "default": "Initial section key",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_must_identify_a_direct_child_group",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Must identify a direct child group.",
+    "default": "Must identify a direct child group.",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_initially_open",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Initially open",
+    "default": "Initially open",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_trigger_label",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Trigger label",
+    "default": "Trigger label",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_alignment",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Alignment",
+    "default": "Alignment",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_wrap",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Wrap",
+    "default": "Wrap",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_columns",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Columns",
+    "default": "Columns",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_group_nesting_exceeds_levels",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: group nesting exceeds {MAX_GROUP_DEPTH} levels",
+    "default": "group nesting exceeds {MAX_GROUP_DEPTH} levels",
+    "parameters": ["MAX_GROUP_DEPTH"]
+  },
+  {
+    "key": "tg_schema_failed_to_deserialize_schema",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: failed to deserialize schema: {e}",
+    "default": "failed to deserialize schema: {e}",
+    "parameters": ["e"]
+  },
+  {
+    "key": "tg_schema_failed_to_deserialize_initial_values",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: failed to deserialize initial values: {e}",
+    "default": "failed to deserialize initial values: {e}",
+    "parameters": ["e"]
+  },
+  {
+    "key": "tg_schema_failed_to_load_form",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: failed to load form: {error}",
+    "default": "failed to load form: {error}",
+    "parameters": ["error"]
+  },
+  {
+    "key": "tg_schema_failed_to_serialize_load_response",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: failed to serialize load response: {e}",
+    "default": "failed to serialize load response: {e}",
+    "parameters": ["e"]
+  },
+  {
+    "key": "tg_schema_failed_to_deserialize_patch",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: failed to deserialize patch: {e}",
+    "default": "failed to deserialize patch: {e}",
+    "parameters": ["e"]
+  },
+  {
+    "key": "tg_schema_failed_to_process_patch",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: failed to process patch: {e}",
+    "default": "failed to process patch: {e}",
+    "parameters": ["e"]
+  },
+  {
+    "key": "tg_schema_failed_to_serialize_patch_response",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: failed to serialize patch response: {e}",
+    "default": "failed to serialize patch response: {e}",
+    "parameters": ["e"]
+  },
+  {
+    "key": "tg_schema_failed_to_serialize_validation_response",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: failed to serialize validation response: {e}",
+    "default": "failed to serialize validation response: {e}",
+    "parameters": ["e"]
+  },
+  {
+    "key": "tg_schema_failed_to_serialize_state",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: failed to serialize state: {e}",
+    "default": "failed to serialize state: {e}",
+    "parameters": ["e"]
+  },
+  {
+    "key": "tg_schema_engine_not_initialized_call_load_form_first",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: engine not initialized; call load_form first",
+    "default": "engine not initialized; call load_form first",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_engine_not_initialized",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: engine not initialized",
+    "default": "engine not initialized",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_instance_index_must_be_a_nonnegative_integer_within_the_supported_range",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: instance index must be a nonnegative integer within the supported range",
+    "default": "instance index must be a nonnegative integer within the supported range",
+    "parameters": []
+  },
+  {
+    "key": "tg_source_invalid_bindings_on",
+    "area": "Data sources",
+    "purpose": "Data sources: invalid bindings on '{p0}': {e}",
+    "default": "invalid bindings on '{p0}': {e}",
+    "parameters": ["e", "p0"]
+  },
+  {
+    "key": "tg_source_unsupported_source_binding_on",
+    "area": "Data sources",
+    "purpose": "Data sources: unsupported source binding '{slot}' on '{p0}'",
+    "default": "unsupported source binding '{slot}' on '{p0}'",
+    "parameters": ["p0", "slot"]
+  },
+  {
+    "key": "tg_schema_apply_must_be_initial_live_on_value_bindings_only",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: apply must be initial/live on value bindings only",
+    "default": "apply must be initial/live on value bindings only",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_source_inputs_must_contain_exactly_ref_or_value",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: source inputs must contain exactly ref or value",
+    "default": "source inputs must contain exactly ref or value",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_repeater_renderer_already_registered",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: repeater renderer '{name}' already registered",
+    "default": "repeater renderer '{name}' already registered",
+    "parameters": ["name"]
+  },
+  {
+    "key": "tg_schema_unknown_repeater_renderer",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: unknown repeater renderer '{p0}'",
+    "default": "unknown repeater renderer '{p0}'",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_schema_gap_must_be_from_0_to_128_pixels",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: gap must be from 0 to 128 pixels",
+    "default": "gap must be from 0 to 128 pixels",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_initial_instance_index",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Initial instance index",
+    "default": "Initial instance index",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_unknown_source_input",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: unknown source input '{ref}'",
+    "default": "unknown source input '{ref}'",
+    "parameters": ["ref"]
+  },
+  {
+    "key": "tg_schema_unknown_data_source",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: unknown data source '{p0}'",
+    "default": "unknown data source '{p0}'",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_schema_overlapping_field_or_repeater_namespace_and",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: overlapping field or repeater namespace '{p0}' and '{p1}'",
+    "default": "overlapping field or repeater namespace '{p0}' and '{p1}'",
+    "parameters": ["p0", "p1"]
+  },
+  {
+    "key": "tg_schema_unknown_repeater",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: unknown repeater '{key}'",
+    "default": "unknown repeater '{key}'",
+    "parameters": ["key"]
+  },
+  {
+    "key": "tg_schema_repeater_has_reached_max",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: repeater '{key}' has reached max",
+    "default": "repeater '{key}' has reached max",
+    "parameters": ["key"]
+  },
+  {
+    "key": "tg_schema_repeater_is_at_min",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: repeater '{key}' is at min",
+    "default": "repeater '{key}' is at min",
+    "parameters": ["key"]
+  },
+  {
+    "key": "tg_schema_reorder_is_disabled_for",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: reorder is disabled for '{key}'",
+    "default": "reorder is disabled for '{key}'",
+    "parameters": ["key"]
+  },
+  {
+    "key": "tg_schema_instance_safety_limit_exceeded",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: instance safety limit exceeded",
+    "default": "instance safety limit exceeded",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_instance_identity_limit_exceeded",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: instance identity limit exceeded",
+    "default": "instance identity limit exceeded",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_remove_index_is_out_of_range",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: remove index is out of range",
+    "default": "remove index is out of range",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_reorder_index_is_out_of_range",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: reorder index is out of range",
+    "default": "reorder index is out of range",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_invalid_item_property",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: invalid item property '{name}'",
+    "default": "invalid item property '{name}'",
+    "parameters": ["name"]
+  },
+  {
+    "key": "tg_schema_must_be_an_object",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: '{path}' must be an object",
+    "default": "'{path}' must be an object",
+    "parameters": ["path"]
+  },
+  {
+    "key": "tg_schema_unknown_item_property",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: unknown item property '{path}'",
+    "default": "unknown item property '{path}'",
+    "parameters": ["path"]
+  },
+  {
+    "key": "tg_schema_invalid_value",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: invalid value '{p0}': {e}",
+    "default": "invalid value '{p0}': {e}",
+    "parameters": ["e", "p0"]
+  },
+  {
+    "key": "tg_schema_repeater_must_load_an_array",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: repeater '{p0}' must load an array",
+    "default": "repeater '{p0}' must load an array",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_schema_repeater_exceeds_safety_limit_of_instances",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: repeater '{p0}' exceeds safety limit of {MAX_INSTANCES} instances",
+    "default": "repeater '{p0}' exceeds safety limit of {MAX_INSTANCES} instances",
+    "parameters": ["MAX_INSTANCES", "p0"]
+  },
+  {
+    "key": "tg_schema_must_be_an_object_2",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: '{p0}[{index}]' must be an object",
+    "default": "'{p0}[{index}]' must be an object",
+    "parameters": ["index", "p0"]
+  },
+  {
+    "key": "tg_schema_invalid_value_2",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: invalid value '{p0}': {error}",
+    "default": "invalid value '{p0}': {error}",
+    "parameters": ["error", "p0"]
+  },
+  {
+    "key": "tg_schema_unknown_initial_value",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: unknown initial value '{key}'",
+    "default": "unknown initial value '{key}'",
+    "parameters": ["key"]
+  },
+  {
+    "key": "tg_schema_invalid_schema_current_value",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: invalid schema current_value '{path}': {e}",
+    "default": "invalid schema current_value '{path}': {e}",
+    "parameters": ["e", "path"]
+  },
+  {
+    "key": "tg_schema_runtime_instance_safety_limit_exceeded",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: runtime instance safety limit exceeded",
+    "default": "runtime instance safety limit exceeded",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_repeater_min_exceeds_max",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: repeater '{p0}' min exceeds max",
+    "default": "repeater '{p0}' min exceeds max",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_schema_repeater_only_accepts_the_no_op_required_validator_use_min_max_for_bounds",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: repeater '{p0}' only accepts the no-op required validator; use min/max for bounds",
+    "default": "repeater '{p0}' only accepts the no-op required validator; use min/max for bounds",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_schema_duplicate_or_overlapping_repeater_namespace",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: duplicate or overlapping repeater namespace '{p0}'",
+    "default": "duplicate or overlapping repeater namespace '{p0}'",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_schema_malformed_repeater_reference",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: malformed repeater reference '{reference}'",
+    "default": "malformed repeater reference '{reference}'",
+    "parameters": ["reference"]
+  },
+  {
+    "key": "tg_schema_unindexed_repeater_reference_is_unsupported_use_current_inside_its_template_or_a_numer",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: unindexed repeater reference '{reference}' is unsupported; use '[current]' inside its template or a numeric index",
+    "default": "unindexed repeater reference '{reference}' is unsupported; use '[current]' inside its template or a numeric index",
+    "parameters": ["reference"]
+  },
+  {
+    "key": "tg_schema_has_no_owning_repeater_instance",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: '{reference}' has no owning repeater instance",
+    "default": "'{reference}' has no owning repeater instance",
+    "parameters": ["reference"]
+  },
+  {
+    "key": "tg_schema_has_no_owning_instance_of_this_repeater_belongs_to_a_different_repeater",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: '{reference}' has no owning instance of this repeater (belongs to a different repeater)",
+    "default": "'{reference}' has no owning instance of this repeater (belongs to a different repeater)",
+    "parameters": ["reference"]
+  },
+  {
+    "key": "tg_schema_belongs_to_a_different_repeater_instance",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: '{reference}' belongs to a different repeater instance",
+    "default": "'{reference}' belongs to a different repeater instance",
+    "parameters": ["reference"]
+  },
+  {
+    "key": "tg_schema_invalid_numeric_repeater_selector",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: invalid numeric repeater selector '{reference}'",
+    "default": "invalid numeric repeater selector '{reference}'",
+    "parameters": ["reference"]
+  },
+  {
+    "key": "tg_schema_repeater_index_must_be_canonical_in",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: repeater index must be canonical in '{reference}'",
+    "default": "repeater index must be canonical in '{reference}'",
+    "parameters": ["reference"]
+  },
+  {
+    "key": "tg_schema_unknown_or_malformed_repeater_reference",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: unknown or malformed repeater reference '{reference}'",
+    "default": "unknown or malformed repeater reference '{reference}'",
+    "parameters": ["reference"]
+  },
+  {
+    "key": "tg_schema_structural_nesting_limit_exceeded",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: structural nesting limit exceeded",
+    "default": "structural nesting limit exceeded",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_repeater_type_must_be_repeater",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: repeater type must be 'repeater'",
+    "default": "repeater type must be 'repeater'",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_source_ref_must_be_a_string",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: source ref must be a string",
+    "default": "source ref must be a string",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_runtime_field_safety_limit_exceeded",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: runtime field safety limit exceeded",
+    "default": "runtime field safety limit exceeded",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_boolean",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Boolean",
+    "default": "Boolean",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_true_false_or_null_required_checks_presence_false_remains_valid",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: True, false or null. Required checks presence; false remains valid.",
+    "default": "True, false or null. Required checks presence; false remains valid.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_a_boolean_is_required_false_is_valid",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: A boolean is required; false is valid.",
+    "default": "A boolean is required; false is valid.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_must_be_true",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Must be true",
+    "default": "Must be true",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_requires_an_affirmative_value_for_example_accepting_terms",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Requires an affirmative value, for example accepting terms.",
+    "default": "Requires an affirmative value, for example accepting terms.",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_variant",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Variant",
+    "default": "Variant",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_layout_radio_only",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Layout (radio only)",
+    "default": "Layout (radio only)",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_options_radio_only_json",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Options (radio only, JSON)",
+    "default": "Options (radio only, JSON)",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_unique_boolean_values_with_labels_omit_for_yes_no",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Unique boolean values with labels. Omit for Yes/No.",
+    "default": "Unique boolean values with labels. Omit for Yes/No.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_boolean_or_null",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: boolean or null",
+    "default": "boolean or null",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_variant_must_be_checkbox_switch_or_radio",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: variant must be checkbox, switch or radio",
+    "default": "variant must be checkbox, switch or radio",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_options_and_direction_require_the_radio_variant",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: options and direction require the radio variant",
+    "default": "options and direction require the radio variant",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_direction_must_be_column_or_row",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: direction must be column or row",
+    "default": "direction must be column or row",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_validator_must_occur_once_with_no_parameters",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: validator must occur once with no parameters",
+    "default": "validator must occur once with no parameters",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_numbers_must_be_finite_and_orderable",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: numbers must be finite and orderable",
+    "default": "numbers must be finite and orderable",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_string_array",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: string array",
+    "default": "string array",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_finite_numbers_or_null_no_string_coercion",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Finite numbers or null. No string coercion.",
+    "default": "Finite numbers or null. No string coercion.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_a_number_is_required_zero_is_valid",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: A number is required; zero is valid.",
+    "default": "A number is required; zero is valid.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_minimum",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Minimum",
+    "default": "Minimum",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_inclusive_lower_bound",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Inclusive lower bound.",
+    "default": "Inclusive lower bound.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_maximum",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Maximum",
+    "default": "Maximum",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_inclusive_upper_bound",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Inclusive upper bound.",
+    "default": "Inclusive upper bound.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_number_must_be_finite",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: number must be finite",
+    "default": "number must be finite",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_number_or_null",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: number or null",
+    "default": "number or null",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_value_must_be",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: value must be {format}",
+    "default": "value must be {format}",
+    "parameters": ["format"]
+  },
+  {
+    "key": "tg_schema_date_time",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Date / time",
+    "default": "Date / time",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_calendar_dates_clock_times_or_timezone_aware_instants_empty_values_are_null",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Calendar dates, clock times, or timezone-aware instants. Empty values are null.",
+    "default": "Calendar dates, clock times, or timezone-aware instants. Empty values are null.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_a_date_time_value_is_required",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: A date/time value is required.",
+    "default": "A date/time value is required.",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_accept",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Accept",
+    "default": "Accept",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_date_only",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Date only",
+    "default": "Date only",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_time_only",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Time only",
+    "default": "Time only",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_date_and_time",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Date and time",
+    "default": "Date and time",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_timezone",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Timezone",
+    "default": "Timezone",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_date_and_time_only_iana_name_or_fixed_offset_defaults_to_utc",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Date and time only. IANA name or fixed offset; defaults to UTC.",
+    "default": "Date and time only. IANA name or fixed offset; defaults to UTC.",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_repeated_daylight_saving_time",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Repeated daylight-saving time",
+    "default": "Repeated daylight-saving time",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_date_and_time_only_defaults_to_reject",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Date and time only; defaults to reject.",
+    "default": "Date and time only; defaults to reject.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_inclusive_bound_in_the_configured_mode_s_value_format_datetime_bounds_compare_instants",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Inclusive bound in the configured mode's value format; datetime bounds compare instants.",
+    "default": "Inclusive bound in the configured mode's value format; datetime bounds compare instants.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_date_yyyy_mm_dd_time_hh_mm_ss_date_and_time_rfc_3339_with_offset",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Date: YYYY-MM-DD. Time: HH:mm:ss. Date and time: RFC 3339 with offset.",
+    "default": "Date: YYYY-MM-DD. Time: HH:mm:ss. Date and time: RFC 3339 with offset.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_mode_must_be_date_time_or_datetime",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: mode must be date, time, or datetime",
+    "default": "mode must be date, time, or datetime",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_timezone_and_disambiguation_require_datetime_mode_a_clock_time_has_no_date_for_dayligh",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: timeZone and disambiguation require datetime mode; a clock time has no date for daylight-saving resolution",
+    "default": "timeZone and disambiguation require datetime mode; a clock time has no date for daylight-saving resolution",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_timezone_must_be_a_nonempty_timezone_identifier_js_resolves_its_availability",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: timeZone must be a nonempty timezone identifier; JS resolves its availability",
+    "default": "timeZone must be a nonempty timezone identifier; JS resolves its availability",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_disambiguation_must_be_reject_earlier_or_later",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: disambiguation must be reject, earlier, or later",
+    "default": "disambiguation must be reject, earlier, or later",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_validator_is_declared_more_than_once",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: validator is declared more than once",
+    "default": "validator is declared more than once",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_required_accepts_no_properties",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: required accepts no properties",
+    "default": "required accepts no properties",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_expected_properties_value",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: expected properties [value]",
+    "default": "expected properties [value]",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_minimum_cannot_exceed_maximum",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: minimum cannot exceed maximum",
+    "default": "minimum cannot exceed maximum",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_date_time_string_or_null",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: date/time string or null",
+    "default": "date/time string or null",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_expected_properties",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: expected properties [{p0}]",
+    "default": "expected properties [{p0}]",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_schema_minimum_length_cannot_exceed_maximum_length",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: minimum length cannot exceed maximum length",
+    "default": "minimum length cannot exceed maximum length",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_value_must_be_a_non_negative_integer",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: 'value' must be a non-negative integer",
+    "default": "'value' must be a non-negative integer",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_value_must_be_a_finite_number",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: 'value' must be a finite number",
+    "default": "'value' must be a finite number",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_radio_option_values_must_be_unique_booleans",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: radio option values must be unique booleans",
+    "default": "radio option values must be unique booleans",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_select_option_values_must_be_nonempty_unique_strings",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: select option values must be nonempty unique strings",
+    "default": "select option values must be nonempty unique strings",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_required_must_occur_once_with_no_parameters",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: required must occur once with no parameters",
+    "default": "required must occur once with no parameters",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_select",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Select",
+    "default": "Select",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_single_or_multiple_string_valued_choices_options_bindings_and_selectfirstoption_use_js",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Single or multiple string-valued choices; options/bindings and selectFirstOption use JSON settings.",
+    "default": "Single or multiple string-valued choices; options/bindings and selectFirstOption use JSON settings.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_a_selection_is_required",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: A selection is required.",
+    "default": "A selection is required.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_multiple_must_be_a_boolean",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: multiple must be a boolean",
+    "default": "multiple must be a boolean",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_selectfirstoption_must_be_a_boolean",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: selectFirstOption must be a boolean",
+    "default": "selectFirstOption must be a boolean",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_selected_values_must_be_nonempty_and_unique",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: selected values must be nonempty and unique",
+    "default": "selected values must be nonempty and unique",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_string_array_or_null",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: string array or null",
+    "default": "string array or null",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_string_or_null",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: string or null",
+    "default": "string or null",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_operation_is_not_supported",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: operation '{p0}' is not supported",
+    "default": "operation '{p0}' is not supported",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_schema_unsupported_field_configuration",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: unsupported field configuration '{property}'",
+    "default": "unsupported field configuration '{property}'",
+    "parameters": ["property"]
+  },
+  {
+    "key": "tg_schema_unsupported_validator",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: unsupported validator '{validator}'",
+    "default": "unsupported validator '{validator}'",
+    "parameters": ["validator"]
+  },
+  {
+    "key": "tg_schema_invalid_validator",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: invalid validator '{validator}': {message}",
+    "default": "invalid validator '{validator}': {message}",
+    "parameters": ["message", "validator"]
+  },
+  {
+    "key": "tg_schema_invalid_current_value",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: invalid current_value: {source}",
+    "default": "invalid current_value: {source}",
+    "parameters": ["source"]
+  },
+  {
+    "key": "tg_schema_invalid_value_at_rules_then",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: invalid value at rules[{rule_index}].then[{action_index}]: {source}",
+    "default": "invalid value at rules[{rule_index}].then[{action_index}]: {source}",
+    "parameters": ["action_index", "rule_index", "source"]
+  },
+  {
+    "key": "tg_schema_field_type_is_already_registered",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: field type '{p0}' is already registered",
+    "default": "field type '{p0}' is already registered",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_schema_text",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Text",
+    "default": "Text",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_plain_email_password_and_telephone_strings_or_null_email_trims_whitespace",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Plain, email, password and telephone strings or null; email trims whitespace.",
+    "default": "Plain, email, password and telephone strings or null; email trims whitespace.",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_multiline_plain_only",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Multiline (plain only)",
+    "default": "Multiline (plain only)",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_rows_required_for_multiline",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Rows (required for multiline)",
+    "default": "Rows (required for multiline)",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_positive_integer_ignored_when_multiline_is_disabled",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Positive integer. Ignored when multiline is disabled.",
+    "default": "Positive integer. Ignored when multiline is disabled.",
+    "parameters": []
+  },
+  {
+    "key": "tg_catalog_allow_vertical_resizing_multiline_only",
+    "area": "Editor authoring settings",
+    "purpose": "Editor authoring settings: Allow vertical resizing (multiline only)",
+    "default": "Allow vertical resizing (multiline only)",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_defaults_to_true_when_omitted",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Defaults to true when omitted.",
+    "default": "Defaults to true when omitted.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_variant_must_be_plain_email_password_or_tel",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: variant must be plain, email, password or tel",
+    "default": "variant must be plain, email, password or tel",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_textarea_must_be_a_boolean",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: textarea must be a boolean",
+    "default": "textarea must be a boolean",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_textarea_requires_the_plain_variant",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: textarea requires the plain variant",
+    "default": "textarea requires the plain variant",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_textarea_requires_rows_as_a_positive_32_bit_integer",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: textarea requires rows as a positive 32-bit integer",
+    "default": "textarea requires rows as a positive 32-bit integer",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_resizable_must_be_a_boolean",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: resizable must be a boolean",
+    "default": "resizable must be a boolean",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_rows_and_resizable_require_textarea_true",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: rows and resizable require textarea: true",
+    "default": "rows and resizable require textarea: true",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_invalid_file_configuration",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: invalid file configuration: {e}",
+    "default": "invalid file configuration: {e}",
+    "parameters": ["e"]
+  },
+  {
+    "key": "tg_schema_invalid_upload_descriptor_or_file_constraints",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: invalid upload descriptor or file constraints",
+    "default": "invalid upload descriptor or file constraints",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_file",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: File",
+    "default": "File",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_file_references_upload_is_configured_per_field_settings_use_json",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: File references; upload is configured per field. Settings use JSON.",
+    "default": "File references; upload is configured per field. Settings use JSON.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_file_reference_object",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: file reference object",
+    "default": "file reference object",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_file_ids_names_must_be_nonempty_unique_with_safe_integer_sizes",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: file IDs/names must be nonempty, unique, with safe integer sizes",
+    "default": "file IDs/names must be nonempty, unique, with safe integer sizes",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_unknown_field_key",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: unknown field key '{field_key}'",
+    "default": "unknown field key '{field_key}'",
+    "parameters": ["field_key"]
+  },
+  {
+    "key": "tg_schema_invalid_value_for_field",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: invalid value for field '{field_key}': {source}",
+    "default": "invalid value for field '{field_key}': {source}",
+    "parameters": ["field_key", "source"]
+  },
+  {
+    "key": "tg_schema_compiled_rule_generated_an_invalid_value_for_field",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: compiled rule generated an invalid value for field '{field_key}': {source}",
+    "default": "compiled rule generated an invalid value for field '{field_key}': {source}",
+    "parameters": ["field_key", "source"]
+  },
+  {
+    "key": "tg_schema_patch_processing_exceeded_safety_limit",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: patch processing exceeded safety limit {limit}",
+    "default": "patch processing exceeded safety limit {limit}",
+    "parameters": ["limit"]
+  },
+  {
+    "key": "tg_schema_unknown_reference",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: unknown reference '{p0}'",
+    "default": "unknown reference '{p0}'",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_schema_unknown_or_stale_field_handle",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: unknown or stale field handle",
+    "default": "unknown or stale field handle",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_reorder_must_include_every_field_handle_once",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: reorder must include every field handle once",
+    "default": "reorder must include every field handle once",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_unknown_duplicate_or_stale_field_handle",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: unknown, duplicate or stale field handle",
+    "default": "unknown, duplicate or stale field handle",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_duplicate_field_handle",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: duplicate field handle",
+    "default": "duplicate field handle",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_surviving_field_configuration_cannot_change_in_a_structural_operation",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: surviving field configuration cannot change in a structural operation",
+    "default": "surviving field configuration cannot change in a structural operation",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_field_handle_limit_exceeded",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: field handle limit exceeded",
+    "default": "field handle limit exceeded",
+    "parameters": []
+  },
+  {
+    "key": "tg_source_unknown_data_source_on",
+    "area": "Data sources",
+    "purpose": "Data sources: unknown data source '{p0}' on '{p1}'",
+    "default": "unknown data source '{p0}' on '{p1}'",
+    "parameters": ["p0", "p1"]
+  },
+  {
+    "key": "tg_source_unknown_field",
+    "area": "Data sources",
+    "purpose": "Data sources: unknown field '{key}'",
+    "default": "unknown field '{key}'",
+    "parameters": ["key"]
+  },
+  {
+    "key": "tg_schema_data_source_and_value_rule_dependencies_contain_a_cycle",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: data source and value-rule dependencies contain a cycle",
+    "default": "data source and value-rule dependencies contain a cycle",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_unsupported_schemaversion_expected_sprout",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: unsupported schemaVersion '{version}'; expected 'sprout'",
+    "default": "unsupported schemaVersion '{version}'; expected 'sprout'",
+    "parameters": ["version"]
+  },
+  {
+    "key": "tg_schema_invalid_component_at",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: invalid component '{key}' at {path}: {message}",
+    "default": "invalid component '{key}' at {path}: {message}",
+    "parameters": ["key", "message", "path"]
+  },
+  {
+    "key": "tg_schema_invalid_schema",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: invalid schema: {message}",
+    "default": "invalid schema: {message}",
+    "parameters": ["message"]
+  },
+  {
+    "key": "tg_schema_field_at_index_has_an_empty_key",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: field at index {field_index} has an empty key",
+    "default": "field at index {field_index} has an empty key",
+    "parameters": ["field_index"]
+  },
+  {
+    "key": "tg_schema_duplicate_field_key",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: duplicate field key '{key}'",
+    "default": "duplicate field key '{key}'",
+    "parameters": ["key"]
+  },
+  {
+    "key": "tg_schema_unknown_field_type_for_field",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: unknown field type '{field_type}' for field '{field_key}'",
+    "default": "unknown field type '{field_type}' for field '{field_key}'",
+    "parameters": ["field_key", "field_type"]
+  },
+  {
+    "key": "tg_schema_field_references_unknown_field",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: field '{field_key}' references unknown field '{referenced_key}'",
+    "default": "field '{field_key}' references unknown field '{referenced_key}'",
+    "parameters": ["field_key", "referenced_key"]
+  },
+  {
+    "key": "tg_schema_child_must_be_inside_parent_group_namespace",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: child must be inside parent group '{p0}' namespace",
+    "default": "child must be inside parent group '{p0}' namespace",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_schema_sectioned_group_requires_basic_groups_as_direct_children",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: sectioned group '{p0}' requires basic groups as direct children",
+    "default": "sectioned group '{p0}' requires basic groups as direct children",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_schema_duplicate_component_key_first_declared_at",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: duplicate component key; first declared at {previous_path}",
+    "default": "duplicate component key; first declared at {previous_path}",
+    "parameters": ["previous_path"]
+  },
+  {
+    "key": "tg_schema_structural_nesting_exceeds_levels",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: structural nesting exceeds {MAX_GROUP_DEPTH} levels",
+    "default": "structural nesting exceeds {MAX_GROUP_DEPTH} levels",
+    "parameters": ["MAX_GROUP_DEPTH"]
+  },
+  {
+    "key": "tg_schema_keys_must_contain_non_empty_dot_separated_ascii_letter_digit_underscore_or_hyphen_segm",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: keys must contain non-empty dot-separated ASCII letter, digit, underscore or hyphen segments",
+    "default": "keys must contain non-empty dot-separated ASCII letter, digit, underscore or hyphen segments",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_group_is_reserved_for_structural_components",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: 'group' is reserved for structural components",
+    "default": "'group' is reserved for structural components",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_group_type_must_be_group",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: group type must be 'group'",
+    "default": "group type must be 'group'",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_field_at_index_rule_references_unknown_field_through",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: field at index {p0} rule {p1} references unknown field '{p2}' through {p3}",
+    "default": "field at index {p0} rule {p1} references unknown field '{p2}' through {p3}",
+    "parameters": ["p0", "p1", "p2", "p3"]
+  },
+  {
+    "key": "tg_schema_value_cycle",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Value cycle detected: {path}; provenance: {provenance}",
+    "default": "Value cycle detected: {path}; provenance: {provenance}",
+    "parameters": ["path", "provenance"]
+  },
+  {
+    "key": "tg_ui_unknown_timezone",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Unknown timezone: {timeZone}.",
+    "default": "Unknown timezone: {timeZone}.",
+    "parameters": ["timeZone"]
+  },
+  {
+    "key": "tg_ui_dst_ambiguous",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: This time is skipped or repeated in {timeZone}. Choose another time or configure an earlier/later policy for repeated times.",
+    "default": "This time is skipped or repeated in {timeZone}. Choose another time or configure an earlier/later policy for repeated times.",
+    "parameters": ["timeZone"]
+  },
+  {
+    "key": "tg_ui_timezone",
+    "area": "Form controls and accessibility",
+    "purpose": "Timezone hint below a date/time field.",
+    "default": "Timezone: {timeZone}",
+    "parameters": ["timeZone"]
+  },
+  {
+    "key": "tg_ui_choose_for",
+    "area": "Form controls and accessibility",
+    "purpose": "Accessible label for opening a field’s date/time picker.",
+    "default": "Choose {mode} for {label}",
+    "parameters": ["label", "mode"]
+  },
+  {
+    "key": "tg_ui_mode_time",
+    "area": "Form controls and accessibility",
+    "purpose": "Time mode name inserted into picker labels.",
+    "default": "time",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_mode_date",
+    "area": "Form controls and accessibility",
+    "purpose": "Date mode name inserted into picker labels.",
+    "default": "date",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_mode_datetime",
+    "area": "Form controls and accessibility",
+    "purpose": "Date-and-time mode name inserted into picker labels.",
+    "default": "date and time",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_repeater_instance",
+    "area": "Form controls and accessibility",
+    "purpose": "Default repeater instance label; index is one-based.",
+    "default": "#{index} {label}",
+    "parameters": ["index", "label"]
+  },
+  {
+    "key": "tg_schema_renderer_requires_groups",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: renderer '{p0}' requires {p1} groups",
+    "default": "renderer '{p0}' requires {p1} groups",
+    "parameters": ["p0", "p1"]
+  },
+  {
+    "key": "tg_schema_invalid_options",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: invalid {p0} options: {p1}",
+    "default": "invalid {p0} options: {p1}",
+    "parameters": ["p0", "p1"]
+  },
+  {
+    "key": "tg_schema_expected_received",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: expected {expected}, received {received}",
+    "default": "expected {expected}, received {received}",
+    "parameters": ["expected", "received"]
+  },
+  {
+    "key": "tg_schema_failed_to_evaluate_field_rule_against",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: failed to evaluate field '{target_field_key}' rule {rule_index} against '{field_key}': {source}",
+    "default": "failed to evaluate field '{target_field_key}' rule {rule_index} against '{field_key}': {source}",
+    "parameters": ["field_key", "rule_index", "source", "target_field_key"]
+  },
+  {
+    "key": "tg_schema_invalid_field",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: invalid {field_type} field '{field_key}': {source}",
+    "default": "invalid {field_type} field '{field_key}': {source}",
+    "parameters": ["field_key", "field_type", "source"]
+  },
+  {
+    "key": "tg_schema_field_rule_uses_unsupported_operation_for_field",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: field '{field_key}' rule {rule_index} uses unsupported operation '{p0}' for field '{referenced_key}'",
+    "default": "field '{field_key}' rule {rule_index} uses unsupported operation '{p0}' for field '{referenced_key}'",
+    "parameters": ["field_key", "p0", "referenced_key", "rule_index"]
+  },
+  {
+    "key": "tg_schema_field_rule_has_an_invalid_operand_for",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: field '{field_key}' rule {rule_index} has an invalid operand for '{referenced_key}': {source}",
+    "default": "field '{field_key}' rule {rule_index} has an invalid operand for '{referenced_key}': {source}",
+    "parameters": ["field_key", "referenced_key", "rule_index", "source"]
+  },
+  {
+    "key": "tg_schema_field_rule_cannot_compare_with",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: field '{field_key}' rule {rule_index} cannot compare '{left_field}' ({left_type}) with '{right_field}' ({right_type})",
+    "default": "field '{field_key}' rule {rule_index} cannot compare '{left_field}' ({left_type}) with '{right_field}' ({right_type})",
+    "parameters": [
+      "field_key",
+      "left_field",
+      "left_type",
+      "right_field",
+      "right_type",
+      "rule_index"
+    ]
+  },
+  {
+    "key": "tg_api_api_baseurl_must_be_an_http_url_without_credentials_query_or_fragment",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: API baseUrl must be an HTTP URL without credentials, query or fragment.",
+    "default": "API baseUrl must be an HTTP URL without credentials, query or fragment.",
+    "parameters": []
+  },
+  {
+    "key": "tg_api_endpoint_must_be_a_relative_path_beneath_baseurl",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: Endpoint must be a relative path beneath baseUrl.",
+    "default": "Endpoint must be a relative path beneath baseUrl.",
+    "parameters": []
+  },
+  {
+    "key": "tg_api_endpoint_cannot_escape_baseurl",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: Endpoint cannot escape baseUrl.",
+    "default": "Endpoint cannot escape baseUrl.",
+    "parameters": []
+  },
+  {
+    "key": "tg_api_endpoint_contains_excessive_encoding",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: Endpoint contains excessive encoding.",
+    "default": "Endpoint contains excessive encoding.",
+    "parameters": []
+  },
+  {
+    "key": "tg_api_api_is_not_configured",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: API '{p0}' is not configured.",
+    "default": "API '{p0}' is not configured.",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_api_api_timeoutms_must_be_finite_and_positive",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: API timeoutMs must be finite and positive.",
+    "default": "API timeoutMs must be finite and positive.",
+    "parameters": []
+  },
+  {
+    "key": "tg_api_get_requests_cannot_have_a_body",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: GET requests cannot have a body.",
+    "default": "GET requests cannot have a body.",
+    "parameters": []
+  },
+  {
+    "key": "tg_api_query_parameters_must_be_scalar_values",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: Query parameters must be scalar values.",
+    "default": "Query parameters must be scalar values.",
+    "parameters": []
+  },
+  {
+    "key": "tg_api_result_path_must_be_a_json_pointer",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: Result path must be a JSON Pointer.",
+    "default": "Result path must be a JSON Pointer.",
+    "parameters": []
+  },
+  {
+    "key": "tg_api_invalid_json_pointer_escape",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: Invalid JSON Pointer escape.",
+    "default": "Invalid JSON Pointer escape.",
+    "parameters": []
+  },
+  {
+    "key": "tg_api_missing_result_path",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: Missing result path '{p0}'.",
+    "default": "Missing result path '{p0}'.",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_source_response_exceeds_the_supported_nesting_depth",
+    "area": "Data sources",
+    "purpose": "Data sources: Response exceeds the supported nesting depth.",
+    "default": "Response exceeds the supported nesting depth.",
+    "parameters": []
+  },
+  {
+    "key": "tg_source_invalid_source_response_at_expected",
+    "area": "Data sources",
+    "purpose": "Data sources: Invalid source response at '{p0}': expected {p1}.",
+    "default": "Invalid source response at '{p0}': expected {p1}.",
+    "parameters": ["p0", "p1"]
+  },
+  {
+    "key": "tg_source_unsupported_response_schema_type",
+    "area": "Data sources",
+    "purpose": "Data sources: Unsupported response schema type.",
+    "default": "Unsupported response schema type.",
+    "parameters": []
+  },
+  {
+    "key": "tg_source_invalid_response_schema",
+    "area": "Data sources",
+    "purpose": "Data sources: Invalid response schema.",
+    "default": "Invalid response schema.",
+    "parameters": []
+  },
+  {
+    "key": "tg_source_unsupported_response_schema_keyword",
+    "area": "Data sources",
+    "purpose": "Data sources: Unsupported response schema keyword.",
+    "default": "Unsupported response schema keyword.",
+    "parameters": []
+  },
+  {
+    "key": "tg_source_invalid_object_properties",
+    "area": "Data sources",
+    "purpose": "Data sources: Invalid object properties.",
+    "default": "Invalid object properties.",
+    "parameters": []
+  },
+  {
+    "key": "tg_source_invalid_required_properties",
+    "area": "Data sources",
+    "purpose": "Data sources: Invalid required properties.",
+    "default": "Invalid required properties.",
+    "parameters": []
+  },
+  {
+    "key": "tg_source_invalid_additionalproperties",
+    "area": "Data sources",
+    "purpose": "Data sources: Invalid additionalProperties.",
+    "default": "Invalid additionalProperties.",
+    "parameters": []
+  },
+  {
+    "key": "tg_api_file_field_has_no_stable_handle",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: File field has no stable handle.",
+    "default": "File field has no stable handle.",
+    "parameters": []
+  },
+  {
+    "key": "tg_api_field_has_an_unknown_timezone",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: Field '{p0}' has an unknown timezone: {p1}.",
+    "default": "Field '{p0}' has an unknown timezone: {p1}.",
+    "parameters": ["p0", "p1"]
+  },
+  {
+    "key": "tg_api_cannot_prepare_invalid_attachments_in",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: Cannot prepare invalid attachments in '{p0}'.",
+    "default": "Cannot prepare invalid attachments in '{p0}'.",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_api_tungsten_engine_was_disposed",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: Tungsten engine was disposed.",
+    "default": "Tungsten engine was disposed.",
+    "parameters": []
+  },
+  {
+    "key": "tg_api_data_source_is_not_configured",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: Data source '{p0}' is not configured.",
+    "default": "Data source '{p0}' is not configured.",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_ui_design_has_no_renderer_for_repeater_render_type",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Design '{p0}' has no renderer for repeater render type '{p1}'.",
+    "default": "Design '{p0}' has no renderer for repeater render type '{p1}'.",
+    "parameters": ["p0", "p1"]
+  },
+  {
+    "key": "tg_ui_design_has_no_renderer_for_group_render_type",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Design '{p0}' has no renderer for group render type '{p1}'.",
+    "default": "Design '{p0}' has no renderer for group render type '{p1}'.",
+    "parameters": ["p0", "p1"]
+  },
+  {
+    "key": "tg_ui_design_group_renderer_does_not_support_variant",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Design '{p0}' group renderer '{p1}' does not support variant '{p2}'.",
+    "default": "Design '{p0}' group renderer '{p1}' does not support variant '{p2}'.",
+    "parameters": ["p0", "p1", "p2"]
+  },
+  {
+    "key": "tg_ui_design_has_no_renderer_for_field_type",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Design '{p0}' has no renderer for field type '{p1}'.",
+    "default": "Design '{p0}' has no renderer for field type '{p1}'.",
+    "parameters": ["p0", "p1"]
+  },
+  {
+    "key": "tg_ui_b",
+    "area": "Form controls and accessibility",
+    "purpose": "File-size display in bytes.",
+    "default": "{p0} B",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_ui_",
+    "area": "Form controls and accessibility",
+    "purpose": "File-size display using a value and unit.",
+    "default": "{p0} {p1}",
+    "parameters": ["p0", "p1"]
+  },
+  {
+    "key": "tg_ui_field_expected_a_boolean_or_null_value",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Field '{p0}' expected a boolean or null value.",
+    "default": "Field '{p0}' expected a boolean or null value.",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_ui_field_expected_a_date_time_string_or_null_value",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Field '{p0}' expected a date/time string or null value.",
+    "default": "Field '{p0}' expected a date/time string or null value.",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_ui_field_expected_a_number_or_null_value",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Field '{p0}' expected a number or null value.",
+    "default": "Field '{p0}' expected a number or null value.",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_ui_move_earlier",
+    "area": "Form controls and accessibility",
+    "purpose": "Reorder button moving a repeater instance earlier.",
+    "default": "Move {p0} earlier",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_ui_move_later",
+    "area": "Form controls and accessibility",
+    "purpose": "Reorder button moving a repeater instance later.",
+    "default": "Move {p0} later",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_ui_remove_2",
+    "area": "Form controls and accessibility",
+    "purpose": "Remove button for a repeater instance.",
+    "default": "Remove {p0}",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_ui_add_to",
+    "area": "Form controls and accessibility",
+    "purpose": "Add button for a repeater.",
+    "default": "Add to {p0}",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_ui_navigation",
+    "area": "Form controls and accessibility",
+    "purpose": "Accessible label for group or repeater navigation.",
+    "default": "{p0} navigation",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_ui_field_expected_a_string_or_null_value",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Field '{p0}' expected a string or null value.",
+    "default": "Field '{p0}' expected a string or null value.",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_editor_drag_onto_the_layout_or_click_to_add",
+    "area": "Form editor",
+    "purpose": "Palette component tooltip; p0 supplies the component description.",
+    "default": "{p0} Drag onto the layout or click to add.",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_editor_delete",
+    "area": "Form editor",
+    "purpose": "Form editor: Delete {p0}",
+    "default": "Delete {p0}",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_editor_move",
+    "area": "Form editor",
+    "purpose": "Accessible component move label; p1 supplies the direction.",
+    "default": "Move {p0} {p1}",
+    "parameters": ["p0", "p1"]
+  },
+  {
+    "key": "tg_editor_drag",
+    "area": "Form editor",
+    "purpose": "Form editor: Drag {p0}",
+    "default": "Drag {p0}",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_editor_move_up",
+    "area": "Form editor",
+    "purpose": "Form editor: Move {p0} up",
+    "default": "Move {p0} up",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_editor_move_down",
+    "area": "Form editor",
+    "purpose": "Form editor: Move {p0} down",
+    "default": "Move {p0} down",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_editor_structural_nesting_is_limited_to_levels",
+    "area": "Form editor",
+    "purpose": "Form editor: Structural nesting is limited to {p0} levels.",
+    "default": "Structural nesting is limited to {p0} levels.",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_editor_needs_children_and_a_render_descriptor",
+    "area": "Form editor",
+    "purpose": "Form editor: '{p0}' needs children and a render descriptor.",
+    "default": "'{p0}' needs children and a render descriptor.",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_editor_needs_object_renderer_settings",
+    "area": "Form editor",
+    "purpose": "Form editor: '{p0}' needs object renderer settings.",
+    "default": "'{p0}' needs object renderer settings.",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_editor_has_malformed_rules",
+    "area": "Form editor",
+    "purpose": "Form editor: '{p0}' has malformed rules.",
+    "default": "'{p0}' has malformed rules.",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_editor_has_malformed_validators",
+    "area": "Form editor",
+    "purpose": "Form editor: '{p0}' has malformed validators.",
+    "default": "'{p0}' has malformed validators.",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_editor_must_be_valid_json",
+    "area": "Form editor",
+    "purpose": "Form editor: {p0} must be valid JSON.",
+    "default": "{p0} must be valid JSON.",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_editor_must_be_a_string_string_array_number_boolean_null_or_file_reference_object",
+    "area": "Form editor",
+    "purpose": "Form editor: {p0} must be a string, string array, number, boolean, null or file reference object.",
+    "default": "{p0} must be a string, string array, number, boolean, null or file reference object.",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_editor_component_key_is_duplicated",
+    "area": "Form editor",
+    "purpose": "Form editor: Component key '{p0}' is duplicated.",
+    "default": "Component key '{p0}' is duplicated.",
+    "parameters": ["p0"]
+  },
+  {
+    "key": "tg_i18n_invalid_catalog",
+    "area": "Translation catalogs",
+    "purpose": "Translation catalogs: Translation JSON must contain strings or plural messages with an \"other\" fallback.",
+    "default": "Translation JSON must contain strings or plural messages with an \"other\" fallback.",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_file_limit",
+    "area": "Form controls and accessibility",
+    "purpose": "File picker hint describing the maximum number of files.",
+    "default": {
+      "one": "Up to {count} file",
+      "other": "Up to {count} files"
+    },
+    "parameters": ["count"]
+  },
+  {
+    "key": "tg_ui_file_size_each",
+    "area": "Form controls and accessibility",
+    "purpose": "File picker size limit for each file.",
+    "default": "{size} per file",
+    "parameters": ["size"]
+  },
+  {
+    "key": "tg_ui_file_size_max",
+    "area": "Form controls and accessibility",
+    "purpose": "File picker maximum size hint.",
+    "default": "{size} maximum",
+    "parameters": ["size"]
+  },
+  {
+    "key": "tg_ui_calendar_month",
+    "area": "Form controls and accessibility",
+    "purpose": "Calendar month heading.",
+    "default": "{month} {year}",
+    "parameters": ["month", "year"]
+  },
+  {
+    "key": "tg_ui_calendar_day",
+    "area": "Form controls and accessibility",
+    "purpose": "Accessible name for a date in the calendar.",
+    "default": "{day} {month} {year}",
+    "parameters": ["day", "month", "year"]
+  },
+  {
+    "key": "tg_api_timeout",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: Request timed out.",
+    "default": "Request timed out.",
+    "parameters": []
+  },
+  {
+    "key": "tg_api_canceled",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: Request canceled.",
+    "default": "Request canceled.",
+    "parameters": []
+  },
+  {
+    "key": "tg_api_http_error",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: Request failed (HTTP {status}).",
+    "default": "Request failed (HTTP {status}).",
+    "parameters": ["status"]
+  },
+  {
+    "key": "tg_file_missing_bytes",
+    "area": "File uploads",
+    "purpose": "File uploads: This draft has an attachment without its file contents. Select the file again or restore a draft containing uploaded IDs.",
+    "default": "This draft has an attachment without its file contents. Select the file again or restore a draft containing uploaded IDs.",
+    "parameters": []
+  },
+  {
+    "key": "tg_file_invalid_response",
+    "area": "File uploads",
+    "purpose": "File uploads: Upload response must contain a nonempty string id.",
+    "default": "Upload response must contain a nonempty string id.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_into",
+    "area": "Form editor",
+    "purpose": "Form editor: Into {label}",
+    "default": "Into {label}",
+    "parameters": ["label"]
+  },
+  {
+    "key": "tg_editor_before",
+    "area": "Form editor",
+    "purpose": "Form editor: Before {key}",
+    "default": "Before {key}",
+    "parameters": ["key"]
+  },
+  {
+    "key": "tg_editor_tab_form",
+    "area": "Form editor",
+    "purpose": "Form editor: Form",
+    "default": "Form",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_tab_schema",
+    "area": "Form editor",
+    "purpose": "Form editor: Schema",
+    "default": "Schema",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_tab_values",
+    "area": "Form editor",
+    "purpose": "Form editor: Values",
+    "default": "Values",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_tab_state",
+    "area": "Form editor",
+    "purpose": "Form editor: State",
+    "default": "State",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_repeater_renderer",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: repeater '{key}': {error}",
+    "default": "repeater '{key}': {error}",
+    "parameters": ["error", "key"]
+  },
+  {
+    "key": "tg_date_precision",
+    "area": "Date and time",
+    "purpose": "Date and time: Date/time inputs support up to millisecond precision.",
+    "default": "Date/time inputs support up to millisecond precision.",
+    "parameters": []
+  },
+  {
+    "key": "tg_date_nonexistent_time",
+    "area": "Date and time",
+    "purpose": "Date and time: This clock time does not exist in the selected timezone.",
+    "default": "This clock time does not exist in the selected timezone.",
+    "parameters": []
+  },
+  {
+    "key": "tg_api_worker_failed",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: Tungsten worker failed.",
+    "default": "Tungsten worker failed.",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_missing_repeater_state",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: No runtime state for repeater '{key}'.",
+    "default": "No runtime state for repeater '{key}'.",
+    "parameters": ["key"]
+  },
+  {
+    "key": "tg_validation_date_format_date",
+    "area": "Field validation",
+    "purpose": "Canonical date format name inserted into core validation feedback.",
+    "default": "YYYY-MM-DD",
+    "parameters": []
+  },
+  {
+    "key": "tg_validation_date_format_time",
+    "area": "Field validation",
+    "purpose": "Canonical time format name inserted into core validation feedback.",
+    "default": "HH:mm or HH:mm:ss (optional fractional seconds)",
+    "parameters": []
+  },
+  {
+    "key": "tg_validation_date_format_datetime",
+    "area": "Field validation",
+    "purpose": "Canonical datetime format name inserted into core validation feedback.",
+    "default": "RFC 3339 date and time with Z or a UTC offset",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_missing_field_state",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: The engine returned no state for field '{key}'.",
+    "default": "The engine returned no state for field '{key}'.",
+    "parameters": ["key"]
+  },
+  {
+    "key": "tg_editor_view_editor",
+    "area": "Form editor",
+    "purpose": "Form editor: Editor",
+    "default": "Editor",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_view_preview",
+    "area": "Form editor",
+    "purpose": "Form editor: Preview",
+    "default": "Preview",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_view_json",
+    "area": "Form editor",
+    "purpose": "Form editor: JSON",
+    "default": "JSON",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_close_settings",
+    "area": "Form editor",
+    "purpose": "Form editor: Close settings",
+    "default": "Close settings",
+    "parameters": []
+  },
+  {
+    "key": "tg_warning_multiple_value_writes",
+    "area": "Runtime warnings",
+    "purpose": "Runtime warnings: Field “{fieldKey}” changed more than once in this operation. Competing value rules have no guaranteed precedence.",
+    "default": "Field “{fieldKey}” changed more than once in this operation. Competing value rules have no guaranteed precedence.",
+    "parameters": ["fieldKey"]
+  },
+  {
+    "key": "tg_schema_invalid_processing_limit",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: maxProcessingSteps must be a positive integer.",
+    "default": "maxProcessingSteps must be a positive integer.",
+    "parameters": []
+  },
+  {
+    "key": "tg_api_invalid_debounce",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: Autosave debounceMs must be a finite non-negative duration.",
+    "default": "Autosave debounceMs must be a finite non-negative duration.",
+    "parameters": []
+  },
+  {
+    "key": "tg_api_operations_unavailable",
+    "area": "Requests and form operations",
+    "purpose": "Requests and form operations: Form operations could not be initialized.",
+    "default": "Form operations could not be initialized.",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_save_pending",
+    "area": "Form controls and accessibility",
+    "purpose": "Draft-save status while saving.",
+    "default": "Saving…",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_save_success",
+    "area": "Form controls and accessibility",
+    "purpose": "Acknowledged draft-save status.",
+    "default": "Draft saved.",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_save_error",
+    "area": "Form controls and accessibility",
+    "purpose": "Failed draft-save status.",
+    "default": "Draft could not be saved.",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_submit_pending",
+    "area": "Form controls and accessibility",
+    "purpose": "Submission status while sending.",
+    "default": "Submitting…",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_submit_success",
+    "area": "Form controls and accessibility",
+    "purpose": "Acknowledged submission status.",
+    "default": "Form submitted.",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_submit_error",
+    "area": "Form controls and accessibility",
+    "purpose": "Failed submission status.",
+    "default": "Form could not be submitted.",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_save_dirty",
+    "area": "Form controls and accessibility",
+    "purpose": "Status indicating unsaved changes.",
+    "default": "Unsaved changes.",
+    "parameters": []
+  }
+]

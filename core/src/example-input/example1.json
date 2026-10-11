@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "sprout",
+  "form": [
+    {
+      "key": "name",
+      "type": "text",
+      "view": {
+        "label": "Name"
+      },
+      "validators": [
+        {
+          "kind": "required"
+        }
+      ]
+    },
+    {
+      "key": "age",
+      "type": "number",
+      "view": {
+        "label": "Age"
+      },
+      "validators": [
+        {
+          "kind": "required"
+        }
+      ]
+    },
+    {
+      "key": "email",
+      "type": "text", "variant": "email",
+      "view": {
+        "label": "E-mail"
+      }
+    }
+  ]
+}

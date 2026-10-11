@@ -1,0 +1,2401 @@
+/* Complete palettes for forms, messages and the editor. Component rules use semantic tokens. */
+:where(.tg-root, .te-root) {
+  color-scheme: light;
+  --tg-color-ink: #17141f;
+  --tg-color-muted: #716b7c;
+  --tg-color-subtle: #746d7f;
+  --tg-color-border: #dedbe4;
+  --tg-color-border-hover: #bbb5c5;
+  --tg-color-surface: #ffffff;
+  --tg-color-surface-raised: #f8f7fa;
+  --tg-color-accent: #a855f7;
+  --tg-color-accent-deep: #8b3dd1;
+  --tg-color-accent-soft: #f4e8ff;
+  --tg-color-danger: #c12e49;
+  --tg-color-danger-soft: #fff0f2;
+  --tg-color-danger-border: #ffd0d7;
+  --tg-color-danger-ink: #b42338;
+  --tg-color-on-danger: #ffffff;
+  --tg-color-disabled-border: #e8e6eb;
+  --tg-color-disabled-surface: #f1f0f3;
+  --tg-color-disabled-ink: #aaa5b1;
+  --tg-color-readonly-ink: #4f4958;
+  --tg-color-divider: #ece9ef;
+  --tg-color-action: #8b3dd1;
+  --tg-color-action-hover: #7b32bc;
+  --tg-color-on-action: #ffffff;
+  --tg-color-switch-track: #e7e3ec;
+  --tg-color-switch-thumb: #ffffff;
+  --tg-color-backdrop: rgb(15 25 35 / 45%);
+  --te-color-ink: #2d4434;
+  --te-color-muted: #63715b;
+  --te-color-border: #d7dfcf;
+  --te-color-surface: #fffef9;
+  --te-color-surface-raised: #f5f7ef;
+  --te-color-surface-hover: #edf2e4;
+  --te-color-surface-selected: #e5edd7;
+  --te-color-border-selected: #8ea970;
+  --te-color-accent: #709447;
+  --te-color-action: #254d39;
+  --te-color-action-hover: #356049;
+  --te-color-on-action: #fffef9;
+  --te-color-danger: #924d36;
+  --te-color-danger-border: #eac9c4;
+  --te-color-danger-soft: #fff0e8;
+  --te-color-danger-hover: #fbe3dd;
+  --te-color-backdrop: #162b2390;
+  --tg-shadow-focus: 0 0 0 3px rgb(168 85 247 / 18%);
+  --tg-shadow-button: 0 8px 20px rgb(112 48 160 / 18%);
+  --tg-shadow-form: 0 18px 50px rgb(31 20 42 / 7%);
+  --tg-shadow-menu: 0 12px 30px rgb(31 20 42 / 12%);
+  --tg-shadow-invalid: 0 0 0 3px rgb(229 72 95 / 14%);
+  --tg-shadow-card: 0 3px 12px rgb(0 0 0 / 5%);
+  --tg-shadow-switch: 0 1px 3px #0002;
+  --te-shadow-focus: 0 0 0 3px #75994a25;
+  --te-shadow-button: 0 5px 15px #254d3912;
+  --te-shadow-preview: 0 9px 24px #334a2d06;
+  --te-shadow-dialog: 0 24px 90px #18332240;
+}
+
+:where(.tg-root, .te-root)[data-tg-color-scheme='dark'] {
+  color-scheme: dark;
+  --tg-color-ink: #eee9f5;
+  --tg-color-muted: #b9afc6;
+  --tg-color-subtle: #a89bb8;
+  --tg-color-border: #51475e;
+  --tg-color-border-hover: #8c7a9e;
+  --tg-color-surface: #211b29;
+  --tg-color-surface-raised: #2b2435;
+  --tg-color-accent: #c18af2;
+  --tg-color-accent-deep: #d1a6f6;
+  --tg-color-accent-soft: #3d2b50;
+  --tg-color-danger: #ff91a5;
+  --tg-color-danger-soft: #43212d;
+  --tg-color-danger-border: #864554;
+  --tg-color-danger-ink: #ffacbb;
+  --tg-color-on-danger: #21121a;
+  --tg-color-disabled-border: #443b50;
+  --tg-color-disabled-surface: #2a2432;
+  --tg-color-disabled-ink: #93889f;
+  --tg-color-readonly-ink: #c7bcd3;
+  --tg-color-divider: #443a50;
+  --tg-color-action: #b374ef;
+  --tg-color-action-hover: #c18af2;
+  --tg-color-on-action: #211329;
+  --tg-color-switch-track: #62566f;
+  --tg-color-switch-thumb: #f4ecfc;
+  --tg-color-backdrop: rgb(5 3 9 / 70%);
+  --te-color-ink: #e3eddc;
+  --te-color-muted: #abbba0;
+  --te-color-border: #45523f;
+  --te-color-surface: #1b251b;
+  --te-color-surface-raised: #253225;
+  --te-color-surface-hover: #334330;
+  --te-color-surface-selected: #3a4d32;
+  --te-color-border-selected: #9abd7f;
+  --te-color-accent: #a8c987;
+  --te-color-action: #9bcca6;
+  --te-color-action-hover: #acdbb6;
+  --te-color-on-action: #152419;
+  --te-color-danger: #ffa999;
+  --te-color-danger-border: #7e4941;
+  --te-color-danger-soft: #42271f;
+  --te-color-danger-hover: #56342b;
+  --te-color-backdrop: rgb(3 10 3 / 75%);
+  --tg-shadow-focus: 0 0 0 3px rgb(193 138 242 / 35%);
+  --tg-shadow-button: 0 8px 20px rgb(0 0 0 / 30%);
+  --tg-shadow-form: 0 18px 50px rgb(0 0 0 / 25%);
+  --tg-shadow-menu: 0 12px 30px rgb(0 0 0 / 40%);
+  --tg-shadow-invalid: 0 0 0 3px rgb(255 145 165 / 25%);
+  --tg-shadow-card: 0 3px 12px rgb(0 0 0 / 25%);
+  --tg-shadow-switch: 0 1px 3px rgb(0 0 0 / 40%);
+  --te-shadow-focus: 0 0 0 3px rgb(168 201 135 / 30%);
+  --te-shadow-button: 0 5px 15px rgb(0 0 0 / 25%);
+  --te-shadow-preview: 0 9px 24px rgb(0 0 0 / 20%);
+  --te-shadow-dialog: 0 24px 90px rgb(0 0 0 / 50%);
+}
+
+.tg-root {
+  --tg-radius-control: 7px;
+  --tg-radius-panel: 12px;
+  --tg-field-gap: 1.25rem;
+  color: var(--tg-color-ink);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.tg-root.tg-form {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 24px;
+  border: 1px solid var(--tg-color-border);
+  border-radius: var(--tg-radius-panel);
+  background: var(--tg-color-surface);
+  box-shadow: var(--tg-shadow-form);
+}
+
+.tg-root .tg-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 18px;
+}
+
+.tg-root .tg-field {
+  min-width: 0;
+}
+
+.tg-root .tg-label,
+.tg-root .tg-checkbox-label {
+  display: inline-flex;
+  gap: 3px;
+  align-items: baseline;
+  margin: 0 0 7px;
+  color: var(--tg-color-ink);
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.tg-root .tg-required {
+  color: var(--tg-color-accent-deep);
+}
+
+.tg-root .tg-input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding: 9px 11px;
+  border: 1px solid var(--tg-color-border);
+  border-radius: var(--tg-radius-control);
+  outline: none;
+  background: var(--tg-color-surface);
+  color: var(--tg-color-ink);
+  font: inherit;
+  line-height: 20px;
+  transition:
+    border-color 140ms ease,
+    box-shadow 140ms ease,
+    background-color 140ms ease;
+}
+
+.tg-root .tg-select-wrap {
+  position: relative;
+}
+
+.tg-root .tg-label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tg-root .tg-select-clear {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--tg-color-accent-deep);
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.tg-root .tg-select-clear:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.tg-root .tg-select-clear:disabled {
+  color: var(--tg-color-muted);
+  cursor: not-allowed;
+}
+
+.tg-root .tg-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.tg-root .tg-input.tg-select-multiple {
+  position: relative;
+  padding: 6px 37px 6px 7px;
+}
+
+.tg-root .tg-select-multiple-trigger {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: inherit;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.tg-root .tg-select-multiple:has(.tg-select-multiple-trigger:focus-visible),
+.tg-root .tg-select-multiple[data-expanded='true'] {
+  border-color: var(--tg-color-accent);
+  box-shadow: var(--tg-shadow-focus);
+}
+
+.tg-root .tg-select-multiple-trigger:focus-visible {
+  outline: none;
+}
+
+.tg-root .tg-select-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  min-height: 26px;
+  align-items: center;
+  pointer-events: none;
+}
+
+.tg-root .tg-select-placeholder {
+  padding-inline-start: 4px;
+  color: var(--tg-color-muted);
+}
+
+.tg-root .tg-select-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+  padding: 3px 5px 3px 8px;
+  border: 1px solid var(--tg-color-border);
+  border-radius: 5px;
+  background: var(--tg-color-accent-soft);
+  color: var(--tg-color-accent-deep);
+  font-size: 11px;
+  font-weight: 550;
+  line-height: 17px;
+}
+
+.tg-root .tg-select-chip-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.tg-root .tg-select-chip[data-unavailable='true'] {
+  background: var(--tg-color-danger-soft);
+  color: var(--tg-color-danger);
+}
+
+.tg-root .tg-select-chip-remove {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.tg-root .tg-select-chip-remove:hover:not(:disabled) {
+  background: var(--tg-color-surface);
+}
+
+.tg-root .tg-select-chip-remove:focus-visible,
+.tg-root .tg-select-clear:focus-visible {
+  outline: none;
+  box-shadow: var(--tg-shadow-focus);
+}
+
+.tg-root .tg-select-multiple[data-disabled='true'] {
+  background: var(--tg-color-surface-raised);
+  opacity: 0.65;
+}
+
+.tg-root .tg-select-multiple-trigger:disabled,
+.tg-root .tg-select-chip-remove:disabled {
+  cursor: not-allowed;
+}
+
+.tg-root .tg-input.tg-select {
+  appearance: none;
+  padding-inline-end: 40px;
+  cursor: pointer;
+  text-align: start;
+}
+
+.tg-root .tg-select-value {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tg-root .tg-select[data-placeholder='true'] {
+  color: var(--tg-color-muted);
+}
+
+.tg-root .tg-select:hover:not(:disabled):not([data-disabled='true']) {
+  border-color: var(--tg-color-accent);
+}
+
+.tg-root .tg-select[aria-expanded='true'] {
+  border-color: var(--tg-color-accent);
+  box-shadow: var(--tg-shadow-focus);
+}
+
+.tg-root .tg-select-wrap:has(.tg-select-menu) {
+  z-index: 40;
+}
+
+.tg-root .tg-select-menu {
+  position: absolute;
+  z-index: 50;
+  inset-inline: 0;
+  top: calc(100% + 6px);
+  box-sizing: border-box;
+  max-height: 240px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin: 0;
+  padding: 5px;
+  border: 1px solid var(--tg-color-border);
+  border-radius: 9px;
+  background: var(--tg-color-surface);
+  box-shadow: var(--tg-shadow-menu);
+  list-style: none;
+}
+
+.tg-root .tg-select-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 36px;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border-radius: 5px;
+  color: var(--tg-color-ink);
+  cursor: pointer;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.tg-root .tg-select-option > svg {
+  flex-shrink: 0;
+  color: var(--tg-color-accent-deep);
+}
+
+.tg-root .tg-select-option[data-placeholder='true'],
+.tg-root .tg-select-empty {
+  color: var(--tg-color-muted);
+}
+
+.tg-root .tg-select-option[data-active='true'] {
+  background: var(--tg-color-accent-soft);
+  color: var(--tg-color-accent-deep);
+}
+
+.tg-root .tg-select-option[aria-selected='true'] {
+  font-weight: 600;
+}
+
+.tg-root .tg-select-empty {
+  padding: 10px;
+  font-size: 12px;
+}
+
+.tg-root .tg-date-input {
+  padding-inline-end: 42px;
+}
+
+.tg-root .tg-date-input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.tg-root .tg-date-trigger {
+  position: absolute;
+  inset-inline-end: 7px;
+  top: 5px;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--tg-color-muted);
+  cursor: pointer;
+}
+
+.tg-root .tg-date-trigger:hover:not(:disabled),
+.tg-root .tg-date-wrap[data-expanded='true'] .tg-date-trigger {
+  color: var(--tg-color-accent-deep);
+  background: var(--tg-color-accent-soft);
+}
+
+.tg-root .tg-date-wrap[data-expanded='true'] > .tg-input {
+  border-color: var(--tg-color-accent);
+  box-shadow: var(--tg-shadow-focus);
+}
+
+.tg-root .tg-date-menu {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 12px;
+}
+
+.tg-root .tg-date-wrap[data-placement='above'] .tg-date-menu {
+  top: auto;
+  bottom: calc(100% + 6px);
+}
+
+.tg-root .tg-date-menu-body {
+  display: grid;
+  gap: 16px;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.tg-root .tg-date-menu[data-mode='datetime'] .tg-date-menu-body {
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+}
+
+.tg-root .tg-calendar-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  min-height: 32px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.tg-root .tg-picker-nav,
+.tg-root .tg-calendar-day,
+.tg-root .tg-picker-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--tg-color-ink);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.tg-root .tg-calendar-weekdays,
+.tg-root .tg-calendar-grid > [role='row'] {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 3px;
+  text-align: center;
+}
+
+.tg-root .tg-calendar-weekdays {
+  margin-bottom: 5px;
+  color: var(--tg-color-muted);
+  font-size: 10px;
+}
+
+.tg-root .tg-calendar-grid > [role='row'] + [role='row'] {
+  margin-top: 3px;
+}
+
+.tg-root .tg-calendar-day {
+  width: 100%;
+  font-variant-numeric: tabular-nums;
+}
+
+.tg-root .tg-calendar-day[data-selected='true'],
+.tg-root .tg-time-option[aria-selected='true'] {
+  color: var(--tg-color-accent-deep);
+  background: var(--tg-color-accent-soft);
+  font-weight: 650;
+}
+
+.tg-root .tg-picker-nav:hover:not(:disabled),
+.tg-root .tg-calendar-day:hover:not(:disabled),
+.tg-root .tg-picker-action:hover:not(:disabled),
+.tg-root .tg-time-option:hover {
+  color: var(--tg-color-accent-deep);
+  background: var(--tg-color-accent-soft);
+}
+
+.tg-root .tg-date-trigger:focus-visible,
+.tg-root .tg-picker-nav:focus-visible,
+.tg-root .tg-calendar-day:focus-visible,
+.tg-root .tg-picker-action:focus-visible,
+.tg-root .tg-time-option:focus-visible {
+  outline: 2px solid var(--tg-color-accent);
+  outline-offset: 1px;
+}
+
+.tg-root .tg-date-trigger:disabled,
+.tg-root .tg-picker-nav:disabled,
+.tg-root .tg-calendar-day:disabled,
+.tg-root .tg-picker-action:disabled {
+  color: var(--tg-color-subtle);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.tg-root .tg-time-picker {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  min-width: 0;
+}
+
+.tg-root .tg-time-heading {
+  display: block;
+  padding: 7px 0 11px;
+  color: var(--tg-color-muted);
+  font-size: 10px;
+  text-align: center;
+}
+
+.tg-root .tg-time-list {
+  position: relative;
+  max-height: 190px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--tg-color-border) transparent;
+}
+
+.tg-root .tg-time-option {
+  color: var(--tg-color-ink);
+  width: 100%;
+  min-height: 30px;
+  padding: 6px;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.tg-root .tg-date-menu-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--tg-color-border);
+  flex-shrink: 0;
+}
+
+.tg-root .tg-date-menu-footer > div {
+  display: flex;
+  gap: 4px;
+}
+
+.tg-root .tg-picker-done {
+  color: var(--tg-color-accent-deep);
+  font-weight: 650;
+}
+
+@container (max-width: 400px) {
+  .tg-root .tg-date-menu[data-mode='datetime'] .tg-date-menu-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tg-root .tg-date-field {
+  min-width: 0;
+  container-type: inline-size;
+}
+
+.tg-root .tg-date-field:has(.tg-date-menu) {
+  position: relative;
+  z-index: 45;
+}
+
+.tg-root .tg-source-error {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid var(--tg-color-danger);
+  border-radius: var(--tg-radius-control);
+  background: var(--tg-color-danger-soft);
+  color: var(--tg-color-danger);
+  font-size: 11px;
+}
+
+.tg-root .tg-source-error button {
+  flex-shrink: 0;
+  padding: 6px 9px;
+  border: 1px solid var(--tg-color-danger);
+  border-radius: 5px;
+  background: var(--tg-color-surface);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.tg-root .tg-source-error button:focus-visible {
+  outline: none;
+  box-shadow: var(--tg-shadow-focus);
+}
+
+.tg-root .tg-select-arrow {
+  position: absolute;
+  inset-inline-end: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--tg-color-muted);
+  pointer-events: none;
+  transition: transform 140ms ease;
+}
+
+.tg-root .tg-select-arrow[data-open='true'] {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.tg-root .tg-select-indicator {
+  position: absolute;
+  inset-inline-end: 13px;
+  top: 50%;
+  display: flex;
+  transform: translateY(-50%);
+  color: var(--tg-color-accent-deep);
+  pointer-events: none;
+}
+
+.tg-root .tg-select-indicator .tg-spinner {
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+}
+
+.tg-root .tg-select:disabled + .tg-select-arrow {
+  opacity: 0.45;
+}
+
+.tg-root .tg-file-picker {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-height: 82px;
+  box-sizing: border-box;
+  padding: 15px;
+  border: 1px dashed var(--tg-color-border);
+  border-radius: var(--tg-radius-control);
+  background: var(--tg-color-surface-raised);
+  transition:
+    border-color 140ms ease,
+    background-color 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.tg-root .tg-file-picker:hover:not([data-disabled='true']) {
+  border-color: var(--tg-color-accent);
+  background: var(--tg-color-accent-soft);
+}
+
+.tg-root .tg-file-picker:has(.tg-file-input:focus-visible) {
+  border-color: var(--tg-color-accent);
+  box-shadow: var(--tg-shadow-focus);
+}
+
+.tg-root .tg-file-picker[data-invalid='true'] {
+  border-color: var(--tg-color-danger);
+}
+
+.tg-root .tg-file-picker[data-disabled='true'] {
+  opacity: 0.55;
+}
+
+/* Retain the native, keyboard-operable picker over the custom presentation. */
+.tg-root .tg-file-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.tg-root .tg-file-input:disabled {
+  cursor: not-allowed;
+}
+
+.tg-root .tg-file-picker-icon,
+.tg-root .tg-file-item-icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  color: var(--tg-color-accent-deep);
+}
+
+.tg-root .tg-file-picker-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--tg-color-accent-soft);
+}
+
+.tg-root .tg-file-picker-copy,
+.tg-root .tg-file-info {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 3px;
+}
+
+.tg-root .tg-file-picker-title,
+.tg-root .tg-file-name {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tg-root .tg-file-hint,
+.tg-root .tg-file-size {
+  font-size: 11px;
+  color: var(--tg-color-muted);
+  overflow-wrap: anywhere;
+}
+
+.tg-root .tg-file-browse,
+.tg-root .tg-file-retry {
+  flex-shrink: 0;
+  padding: 6px 11px;
+  border: 1px solid var(--tg-color-border);
+  border-radius: 6px;
+  background: var(--tg-color-surface);
+  color: var(--tg-color-ink);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.tg-root .tg-file-list {
+  display: grid;
+  gap: 7px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tg-root .tg-file-item {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--tg-color-border);
+  border-radius: var(--tg-radius-control);
+  background: var(--tg-color-surface);
+}
+
+.tg-root .tg-file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tg-root .tg-file-status {
+  flex-shrink: 0;
+  padding: 3px 6px;
+  border-radius: 5px;
+  background: var(--tg-color-surface-raised);
+  color: var(--tg-color-muted);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.tg-root .tg-file-status--uploaded {
+  background: var(--tg-color-accent-soft);
+  color: var(--tg-color-accent-deep);
+}
+
+.tg-root .tg-file-remove {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--tg-color-muted);
+  cursor: pointer;
+}
+
+.tg-root .tg-file-remove:hover:not(:disabled) {
+  background: var(--tg-color-danger-soft);
+  color: var(--tg-color-danger);
+}
+
+.tg-root .tg-file-retry {
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.tg-root .tg-file-remove:focus-visible,
+.tg-root .tg-file-retry:focus-visible {
+  outline: none;
+  box-shadow: var(--tg-shadow-focus);
+}
+
+.tg-root .tg-file-remove:disabled,
+.tg-root .tg-file-retry:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.tg-root .tg-file-progress {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  margin: 8px 0 0;
+  color: var(--tg-color-muted);
+  font-size: 11px;
+}
+
+.tg-root .tg-input::placeholder {
+  color: var(--tg-color-subtle);
+}
+
+.tg-root .tg-input:hover:not(:disabled):not(:read-only) {
+  border-color: var(--tg-color-border-hover);
+}
+
+.tg-root .tg-input:focus-visible {
+  border-color: var(--tg-color-accent);
+  box-shadow: var(--tg-shadow-focus);
+}
+
+.tg-root .tg-input:disabled {
+  cursor: not-allowed;
+  border-color: var(--tg-color-disabled-border);
+  background: var(--tg-color-disabled-surface);
+  color: var(--tg-color-disabled-ink);
+}
+
+.tg-root .tg-input:read-only:not(:disabled):not(.tg-select) {
+  background: var(--tg-color-surface-raised);
+  color: var(--tg-color-readonly-ink);
+}
+
+.tg-root .tg-field--invalid .tg-input,
+.tg-root .tg-input[aria-invalid='true'] {
+  border-color: var(--tg-color-danger);
+}
+
+.tg-root .tg-field--invalid .tg-input:focus-visible,
+.tg-root .tg-input[aria-invalid='true']:focus-visible {
+  box-shadow: var(--tg-shadow-invalid);
+}
+
+.tg-root .tg-description {
+  margin: 6px 0 0;
+  color: var(--tg-color-muted);
+  font-size: 11px;
+}
+
+.tg-root .tg-errors {
+  display: grid;
+  gap: 3px;
+  margin: 6px 0 0;
+  padding: 0;
+  color: var(--tg-color-danger);
+  font-size: 11px;
+  list-style: none;
+}
+
+.tg-root .tg-checkbox-row {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  min-height: 40px;
+  padding-top: 8px;
+}
+
+.tg-root .tg-checkbox {
+  box-sizing: border-box;
+  width: 17px;
+  height: 17px;
+  margin: 1px 0 0;
+  border: 1px solid var(--tg-color-border);
+  border-radius: 4px;
+  accent-color: var(--tg-color-accent-deep);
+}
+
+.tg-root .tg-checkbox:focus-visible {
+  outline: none;
+  box-shadow: var(--tg-shadow-focus);
+}
+
+.tg-root .tg-checkbox-label {
+  margin: 0;
+  font-size: 13px;
+}
+
+.tg-root .tg-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid var(--tg-color-divider);
+}
+
+.tg-root .tg-submit {
+  display: inline-flex;
+  min-width: 112px;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border: 1px solid var(--tg-color-action);
+  border-radius: var(--tg-radius-control);
+  background: var(--tg-color-action);
+  box-shadow: var(--tg-shadow-button);
+  color: var(--tg-color-on-action);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+  transition:
+    transform 120ms ease,
+    background-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.tg-root .tg-submit:hover:not(:disabled) {
+  background: var(--tg-color-action-hover);
+  transform: translateY(-1px);
+}
+
+.tg-root .tg-submit:focus-visible {
+  outline: none;
+  box-shadow: var(--tg-shadow-button), var(--tg-shadow-focus);
+}
+
+.tg-root .tg-submit:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.tg-root .tg-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 999px;
+  animation: tg-spin 700ms linear infinite;
+}
+
+.tg-root .tg-form-error {
+  margin-top: 20px;
+  padding: 10px 12px;
+  border: 1px solid var(--tg-color-danger-border);
+  border-radius: var(--tg-radius-control);
+  background: var(--tg-color-danger-soft);
+  color: var(--tg-color-danger-ink);
+  font-size: 12px;
+}
+
+.tg-root.tg-message,
+.tg-root.tg-failure {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  min-height: 92px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 22px;
+  border: 1px solid var(--tg-color-border);
+  border-radius: var(--tg-radius-panel);
+  background: var(--tg-color-surface-raised);
+  color: var(--tg-color-muted);
+}
+
+.tg-root.tg-failure {
+  justify-content: flex-start;
+  border-color: var(--tg-color-danger-border);
+  background: var(--tg-color-danger-soft);
+  color: var(--tg-color-danger-ink);
+}
+
+.tg-root .tg-failure-mark {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--tg-color-danger);
+  color: var(--tg-color-on-danger);
+  font-weight: 800;
+}
+
+.tg-root.tg-failure strong {
+  display: block;
+  color: var(--tg-color-danger-ink);
+}
+
+.tg-root.tg-failure p {
+  margin: 2px 0 0;
+  font-size: 12px;
+}
+
+@keyframes tg-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .tg-root.tg-form {
+    padding: 18px;
+  }
+
+  .tg-root .tg-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .tg-root .tg-submit {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tg-root .tg-input,
+  .tg-root .tg-submit {
+    transition: none;
+  }
+
+  .tg-root .tg-spinner {
+    animation-duration: 1400ms;
+  }
+}
+
+/* Structural groups share the form's scoped tokens and never affect values. */
+.tg-root .tg-group,
+.tg-root .tg-group-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tg-field-gap, 1.25rem);
+  min-width: 0;
+}
+
+.tg-root .tg-group-title {
+  font-size: 1rem;
+  font-weight: 650;
+  margin: 0;
+}
+
+.tg-root .tg-group--section {
+  border-top: 1px solid var(--tg-color-border);
+  padding-top: 1.25rem;
+}
+
+.tg-root .tg-group--panel,
+.tg-root .tg-group--card,
+.tg-root .tg-group--fieldset,
+.tg-root .tg-group--inset,
+.tg-root .tg-group--disclosure {
+  border: 1px solid var(--tg-color-border);
+  border-radius: var(--tg-radius-panel, 12px);
+  padding: 1.25rem;
+  margin: 0;
+}
+
+.tg-root .tg-group--card {
+  box-shadow: var(--tg-shadow-card);
+}
+
+.tg-root .tg-group--inset {
+  background: var(--tg-color-surface-raised);
+}
+
+.tg-root .tg-group--fieldset legend {
+  padding: 0 0.4rem;
+}
+
+.tg-root .tg-group--row {
+  flex-direction: row;
+}
+
+.tg-root .tg-group--row > * {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.tg-root .tg-group--disclosure > summary {
+  cursor: pointer;
+  font-weight: 650;
+}
+
+.tg-root .tg-group--disclosure > .tg-group-content {
+  margin-top: 1rem;
+}
+
+.tg-root [hidden] {
+  display: none !important;
+}
+
+.tg-root .tg-section-nav,
+.tg-root .tg-section-actions,
+.tg-root .tg-step-indicators {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tg-root .tg-section-nav button,
+.tg-root .tg-section-actions button,
+.tg-root .tg-step-indicators button,
+.tg-root .tg-group-trigger,
+.tg-root .tg-group-close {
+  font: inherit;
+  border: 1px solid var(--tg-color-border);
+  border-radius: 0.5rem;
+  padding: 0.55rem 0.8rem;
+  background: var(--tg-color-surface);
+  color: inherit;
+  cursor: pointer;
+}
+
+.tg-root .tg-section-nav button[aria-selected='true'],
+.tg-root .tg-step-indicators button[aria-current='step'] {
+  border-color: var(--tg-color-accent);
+  background: var(--tg-color-surface-raised);
+  font-weight: 650;
+}
+
+.tg-root .tg-section-nav button:focus-visible,
+.tg-root .tg-section-actions button:focus-visible,
+.tg-root .tg-step-indicators button:focus-visible,
+.tg-root summary:focus-visible,
+.tg-root .tg-group-trigger:focus-visible,
+.tg-root .tg-group-close:focus-visible {
+  outline: 2px solid var(--tg-color-accent);
+  outline-offset: 3px;
+}
+
+.tg-root .tg-section-actions {
+  justify-content: space-between;
+}
+
+.tg-root .tg-section-progress {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--tg-color-muted);
+}
+
+.tg-root .tg-group-error-count {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--tg-color-danger);
+}
+
+.tg-root .tg-group-dialog {
+  background: var(--tg-color-surface);
+  border: 1px solid var(--tg-color-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  width: min(36rem, calc(100vw - 3rem));
+  max-height: calc(100vh - 3rem);
+  color: inherit;
+}
+
+.tg-root .tg-group-dialog::backdrop {
+  background: var(--tg-color-backdrop);
+}
+
+.tg-root .tg-group-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tg-root .tg-group-dialog--drawer {
+  margin: 0 0 0 auto;
+  height: 100vh;
+  max-height: 100vh;
+  border-radius: 0;
+}
+
+.tg-root .tg-group-dialog--sheet {
+  margin: auto auto 0;
+  width: min(56rem, calc(100vw - 3rem));
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.tg-root button:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.tg-root .tg-fields > .tg-group {
+  grid-column: 1 / -1;
+}
+
+.tg-root .tg-repeater {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  grid-column: 1 / -1;
+}
+
+.tg-repeater-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.tg-repeater-heading h2,
+.tg-repeater-heading h3 {
+  margin: 0;
+}
+
+.tg-repeater-actions {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.tg-repeater-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.tg-repeater-instance {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid var(--tg-color-border);
+  border-radius: 0.5rem;
+}
+
+.tg-repeater button {
+  cursor: pointer;
+}
+
+.tg-repeater button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.tg-root .tg-repeater-heading > button,
+.tg-root .tg-repeater-actions button {
+  font: inherit;
+  font-size: 1.1rem;
+  min-width: 2rem;
+  min-height: 2rem;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--tg-color-border);
+  border-radius: var(--tg-radius-control);
+  background: var(--tg-color-surface);
+  color: var(--tg-color-ink);
+}
+
+.tg-root .tg-repeater-heading > button:focus-visible,
+.tg-root .tg-repeater-actions button:focus-visible {
+  outline: 2px solid var(--tg-color-accent);
+  outline-offset: 2px;
+}
+
+/* The editor is an embeddable authoring surface. Every rule is scoped. */
+.te-root {
+  color: var(--te-color-ink);
+  background: var(--te-color-surface);
+  border: 1px solid var(--te-color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  font:
+    13px/1.6 Inter,
+    ui-sans-serif,
+    system-ui,
+    sans-serif;
+}
+
+.te-root * {
+  box-sizing: border-box;
+}
+
+.te-root [hidden] {
+  display: none !important;
+}
+
+.te-root h2,
+.te-root h3 {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.te-root h2 {
+  font:
+    24px/1.2 Georgia,
+    serif;
+  letter-spacing: -0.7px;
+}
+
+.te-root h3 {
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.te-root button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.te-root button:disabled {
+  cursor: default;
+  opacity: 0.48;
+}
+
+.te-root button:focus-visible,
+.te-root textarea:focus-visible {
+  outline: 2px solid var(--te-color-accent);
+  outline-offset: 3px;
+}
+
+.te-root .te-toolbar {
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  border-bottom: 1px solid var(--te-color-border);
+  background: var(--te-color-surface-raised);
+}
+
+.te-mode-switch {
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 24px;
+  background: var(--te-color-surface-selected);
+}
+
+.te-mode-switch button {
+  border: 0;
+  border-radius: 20px;
+  padding: 5px 19px;
+  background: transparent;
+  font-size: 11px;
+}
+
+.te-mode-switch button[aria-selected='true'] {
+  color: var(--te-color-on-action);
+  background: var(--te-color-action);
+}
+
+.te-status {
+  color: var(--te-color-muted);
+  font-size: 10px;
+}
+
+.te-status:before {
+  content: '●';
+  font-size: 6px;
+  margin-right: 7px;
+}
+
+.te-status-error {
+  color: var(--te-color-danger);
+}
+
+.te-tools {
+  display: flex;
+  gap: 7px;
+  margin-left: auto;
+}
+
+.te-tools button,
+.te-preview-heading > button,
+.te-details > button {
+  border: 1px solid var(--te-color-border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  background: var(--te-color-surface);
+  font-size: 10px;
+}
+
+.te-workspace {
+  display: grid;
+  grid-template-columns: 220px minmax(300px, 0.9fr) minmax(330px, 1.1fr);
+  min-height: 590px;
+}
+
+.te-palette {
+  padding: 26px 17px;
+  background: var(--te-color-surface-raised);
+  border-right: 1px solid var(--te-color-border);
+}
+
+.te-kicker {
+  margin: 0 0 8px;
+  font-size: 8px;
+  font-weight: 650;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--te-color-muted);
+}
+
+.te-muted {
+  color: var(--te-color-muted);
+  font-size: 11px;
+  line-height: 1.8;
+  margin: 10px 0 21px;
+}
+
+.te-add-target {
+  font-size: 9px;
+  overflow-wrap: anywhere;
+  margin-top: 12px;
+}
+
+.te-palette-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+
+.te-palette-buttons button {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  text-align: left;
+  padding: 8px 7px;
+  border: 1px solid var(--te-color-border);
+  border-radius: 5px;
+  background: var(--te-color-surface);
+  font-size: 10px;
+}
+
+.te-palette-buttons button:hover {
+  border-color: var(--te-color-border-selected);
+  background: var(--te-color-surface-hover);
+}
+
+.te-palette-buttons span {
+  color: var(--te-color-accent);
+  font-size: 15px;
+}
+
+.te-outline-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-top: 1px solid var(--te-color-border);
+}
+
+.te-outline-heading button {
+  font-size: 9px;
+  background: none;
+  border: 1px solid var(--te-color-border);
+  border-radius: 4px;
+  padding: 3px 7px;
+}
+
+.te-outline-heading button[aria-pressed='true'] {
+  background: var(--te-color-surface-selected);
+}
+
+.te-outline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.te-outline .te-outline {
+  padding-left: 11px;
+  border-left: 1px solid var(--te-color-border);
+  margin: 4px 0 6px 6px;
+}
+
+.te-outline button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid transparent;
+  background: transparent;
+  text-align: left;
+  gap: 6px;
+  padding: 8px 5px;
+  border-radius: 5px;
+}
+
+.te-outline button:hover {
+  background: var(--te-color-surface-hover);
+}
+
+.te-outline button[aria-pressed='true'] {
+  background: var(--te-color-surface-selected);
+  border-color: var(--te-color-border-selected);
+}
+
+.te-outline strong {
+  display: block;
+  font-size: 10px;
+  font-weight: 550;
+  overflow-wrap: anywhere;
+}
+
+.te-outline small {
+  display: block;
+  color: var(--te-color-muted);
+  font:
+    8px/1.5 ui-monospace,
+    monospace;
+  overflow-wrap: anywhere;
+}
+
+.te-node-icon {
+  color: var(--te-color-accent);
+}
+
+.te-node-type {
+  display: none;
+}
+
+.te-inspector {
+  padding: 26px 25px;
+  border-right: 1px solid var(--te-color-border);
+  overflow: hidden;
+}
+
+.te-inspector-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  overflow-wrap: anywhere;
+}
+
+.te-delete {
+  border: 0;
+  color: var(--te-color-danger) !important;
+  background: none;
+  font-size: 9px !important;
+}
+
+.te-root .tg-root:not(.tb-root):not(.tm-root) {
+  --tg-color-ink: var(--te-color-ink);
+  --tg-color-muted: var(--te-color-muted);
+  --tg-color-border: var(--te-color-border);
+  --tg-color-surface: var(--te-color-surface);
+  --tg-color-surface-raised: var(--te-color-surface-raised);
+  --tg-color-accent: var(--te-color-accent);
+  --tg-color-accent-deep: var(--te-color-action);
+  --tg-color-accent-soft: var(--te-color-surface-selected);
+  --tg-color-action: var(--te-color-action);
+  --tg-color-action-hover: var(--te-color-action-hover);
+  --tg-color-on-action: var(--te-color-on-action);
+  --tg-shadow-focus: var(--te-shadow-focus);
+  --tg-shadow-button: var(--te-shadow-button);
+}
+
+.te-root .te-settings-form {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: none;
+}
+
+.te-root .te-settings-form .tg-fields {
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.te-root .te-settings-form > .tg-submit {
+  margin-top: 24px;
+  width: 100%;
+  background: var(--te-color-action);
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.te-root .te-settings-form .tg-repeater {
+  padding: 13px;
+  background: var(--te-color-surface-raised);
+  border-color: var(--te-color-border);
+}
+
+.te-root .te-settings-form .tg-repeater-heading h2 {
+  font:
+    17px Georgia,
+    serif;
+}
+
+.te-root .te-settings-form .tg-repeater-instance {
+  background: var(--te-color-surface);
+  padding: 12px;
+}
+
+.te-root .te-settings-form .tg-label {
+  font-size: 10px;
+}
+
+.te-root .te-settings-form .tg-input {
+  font-size: 12px;
+  min-height: 36px;
+}
+
+.te-code-input {
+  font:
+    11px/1.6 ui-monospace,
+    monospace !important;
+  resize: vertical;
+}
+
+.te-preview {
+  padding: 26px 28px;
+  background: var(--te-color-surface-raised);
+  min-width: 0;
+}
+
+.te-preview-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.te-preview-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--te-color-border);
+  margin: 26px 0 22px;
+}
+
+.te-preview-tabs button {
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  color: var(--te-color-muted);
+  padding: 9px 15px;
+  font-size: 10px;
+}
+
+.te-preview-tabs button[aria-selected='true'] {
+  color: var(--te-color-action);
+  border-bottom-color: var(--te-color-accent);
+}
+
+.te-preview-form .tg-root.tg-form {
+  padding: 24px;
+  box-shadow: var(--te-shadow-preview);
+}
+
+.te-preview-form .tg-fields {
+  grid-template-columns: 1fr;
+}
+
+.te-preview-form .tg-submit {
+  background: var(--te-color-action);
+  border-radius: 22px;
+}
+
+.te-preview-form .tg-group-heading h2 {
+  font:
+    23px Georgia,
+    serif;
+}
+
+.te-json-output,
+.te-details pre {
+  overflow: auto;
+  max-height: 660px;
+  font:
+    10px/1.9 ui-monospace,
+    monospace;
+  color: var(--te-color-ink);
+  padding: 18px;
+  background: var(--te-color-surface-selected);
+  border: 1px solid var(--te-color-border);
+  border-radius: 7px;
+  white-space: pre;
+}
+
+.te-details {
+  margin-top: 18px;
+  border-top: 1px solid var(--te-color-border);
+  padding-top: 12px;
+  color: var(--te-color-muted);
+  font-size: 10px;
+}
+
+.te-details summary {
+  cursor: pointer;
+  color: var(--te-color-ink);
+}
+
+.te-details p {
+  line-height: 1.8;
+  margin: 15px 0;
+}
+
+.te-details label,
+.te-inspector > label {
+  display: block;
+  margin: 15px 0 6px;
+  font-size: 11px;
+}
+
+.te-details textarea,
+.te-json-editor {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--te-color-border);
+  border-radius: 6px;
+  background: var(--te-color-surface);
+  color: var(--te-color-ink);
+  outline: none;
+}
+
+.te-json-editor {
+  min-height: 600px;
+  resize: vertical;
+  font:
+    11px/1.8 ui-monospace,
+    monospace;
+}
+
+.te-details > button,
+.te-primary {
+  margin-top: 12px;
+}
+
+.te-root .te-primary {
+  border: 0;
+  padding: 10px 20px;
+  background: var(--te-color-action);
+  color: var(--te-color-on-action);
+  border-radius: 22px;
+  font-size: 11px;
+}
+
+.te-error {
+  margin: 0;
+  background: var(--te-color-danger-soft);
+  border-bottom: 1px solid var(--te-color-danger-border);
+  color: var(--te-color-danger);
+  padding: 14px 20px;
+  font-size: 11px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.te-empty {
+  color: var(--te-color-muted);
+  font-size: 11px;
+  line-height: 1.9;
+  padding: 15px 0;
+}
+
+@media (max-width: 1100px) {
+  .te-workspace {
+    grid-template-columns: 210px 1fr;
+  }
+
+  .te-inspector {
+    border-right: 0;
+  }
+
+  .te-preview {
+    grid-column: 1/-1;
+    border-top: 1px solid var(--te-color-border);
+  }
+
+  .te-preview-form {
+    max-width: 700px;
+  }
+
+  .te-json-editor {
+    min-height: 450px;
+  }
+}
+
+@media (max-width: 650px) {
+  .te-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .te-palette {
+    border-right: 0;
+    border-bottom: 1px solid var(--te-color-border);
+    padding: 20px;
+  }
+
+  .te-palette-buttons {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .te-toolbar {
+    flex-wrap: wrap;
+    gap: 12px !important;
+  }
+
+  .te-status {
+    margin-left: auto;
+  }
+
+  .te-tools {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .te-inspector,
+  .te-preview {
+    padding: 24px 20px;
+  }
+
+  .te-json-editor {
+    min-height: 450px;
+  }
+}
+
+/* Authoring canvas: palette categories and nested drop targets. */
+.te-root .te-palette-category h3 {
+  margin: 18px 0 8px;
+  color: var(--te-color-muted);
+  font-size: 10px;
+}
+
+.te-root .te-palette-category:first-child h3 {
+  margin-top: 0;
+}
+
+.te-root .te-palette-category .te-palette-buttons {
+  margin-bottom: 12px;
+}
+
+.te-root [draggable='true'] {
+  cursor: grab;
+  user-select: none;
+}
+
+.te-root [draggable='true']:active {
+  cursor: grabbing;
+}
+
+.te-root .te-canvas {
+  margin-bottom: 24px;
+}
+
+.te-root .te-canvas-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.te-root .te-canvas-heading > button {
+  font-size: 9px;
+  border: 1px solid var(--te-color-border);
+  border-radius: 5px;
+  background: var(--te-color-surface-raised);
+  padding: 5px 8px;
+}
+
+.te-root .te-canvas-card {
+  border: 1px solid var(--te-color-border);
+  border-radius: 7px;
+  background: var(--te-color-surface);
+  min-width: 0;
+}
+
+.te-root .te-canvas-container {
+  background: var(--te-color-surface-raised);
+}
+
+.te-root .te-canvas-selected {
+  border-color: var(--te-color-border-selected);
+  box-shadow: 0 0 0 1px var(--te-color-border-selected);
+}
+
+.te-root .te-canvas-moving {
+  opacity: 0.45;
+}
+
+.te-root .te-canvas-target {
+  border-color: var(--te-color-accent);
+  background: var(--te-color-surface-selected);
+}
+
+.te-root .te-canvas-card-heading {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  padding: 10px 9px;
+  min-width: 0;
+}
+
+.te-root .te-drag-handle {
+  border: 0;
+  background: none;
+  color: var(--te-color-accent);
+  font-size: 17px;
+  padding: 2px;
+}
+
+.te-root .te-canvas-select {
+  border: 0;
+  background: none;
+  text-align: left;
+  padding: 0;
+  min-width: 0;
+  flex: 1;
+}
+
+.te-root .te-canvas-select strong {
+  display: block;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+  font-weight: 550;
+}
+
+.te-root .te-canvas-select small {
+  display: block;
+  color: var(--te-color-muted);
+  font:
+    8px/1.7 ui-monospace,
+    monospace;
+  overflow-wrap: anywhere;
+}
+
+.te-root .te-canvas-type {
+  color: var(--te-color-muted);
+  font-size: 8px;
+  max-width: 70px;
+  overflow-wrap: anywhere;
+}
+
+.te-root .te-canvas-order {
+  display: flex;
+  gap: 2px;
+}
+
+.te-root .te-canvas-order button {
+  border: 0;
+  background: none;
+  color: var(--te-color-muted);
+  font-size: 11px;
+  padding: 3px;
+}
+
+.te-root .te-canvas-children {
+  border-top: 1px solid var(--te-color-border);
+  padding: 9px 10px 4px;
+}
+
+.te-root .te-canvas-caption {
+  font-size: 8px;
+  color: var(--te-color-muted);
+  margin: 0 0 4px;
+}
+
+.te-root .te-drop-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 24px;
+  color: var(--te-color-muted);
+  font-size: 9px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  transition: background 0.12s;
+}
+
+.te-root .te-drop-zone > span {
+  opacity: 0;
+}
+
+.te-root .te-drop-empty {
+  min-height: 55px;
+  border: 1px dashed var(--te-color-border-selected);
+  margin: 5px 0;
+  padding: 10px;
+  flex-wrap: wrap;
+  background: var(--te-color-surface-raised);
+}
+
+.te-root .te-drop-empty > span,
+.te-root .te-canvas-dragging .te-drop-zone > span {
+  opacity: 1;
+}
+
+.te-root .te-canvas-dragging .te-drop-zone {
+  min-height: 24px;
+  border-color: var(--te-color-border-selected);
+  background: var(--te-color-surface-hover);
+}
+
+.te-root .te-canvas-dragging .te-drop-empty {
+  min-height: 55px;
+}
+
+.te-root .te-drop-zone.te-drop-over {
+  background: var(--te-color-surface-selected);
+  border: 1px dashed var(--te-color-accent);
+  color: var(--te-color-ink);
+}
+
+.te-root .te-drop-zone.te-drop-blocked {
+  opacity: 0.35;
+}
+
+.te-root .te-drop-zone > button {
+  font-size: 8px;
+  background: var(--te-color-surface-hover);
+  border: 1px solid var(--te-color-border);
+  border-radius: 4px;
+  padding: 4px 7px;
+  margin: 0;
+}
+
+.te-root .te-property-panel {
+  border-top: 1px solid var(--te-color-border);
+  padding-top: 15px;
+}
+
+.te-root .te-property-panel > summary {
+  color: var(--te-color-muted);
+  font-size: 11px;
+  cursor: pointer;
+  margin-bottom: 18px;
+}
+
+.te-root .te-details > button + button {
+  margin-left: 7px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .te-root .te-drop-zone {
+    transition: none;
+  }
+}
+
+.tg-root textarea.tg-input {
+  min-height: 80px;
+}
+
+.tg-root .tg-switch {
+  appearance: none;
+  position: relative;
+  flex: 0 0 auto;
+  width: 34px;
+  height: 20px;
+  margin: 0;
+  border: 1px solid var(--tg-color-border);
+  border-radius: 999px;
+  background: var(--tg-color-switch-track);
+  cursor: pointer;
+  transition:
+    background 140ms ease,
+    border-color 140ms ease;
+}
+
+.tg-root .tg-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--tg-color-switch-thumb);
+  box-shadow: var(--tg-shadow-switch);
+  transition: transform 140ms ease;
+}
+
+.tg-root .tg-switch:checked {
+  background: var(--tg-color-action);
+  border-color: var(--tg-color-action);
+}
+
+.tg-root .tg-switch:checked::after {
+  transform: translateX(14px);
+}
+
+.tg-root .tg-switch:focus-visible,
+.tg-root .tg-radio:focus-visible {
+  outline: none;
+  box-shadow: var(--tg-shadow-focus);
+}
+
+.tg-root .tg-switch:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.tg-root .tg-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tg-root .tg-radio-group[data-direction='row'] {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.tg-root .tg-radio-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--tg-color-border);
+  border-radius: var(--tg-radius-control);
+  background: var(--tg-color-surface);
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+.tg-root .tg-radio-option:has(:checked) {
+  border-color: var(--tg-color-accent-deep);
+  background: var(--tg-color-accent-soft);
+}
+
+.tg-root .tg-radio-option[data-disabled='true'] {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.tg-root .tg-radio {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  margin: 2px 0 0;
+  accent-color: var(--tg-color-accent-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tg-root .tg-switch,
+  .tg-root .tg-switch::after {
+    transition: none;
+  }
+}
+
+/* Dedicated authoring, testing, and JSON views. Hidden panels remain mounted to preserve drafts. */
+.te-root .te-workspace {
+  display: block;
+}
+
+.te-authoring-view {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  min-height: 590px;
+}
+
+.te-root .te-inspector {
+  min-width: 0;
+  border-right: 0;
+}
+
+.te-root .te-preview {
+  border-top: 0;
+}
+
+.te-preview-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 28px;
+  margin-top: 24px;
+}
+
+.te-preview-input,
+.te-preview-data {
+  min-width: 0;
+}
+
+.te-preview-data {
+  padding-left: 28px;
+  border-left: 1px solid var(--te-color-border);
+}
+
+.te-preview-data .te-preview-tabs {
+  margin-top: 0;
+}
+
+.te-root .te-json-view {
+  width: 100%;
+}
+
+.te-settings-dialog {
+  width: min(760px, calc(100% - 32px));
+  max-height: calc(100dvh - 48px);
+  padding: 32px;
+  border: 1px solid var(--te-color-border);
+  border-radius: 16px;
+  background: var(--te-color-surface);
+  color: inherit;
+  box-shadow: var(--te-shadow-dialog);
+  overflow: auto;
+}
+
+.te-settings-dialog::backdrop {
+  background: var(--te-color-backdrop);
+  backdrop-filter: blur(3px);
+}
+
+.te-root .te-dialog-actions {
+  position: sticky;
+  float: right;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+  margin: -12px -12px 12px 16px;
+}
+
+.te-root .te-dialog-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--te-color-border);
+  border-radius: 50%;
+  background: var(--te-color-surface);
+}
+
+.te-root .te-dialog-delete {
+  color: var(--te-color-danger);
+  border-color: var(--te-color-danger-border);
+  background: var(--te-color-danger-soft);
+}
+
+.te-root .te-dialog-icon:hover {
+  background: var(--te-color-surface-hover);
+}
+
+.te-root .te-dialog-delete:hover {
+  background: var(--te-color-danger-hover);
+}
+
+.te-settings-dialog .te-settings-form .tg-fields {
+  grid-template-columns: 1fr;
+}
+
+@media (max-width: 760px) {
+  .te-authoring-view {
+    grid-template-columns: 190px minmax(0, 1fr);
+  }
+
+  .te-preview-split {
+    grid-template-columns: 1fr;
+  }
+
+  .te-preview-data {
+    padding-left: 0;
+    padding-top: 24px;
+    border-left: 0;
+    border-top: 1px solid var(--te-color-border);
+  }
+}
+
+@media (max-width: 550px) {
+  .te-authoring-view {
+    grid-template-columns: 1fr;
+  }
+
+  .te-settings-dialog {
+    padding: 24px;
+  }
+}
+
+/* Keep upload feedback inside the existing file row. */
+.tg-root .tg-file-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 24px;
+}
+
+.tg-root .tg-file-status .tg-spinner {
+  width: 12px;
+  height: 12px;
+}
+
+.tg-root .tg-date-input--localized:not(:focus) {
+  color: transparent;
+}
+
+.tg-root .tg-date-display {
+  position: absolute;
+  inset: 0 44px 0 12px;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  font: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tg-root .tg-date-input:focus + .tg-date-display {
+  visibility: hidden;
+}
+
+.tg-root .tg-date-input:disabled + .tg-date-display {
+  color: var(--tg-color-muted);
+}
+
+/* Card contents keep their inset at every nesting level. */
+.tg-root .tg-repeater > [role='tabpanel'] {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  padding-top: 0.25rem;
+}
+
+.te-root .te-canvas-list {
+  padding-top: 8px;
+}

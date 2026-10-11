@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": [
+      "ES2023",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "types": [
+      "vite/client",
+      "node"
+    ]
+  },
+  "include": [
+    "browser/**/*.ts",
+    "browser/**/*.tsx",
+    "../playwright*.ts",
+    "../api/src/data-sources.test.ts",
+    "../api/src/files.test.ts"
+  ],
+  "exclude": [
+    "../api/src/wasm",
+    "../node_modules",
+    "../dist"
+  ]
+}

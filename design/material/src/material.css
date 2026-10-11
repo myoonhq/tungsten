@@ -1,0 +1,96 @@
+/* Shared widgets use the same Material theme as the MUI primitives. All styling is instance scoped. */
+.tg-root.tm-root {
+  border-radius: var(--tm-radius);
+}
+
+.tm-root .tg-group--card,
+.tm-root .tg-group--panel,
+.tm-root .tg-repeater-instance,
+.tm-root .tg-date-menu,
+.tm-root .tg-select-menu,
+.tm-root .tg-group-dialog {
+  border-radius: var(--tm-radius);
+}
+
+.tm-root .MuiOutlinedInput-root {
+  color: var(--tg-color-ink);
+  background: var(--tg-color-surface);
+  border-radius: var(--tm-radius);
+  padding: 0;
+}
+
+.tm-root .MuiOutlinedInput-root .tg-input {
+  border: 0;
+  border-radius: inherit;
+  background: var(--tg-color-surface);
+  color: var(--tg-color-ink);
+  font: inherit;
+  box-sizing: border-box;
+}
+
+.tm-root .MuiOutlinedInput-root .tg-input:focus-visible {
+  box-shadow: var(--tg-shadow-focus);
+  outline: none;
+}
+
+.tm-root .MuiOutlinedInput-root .tg-input:disabled {
+  background: var(--tg-color-disabled-surface);
+  color: var(--tg-color-disabled-ink);
+}
+
+.tm-root .MuiOutlinedInput-root .tg-input:read-only:not(:disabled) {
+  color: var(--tg-color-readonly-ink);
+}
+
+/* MUI renders the visible choice icon/track. Keep native inputs as transparent hit targets. */
+.tm-root .MuiButtonBase-root :is(.tg-checkbox, .tg-radio, .tg-switch) {
+  appearance: auto;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.tm-root .tg-switch::after {
+  content: none;
+}
+
+.tm-root .MuiButtonBase-root:has(:is(.tg-checkbox, .tg-radio, .tg-switch):focus-visible) {
+  box-shadow: var(--tg-shadow-focus);
+}
+
+.tm-root .tg-submit.MuiButton-root,
+.tm-root .tg-picker-done.MuiButton-root {
+  background: var(--tg-color-action);
+  color: var(--tg-color-on-action);
+  border-radius: var(--tm-radius);
+}
+
+.tm-root .tg-submit.MuiButton-root:hover,
+.tm-root .tg-picker-done.MuiButton-root:hover {
+  background: var(--tg-color-action-hover);
+}
+
+.tm-root .MuiButton-root.Mui-disabled {
+  color: var(--tg-color-disabled-ink);
+  box-shadow: none;
+}
+
+.tm-root .tg-submit.Mui-disabled {
+  background: var(--tg-color-disabled-surface);
+}
+
+.tm-root .tg-date-trigger,
+.tm-root .tg-select-remove,
+.tm-root .tg-file-remove,
+.tm-root .tg-calendar-nav,
+.tm-root .tg-calendar-day {
+  min-width: 0;
+  line-height: inherit;
+}

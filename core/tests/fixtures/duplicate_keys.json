@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "sprout",
+  "form": [
+    {
+      "key": "email",
+      "type": "text",
+      "view": {
+        "label": "Primary email"
+      }
+    },
+    {
+      "key": "email",
+      "type": "text", "variant": "email",
+      "view": {
+        "label": "Secondary email"
+      }
+    }
+  ]
+}

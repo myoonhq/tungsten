@@ -1,0 +1,50 @@
+[package]
+name = "tungsten-core"
+version = "1.0.0-Q.1"
+license = "AGPL-3.0-only"
+authors = ["Daniel Gablyasz <daniel.gablyasz@gmail.com>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = ["console_error_panic_hook"]
+benchmarks = []
+
+[dependencies]
+chrono = { version = "0.4.45", default-features = false, features = ["std"] }
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = { version = "1.0.149", features = ["raw_value"] }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = "0.2.63"
+console_error_panic_hook = { version = "0.1.6", optional = true }
+js-sys = "0.3.95"
+wee_alloc = { version = "0.4.5", optional = true }
+
+web-sys = { version = "0.3", features = [
+    "console",
+    "Window",
+    "Performance",
+    "WorkerGlobalScope",
+] }
+
+[dev-dependencies]
+criterion = { version = "0.8.2", default-features = false, features = ["plotters", "cargo_bench_support"] }
+wasm-bindgen-test = "0.3.13"
+
+[target.'cfg(target_arch = "wasm32")'.dev-dependencies]
+wasm-bindgen-test = "0.3.13"
+
+[[bench]]
+name = "schema_initialization"
+harness = false
+
+[[bench]]
+name = "localized_edits"
+harness = false
+
+[profile.release]
+# Tell `rustc` to optimize for small code size.
+opt-level = "s"

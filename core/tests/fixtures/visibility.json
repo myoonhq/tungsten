@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "sprout",
+  "form": [
+    {
+      "key": "age",
+      "type": "number",
+      "view": {
+        "label": "Age"
+      }
+    },
+    {
+      "key": "email",
+      "type": "text", "variant": "email",
+      "view": {
+        "label": "Email"
+      },
+      "hidden": true,
+      "rules": [
+        {
+          "when": {
+            "property": "age",
+            "operation": "GEqt",
+            "value": 18
+          },
+          "then": [
+            {
+              "kind": "set_hidden",
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "when": {
+            "property": "age",
+            "operation": "Lt",
+            "value": 18
+          },
+          "then": [
+            {
+              "kind": "set_hidden",
+              "hidden": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

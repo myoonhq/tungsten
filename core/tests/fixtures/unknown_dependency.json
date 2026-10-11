@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "sprout",
+  "form": [
+    {
+      "key": "email",
+      "type": "text", "variant": "email",
+      "view": {
+        "label": "Email"
+      },
+      "hidden": true,
+      "rules": [
+        {
+          "when": {
+            "property": "age",
+            "operation": "GEqt",
+            "value": 18
+          },
+          "then": [
+            {
+              "kind": "set_hidden",
+              "hidden": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

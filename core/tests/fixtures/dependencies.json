@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "sprout",
+  "form": [
+    {
+      "key": "country",
+      "type": "text",
+      "view": {
+        "label": "Country"
+      }
+    },
+    {
+      "key": "region",
+      "type": "text",
+      "view": {
+        "label": "Region"
+      },
+      "rules": [
+        {
+          "when": {
+            "property": "country",
+            "operation": "Eq",
+            "value": "SK"
+          },
+          "then": [
+            {
+              "kind": "set_value",
+              "value": "EU"
+            }
+          ]
+        },
+        {
+          "when": {
+            "property": "country",
+            "operation": "Neq",
+            "value": "SK"
+          },
+          "then": [
+            {
+              "kind": "set_value",
+              "value": "OTHER"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "vat_id",
+      "type": "text",
+      "view": {
+        "label": "VAT ID"
+      },
+      "hidden": true,
+      "rules": [
+        {
+          "when": {
+            "property": "region",
+            "operation": "Eq",
+            "value": "EU"
+          },
+          "then": [
+            {
+              "kind": "set_hidden",
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "when": {
+            "property": "region",
+            "operation": "Neq",
+            "value": "EU"
+          },
+          "then": [
+            {
+              "kind": "set_hidden",
+              "hidden": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

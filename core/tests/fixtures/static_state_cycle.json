@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "sprout",
+  "form": [
+    {
+      "key": "a",
+      "type": "number",
+      "view": {
+        "label": "Field A"
+      },
+      "rules": [
+        {
+          "when": {
+            "property": "b",
+            "operation": "Eq",
+            "value": 1
+          },
+          "then": [
+            {
+              "kind": "set_value",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "when": {
+            "property": "b",
+            "operation": "Eq",
+            "value": 2
+          },
+          "then": [
+            {
+              "kind": "set_value",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "b",
+      "type": "number",
+      "view": {
+        "label": "Field B"
+      },
+      "rules": [
+        {
+          "when": {
+            "property": "a",
+            "operation": "Eq",
+            "value": 1
+          },
+          "then": [
+            {
+              "kind": "set_value",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "when": {
+            "property": "a",
+            "operation": "Eq",
+            "value": 2
+          },
+          "then": [
+            {
+              "kind": "set_value",
+              "value": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

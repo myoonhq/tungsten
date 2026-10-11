@@ -1,0 +1,9 @@
+node_modules/
+dist/
+api/src/wasm/
+core/target/
+.artifacts/
+.cache/
+test-results/
+playwright-report/
+.env*

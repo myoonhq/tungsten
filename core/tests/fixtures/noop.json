@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "sprout",
+  "form": [
+    {
+      "key": "name",
+      "type": "text",
+      "view": {
+        "label": "Name"
+      }
+    },
+    {
+      "key": "details",
+      "type": "text",
+      "view": {
+        "label": "Details"
+      },
+      "hidden": true
+    },
+    {
+      "key": "status",
+      "type": "text",
+      "view": {
+        "label": "Status"
+      }
+    }
+  ]
+}

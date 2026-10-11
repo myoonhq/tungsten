@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "sprout",
+  "form": [
+    {
+      "key": "name",
+      "type": "text",
+      "view": {
+        "label": "Name"
+      },
+      "validators": [
+        {
+          "kind": "required"
+        }
+      ]
+    },
+    {
+      "key": "age",
+      "type": "number",
+      "view": {
+        "label": "Age"
+      },
+      "validators": [
+        {
+          "kind": "required"
+        },
+        {
+          "kind": "min",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "key": "is_adult",
+      "type": "boolean",
+      "view": {
+        "label": "Is Adult Flag"
+      },
+      "rules": [
+        {
+          "when": {
+            "property": "age",
+            "operation": "GEqt",
+            "value": 18
+          },
+          "then": [
+            {
+              "kind": "set_value",
+              "value": true
+            }
+          ]
+        },
+        {
+          "when": {
+            "property": "age",
+            "operation": "Lt",
+            "value": 18
+          },
+          "then": [
+            {
+              "kind": "set_value",
+              "value": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "email",
+      "type": "text", "variant": "email",
+      "view": {
+        "label": "Email"
+      },
+      "rules": [
+        {
+          "when": {
+            "property": "is_adult",
+            "operation": "Eq",
+            "value": true
+          },
+          "then": [
+            {
+              "kind": "set_hidden",
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "when": {
+            "property": "is_adult",
+            "operation": "Eq",
+            "value": false
+          },
+          "then": [
+            {
+              "kind": "set_hidden",
+              "hidden": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "confirm_name",
+      "type": "text",
+      "view": {
+        "label": "Confirm Name"
+      },
+      "rules": [
+        {
+          "when": {
+            "property": "name",
+            "operation": "Neq",
+            "value": ""
+          },
+          "then": [
+            {
+              "kind": "set_errors",
+              "errors": [
+                "Must match name"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

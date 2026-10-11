@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": [
+      "ES2023",
+      "DOM",
+      "DOM.Iterable",
+      "WebWorker"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "verbatimModuleSyntax": true,
+    "jsx": "react-jsx",
+    "skipLibCheck": true,
+    "types": [
+      "vite/client"
+    ],
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "rootDir": ".",
+    "outDir": "dist/types"
+  },
+  "include": [
+    "framework/react/src",
+    "api/src",
+    "design/tungsten/src",
+    "design/bootstrap/src",
+    "design/material/src"
+  ],
+  "exclude": [
+    "framework/react/src/**/*.test.tsx",
+    "framework/react/src/test",
+    "api/src/**/*.test.ts",
+    "api/src/wasm"
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "name": "@myoonhq/tungsten",
+  "version": "1.0.0-Q.1",
+  "description": "Installable Tungsten React integration with Tungsten, Bootstrap and Material designs.",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myoonhq/tungsten.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "api/src/locales/*.json",
+    "LICENSE",
+    "COMMERCIAL-LICENSING.md",
+    "CONTRIBUTING.md",
+    "design/bootstrap/README.md",
+    "design/material/README.md"
+  ],
+  "exports": {
+    "./react": {
+      "types": "./dist/types/framework/react/src/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./react/design/tungsten": {
+      "types": "./dist/types/design/tungsten/src/index.d.ts",
+      "import": "./dist/design/tungsten/index.js"
+    },
+    "./react/design/tungsten.css": "./dist/design/tungsten/tungsten.css",
+    "./locales/*.json": "./api/src/locales/*.json",
+    "./react/design/bootstrap": {
+      "types": "./dist/types/design/bootstrap/src/index.d.ts",
+      "import": "./dist/design/bootstrap/index.js"
+    },
+    "./react/design/bootstrap.css": "./dist/design/bootstrap/bootstrap.css",
+    "./react/design/material": {
+      "types": "./dist/types/design/material/src/index.d.ts",
+      "import": "./dist/design/material/index.js"
+    },
+    "./react/design/material.css": "./dist/design/material/material.css"
+  },
+  "scripts": {
+    "build:wasm": "wasm-pack build core --target web --release --out-dir ../api/src/wasm --no-pack --no-opt -- --locked",
+    "build": "pnpm build:wasm && pnpm typecheck && vite build && tsc -p tsconfig.build.json && pnpm check:package-types",
+    "typecheck": "tsc -p tsconfig.app.json",
+    "check:package-types": "tsc -p tsconfig.package.json",
+    "test": "pnpm build:wasm && vitest run",
+    "test:core": "cargo test --locked --manifest-path core/Cargo.toml --all-targets",
+    "lint": "eslint --max-warnings 0 framework/react/src api/src design testing *.ts *.js",
+    "prepack": "pnpm build",
+    "test:api": "vitest run api/src",
+    "check:locales": "node testing/locales.mjs",
+    "generate:locales": "node testing/locales.mjs --write",
+    "test:i18n": "pnpm check:locales && vitest run api/src/i18n.test.ts api/src/locales.test.ts framework/react/src/i18n.test.tsx",
+    "test:ui": "vitest run framework/react/src",
+    "test:core:contracts": "cargo test --locked --manifest-path core/Cargo.toml --test qualification",
+    "test:integration:prepare": "node testing/browser/prepare.mjs && vite build --config testing/browser/vite.config.ts",
+    "test:integration": "pnpm test:integration:prepare && playwright test",
+    "test:integration:run": "playwright test",
+    "test:benchmark": "pnpm test:integration:prepare && playwright test --config playwright.benchmark.config.ts",
+    "test:profile": "playwright test --config playwright.profile.config.ts",
+    "test:benchmark:run": "playwright test --config playwright.benchmark.config.ts",
+    "typecheck:tests": "tsc -p testing/tsconfig.json",
+    "format:check": "prettier --check api/src framework/react/src design testing *.ts *.js",
+    "format": "prettier --write api/src framework/react/src design testing *.ts *.js",
+    "check:quality": "node --test testing/quality.test.mjs"
+  },
+  "peerDependencies": {
+    "bootstrap": "^5.3.8",
+    "react": "^18.3.0 || ^19.0.0",
+    "react-dom": "^18.3.0 || ^19.0.0",
+    "@mui/material": "^9.5.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@eslint/js": "10.0.1",
+    "@mui/material": "^9.5.0",
+    "@playwright/test": "^1.64.0",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "16.3.2",
+    "@types/node": "24.12.2",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.4",
+    "bootstrap": "^5.3.8",
+    "eslint": "10.8.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.5.0",
+    "jsdom": "29.1.1",
+    "prettier": "3.8.3",
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.65.0",
+    "vite": "8.1.5",
+    "vitest": "4.1.10"
+  },
+  "dependencies": {
+    "@js-temporal/polyfill": "^0.5.1"
+  },
+  "peerDependenciesMeta": {
+    "bootstrap": {
+      "optional": true
+    },
+    "@mui/material": {
+      "optional": true
+    },
+    "@emotion/react": {
+      "optional": true
+    },
+    "@emotion/styled": {
+      "optional": true
+    }
+  },
+  "packageManager": "pnpm@10.17.1"
+}

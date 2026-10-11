@@ -1,0 +1,149 @@
+/* Bootstrap supplies its palette; shared widgets consume the same semantic roles. */
+.tg-root.tb-root {
+  --tg-color-ink: var(--bs-body-color);
+  --tg-color-muted: var(--bs-secondary-color);
+  --tg-color-subtle: var(--bs-secondary-color);
+  --tg-color-border: var(--bs-border-color);
+  --tg-color-border-hover: var(--bs-secondary-color);
+  --tg-color-surface: var(--bs-body-bg);
+  --tg-color-surface-raised: var(--bs-tertiary-bg);
+  --tg-color-accent: var(--bs-primary);
+  --tg-color-accent-deep: var(--bs-primary-text-emphasis);
+  --tg-color-accent-soft: var(--bs-primary-bg-subtle);
+  --tg-color-danger: var(--bs-danger-text-emphasis);
+  --tg-color-danger-soft: var(--bs-danger-bg-subtle);
+  --tg-color-danger-border: var(--bs-danger-border-subtle);
+  --tg-color-danger-ink: var(--bs-danger-text-emphasis);
+  --tg-color-on-danger: var(--bs-white);
+  --tg-color-disabled-border: var(--bs-border-color);
+  --tg-color-disabled-surface: var(--bs-secondary-bg);
+  --tg-color-disabled-ink: var(--bs-secondary-color);
+  --tg-color-readonly-ink: var(--bs-body-color);
+  --tg-color-divider: var(--bs-border-color);
+  --tg-color-action: var(--bs-primary);
+  --tg-color-action-hover: color-mix(in srgb, var(--bs-primary), var(--bs-black) 15%);
+  --tg-color-on-action: var(--bs-white);
+  --tg-color-switch-track: var(--bs-secondary-bg);
+  --tg-color-switch-thumb: var(--bs-white);
+  --tg-color-backdrop: rgba(var(--bs-black-rgb), 0.5);
+  --tg-shadow-focus: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+  --tg-shadow-invalid: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25);
+  --tg-shadow-button: none;
+  --tg-shadow-form: none;
+  --tg-shadow-menu: var(--bs-box-shadow);
+  --tg-shadow-card: var(--bs-box-shadow-sm);
+  --tg-shadow-switch: none;
+  --tg-radius-control: var(--bs-border-radius);
+  --tg-radius-panel: var(--bs-border-radius-lg);
+  font-family: var(--bs-font-sans-serif);
+  font-size: 1rem;
+  line-height: var(--bs-body-line-height);
+}
+
+.tb-root .tg-fields {
+  gap: 1.5rem;
+}
+
+.tb-root .tg-label,
+.tb-root .tg-checkbox-label {
+  margin-bottom: 0.5rem;
+  font-size: inherit;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.tb-root .tg-input {
+  min-height: 38px;
+  padding: 0.375rem 0.75rem;
+  line-height: 1.5;
+}
+
+/* Tungsten owns the accessible custom combobox and its single arrow. */
+.tb-root .tg-select {
+  background-image: none;
+}
+
+.tb-root .tg-select-option {
+  white-space: normal;
+}
+
+.tb-root .tg-select-multiple {
+  padding-inline-end: 38px;
+}
+
+.tb-root .tg-description,
+.tb-root .tg-errors,
+.tb-root .tg-select-option {
+  font-size: 0.875rem;
+}
+
+.tb-root .tg-checkbox,
+.tb-root .tg-radio,
+.tb-root .tg-switch {
+  margin: 0;
+  float: none;
+}
+
+.tb-root .tg-switch {
+  background-image: none;
+}
+
+.tb-root .tg-submit {
+  padding: 0.375rem 0.75rem;
+  border: var(--bs-border-width) solid var(--bs-btn-border-color);
+  border-radius: var(--bs-border-radius);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.tb-root .tg-submit:focus-visible {
+  box-shadow: var(--tg-shadow-focus);
+}
+
+.tb-root .tg-submit:hover:not(:disabled) {
+  transform: none;
+}
+
+.tb-root .tg-section-nav {
+  gap: 0;
+  border-bottom: var(--bs-border-width) solid var(--bs-border-color);
+}
+
+.tb-root .tg-section-nav .tg-tab {
+  border-radius: var(--bs-border-radius) var(--bs-border-radius) 0 0;
+  margin-bottom: calc(-1 * var(--bs-border-width));
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.tb-root .tg-section-nav .tg-tab[aria-selected='true'] {
+  color: var(--bs-emphasis-color);
+  background: var(--bs-body-bg);
+  border-color: var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg);
+}
+
+.tb-root .tg-group-title,
+.tb-root .tg-repeater-heading h2,
+.tb-root .tg-repeater-heading h3 {
+  font-weight: 500;
+}
+
+.tb-root .tg-group-error-count {
+  background: var(--bs-danger);
+  color: var(--bs-white);
+}
+
+.tb-root .tg-group-dialog {
+  border-radius: var(--bs-border-radius-lg);
+}
+
+.tb-root .tg-file-picker {
+  border-style: solid;
+}
+
+.tb-root .tg-select-chip {
+  white-space: normal;
+  text-align: start;
+  border-radius: var(--bs-border-radius-pill);
+}
