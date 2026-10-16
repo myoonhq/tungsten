@@ -20,6 +20,9 @@ import '@myoonhq/tungsten/react/design/material.css'
 
 MUI inputs, checkboxes, radios, switches and buttons retain Tungsten's controlled
 values, native refs/events, keyboard navigation, validation and read-only behavior.
+Text, number, date and select fields use floating outlined labels: empty fields
+show their label inside the control, and focus or a value moves it into the outline.
+Checkbox, radio and file labels retain their appropriate separate placement.
 All six field types, 16 basic groups, six sectioned groups and both repeaters
 support the same settings as the default design. Complex select/date/file widgets,
 group layouts and native dialog overlays share Tungsten's interaction implementation,

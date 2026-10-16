@@ -28,6 +28,161 @@ test('Material: public adapter renders MUI primitives with instance-local light/
   expect(await page.locator('html').getAttribute('data-mui-color-scheme')).toBeNull()
 })
 
+test('Material: labels float on focus and values without obscuring text, including zero and multiline', async ({
+  open,
+  page,
+  driver,
+}, testInfo) => {
+  await open('fields')
+  const input = driver.field('plain')
+  const label = input.locator('xpath=ancestor::*[contains(@class,"tg-field")][1]').locator('label')
+  await expect(label).toHaveAttribute('data-shrink', 'false')
+  await expect
+    .poll(() => input.evaluate((node) => getComputedStyle(node, '::placeholder').opacity))
+    .toBe('0')
+  const inside = await label.boundingBox()
+  await input.focus()
+  await expect(label).toHaveAttribute('data-shrink', 'true')
+  await expect.poll(async () => (await label.boundingBox())!.y).toBeLessThan(inside!.y - 5)
+  await input.fill('Green shoots')
+  await driver.field('quantity').fill('0')
+  await expect(label).toHaveAttribute('data-shrink', 'true')
+  const amount = driver
+    .field('quantity')
+    .locator('xpath=ancestor::*[contains(@class,"tg-field")][1]')
+    .locator('label')
+  await driver.field('notes').fill('A multiline draft')
+  await expect(amount).toHaveAttribute('data-shrink', 'true')
+  const notes = driver
+    .field('notes')
+    .locator('xpath=ancestor::*[contains(@class,"tg-field")][1]')
+    .locator('label')
+  await input.focus()
+  await expect(notes).toHaveAttribute('data-shrink', 'true')
+  await input.fill('')
+  await driver.submit().focus()
+  await expect(label).toHaveAttribute('data-shrink', 'false')
+  await expect
+    .poll(() => input.evaluate((node) => getComputedStyle(node, '::placeholder').opacity))
+    .toBe('0')
+  // A filled label sits in a closely fitted notch, above the value rather than inside it.
+  await expect
+    .poll(async () => {
+      const field = await driver.field('notes').boundingBox()
+      return (await notes.boundingBox())!.y < field!.y
+    })
+    .toBe(true)
+  const legend = notes.locator('xpath=..').locator('legend')
+  expect(await legend.textContent()).not.toMatch(/\*.*\*/)
+  await expect
+    .poll(async () => {
+      const gap = (await legend.boundingBox())!.width
+      const text = (await notes.boundingBox())!.width
+      return Math.abs(gap - text - 10)
+    })
+    .toBeLessThan(2)
+  await page.screenshot({
+    path: testInfo.outputPath('material-floating-labels.png'),
+    fullPage: true,
+  })
+})
+
+test('Material: nested fieldsets keep empty outlines closed and floating notches fitted', async ({
+  page,
+  designColorScheme,
+}, testInfo) => {
+  await page.goto(`/?scenario=fields&editor=1&design=material&colorScheme=${designColorScheme}`)
+  await expect(page.locator('.te-status')).toHaveText('Schema accepted')
+  // Exercise the same nested fieldset markup used by real Editor starter forms.
+  await page.getByRole('tab', { name: 'JSON', exact: true }).click()
+  await page.getByLabel('Schema JSON').fill(
+    JSON.stringify({
+      schemaVersion: 'sprout',
+      form: [
+        {
+          type: 'group',
+          key: 'group',
+          variant: 'basic',
+          view: { label: 'Contact' },
+          render: { type: 'fieldset', settings: {} },
+          subform: [
+            {
+              type: 'text',
+              key: 'group.name',
+              view: { label: 'Name', placeholder: 'Your full name' },
+              validators: [{ kind: 'required' }],
+            },
+            { type: 'date', key: 'group.date', view: { label: 'Date' } },
+            {
+              type: 'select',
+              key: 'group.choice',
+              view: { label: 'Choice' },
+              options: [{ value: 'a', label: 'Alpha' }],
+            },
+            {
+              type: 'select',
+              key: 'group.multiple',
+              multiple: true,
+              view: { label: 'Multiple' },
+              options: [{ value: 'a', label: 'Alpha' }],
+            },
+          ],
+        },
+      ],
+    }),
+  )
+  await page.getByRole('button', { name: 'Apply JSON', exact: true }).click()
+  await page.getByRole('tab', { name: 'Preview', exact: true }).click()
+  const name = page.getByRole('textbox', { name: /^Name/ })
+  const control = name.locator('xpath=ancestor::*[contains(@class,"MuiFormControl-root")][1]')
+  const label = control.locator('label')
+  const legend = control.locator('legend')
+  await expect(label).toHaveAttribute('data-shrink', 'false')
+  await expect(legend).toHaveCSS('padding-left', '0px')
+  await expect.poll(async () => (await legend.boundingBox())!.width).toBeLessThan(1)
+  for (const input of [name, page.getByRole('textbox', { name: 'Date', exact: true })])
+    await expect
+      .poll(() => input.evaluate((node) => getComputedStyle(node, '::placeholder').opacity))
+      .toBe('0')
+  await name.fill('Ada')
+  await page.getByRole('heading', { name: 'Live preview', exact: true }).click()
+  await expect(label).toHaveAttribute('data-shrink', 'true')
+  expect((await legend.textContent())!.match(/\*/g)).toHaveLength(1)
+  await expect
+    .poll(async () =>
+      Math.abs((await legend.boundingBox())!.width - (await label.boundingBox())!.width - 10),
+    )
+    .toBeLessThan(2)
+  await expect(name).toHaveCSS('box-shadow', 'none')
+  const choice = page.getByRole('combobox', { name: 'Choice', exact: true })
+  const choiceLabel = page.locator(`label[id="${await choice.getAttribute('aria-labelledby')}"]`)
+  await expect(choiceLabel).toHaveAttribute('data-shrink', 'false')
+  await choice.press('ArrowDown')
+  await expect
+    .poll(() =>
+      choiceLabel.evaluate((label) => {
+        const box = label.getBoundingClientRect()
+        const hit = document.elementFromPoint(box.x + box.width / 2, box.bottom - 2)
+        return hit === label || (hit !== null && label.contains(hit))
+      }),
+    )
+    .toBe(true)
+  await choice.press('Enter')
+  await expect(choiceLabel).toHaveAttribute('data-shrink', 'true')
+  await expect(choice).toHaveText('Alpha')
+  const multiple = page.getByRole('combobox', { name: 'Multiple', exact: true })
+  await multiple.click()
+  await page.getByRole('option', { name: 'Alpha', exact: true }).click()
+  await multiple.press('Escape')
+  await expect(page.getByRole('button', { name: 'Remove Alpha', exact: true })).toBeVisible()
+  await page.getByRole('button', { name: 'Clear all', exact: true }).click()
+  await name.focus()
+  await page.screenshot({
+    path: testInfo.outputPath('material-editor-outlines.png'),
+    fullPage: true,
+  })
+})
+
 test('Material: MUI checkbox, switch and radio retain visible checked icons and native labels', async ({
   open,
   page,

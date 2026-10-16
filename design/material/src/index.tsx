@@ -21,6 +21,7 @@ import {
 } from '../../tungsten/src/appearance.js'
 import { MaterialInput, MaterialTextarea, MaterialButton } from './components.js'
 import { installMaterialDesign } from './install.js'
+import { MaterialFieldControl } from './field-control.js'
 
 /** Tungsten owns mode selection and scoped tokens, rather than MUI's document-wide CSS variables. */
 type ScopedThemeOptions = Omit<ThemeOptions, 'cssVariables' | 'colorSchemes' | 'defaultColorScheme'>
@@ -94,6 +95,7 @@ export function createMaterialDesign(options: MaterialThemeOptions = {}): Tungst
     appearances[mode] = {
       classes: { 'tg-root': 'tm-root' },
       rootStyle: tokens(theme),
+      FieldControl: MaterialFieldControl,
       components: { Input: MaterialInput, Textarea: MaterialTextarea, Button: MaterialButton },
     }
   }

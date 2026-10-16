@@ -96,7 +96,11 @@ describe('Material design', () => {
         />
         <Text
           {...props('text', 'empty', '')}
-          field={{ type: 'text', key: 'empty', view: { label: '' } }}
+          field={{
+            type: 'text',
+            key: 'empty',
+            view: { label: '', placeholder: 'A hint without a label' },
+          }}
         />
         <Number {...amount} />
         <Number {...props('number', 'Disabled', 2)} disabled />
@@ -108,10 +112,68 @@ describe('Material design', () => {
     expect(screen.getByLabelText('Notes')).toHaveAttribute('rows', '3')
     expect(document.querySelectorAll('textarea')).toHaveLength(1)
     expect(document.querySelector('label[for="empty"]')).not.toHaveTextContent('empty')
+    expect(
+      screen.getByPlaceholderText('A hint without a label').closest('.tm-floating-input'),
+    ).toHaveAttribute('data-shrink', 'true')
     fireEvent.change(screen.getByLabelText('Amount'), { target: { value: '1.5' } })
     expect(amount.onValueChange).toHaveBeenLastCalledWith(1.5)
     fireEvent.change(screen.getByLabelText('Amount'), { target: { value: '' } })
     expect(amount.onValueChange).toHaveBeenLastCalledWith(null)
+  })
+
+  it('floats text and textarea labels on focus or a value, including numeric zero', () => {
+    const Text = material.fields.text,
+      Number = material.fields.number
+    const view = render(
+      <material.Form onSubmit={vi.fn()} submitting={false} error={null}>
+        <Text {...props('text', 'Name', '')} required />
+        <Number {...props('number', 'Amount', 0)} />
+        <Text
+          {...props('text', 'Notes', 'Saved draft')}
+          field={{ type: 'text', key: 'Notes', textarea: true, rows: 3, view: { label: 'Notes' } }}
+        />
+      </material.Form>,
+    )
+    const label = () => view.container.querySelector('label[for="Name"]')!
+    expect(label()).toHaveClass('MuiInputLabel-root')
+    expect(label()).toHaveAttribute('data-shrink', 'false')
+    fireEvent.focus(screen.getByRole('textbox', { name: /^Name/ }))
+    expect(label()).toHaveAttribute('data-shrink', 'true')
+    fireEvent.blur(screen.getByRole('textbox', { name: /^Name/ }))
+    expect(label()).toHaveAttribute('data-shrink', 'false')
+    expect(view.container.querySelector('label[for="Amount"]')).toHaveAttribute(
+      'data-shrink',
+      'true',
+    )
+    expect(view.container.querySelector('label[for="Notes"]')).toHaveAttribute(
+      'data-shrink',
+      'true',
+    )
+    expect(screen.getByLabelText('Notes')).toHaveAttribute('rows', '3')
+    expect(view.container.querySelectorAll('label[for="Name"]')).toHaveLength(1)
+  })
+
+  it('floats custom select labels without changing selection, clearing or descriptions', () => {
+    const Select = material.fields.select
+    const field = {
+      ...props('select', 'Choice', null),
+      state: { value: null, errors: [], hidden: false, options: [{ value: 'a', label: 'Alpha' }] },
+    }
+    const view = render(<Select {...field} />)
+    const label = () => view.container.querySelector('label[for="Choice"]')!
+    expect(label()).toHaveAttribute('data-shrink', 'false')
+    const select = screen.getByRole('combobox', { name: 'Choice', exact: true })
+    expect(select).toHaveAttribute('aria-describedby', 'Choice-description')
+    fireEvent.focus(select)
+    expect(label()).toHaveAttribute('data-shrink', 'true')
+    fireEvent.keyDown(select, { key: 'ArrowDown' })
+    fireEvent.keyDown(select, { key: 'Enter' })
+    expect(field.onValueChange).toHaveBeenLastCalledWith('a')
+    view.rerender(<Select {...field} state={{ ...field.state, value: 'a' }} />)
+    fireEvent.blur(select)
+    expect(label()).toHaveAttribute('data-shrink', 'true')
+    view.rerender(<Select {...field} />)
+    expect(label()).toHaveAttribute('data-shrink', 'false')
   })
 
   it('uses MUI checkbox/switch/radio while retaining read-only and keyboard contracts', () => {

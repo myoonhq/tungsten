@@ -10,11 +10,15 @@ npm install @myoonhq/tungsten
 ```
 
 React 18.3 or 19 is a peer dependency.
-Invited Q builds are distributed through GitHub Packages. Configure
-`@myoonhq:registry=https://npm.pkg.github.com` and package-read authentication
-before installing, and pin the exact invited version (for example,
-`@myoonhq/tungsten@1.0.0-Q.1`). Registry access is controlled separately from the
-version suffix; Q builds do not use the stable `latest` tag.
+Public packages are distributed through npm. Install Tungsten with:
+
+```sh
+npm install @myoonhq/tungsten
+```
+
+The default installation initially provides Q.1 during public testing, then follows stable releases.
+To opt into newer testing releases, use `@next`; development releases use `@dev`.
+No private registry configuration or access token is needed by consumers.
 
 ```tsx
 import { Tungsten } from '@myoonhq/tungsten/react'
@@ -49,6 +53,7 @@ It uses Bootstrap CSS and shared controlled Tungsten widgets; Bootstrap JavaScri
 and React-Bootstrap are unnecessary. The default design works without Bootstrap.
 The editor's `design` prop selects its preview while authoring/settings keep the
 Tungsten design. Bootstrap's global Reboot styles are part of its stylesheet.
+
 ## Material design
 
 The optional `material` adapter also ships with Tungsten. Install its external peers:
@@ -76,6 +81,9 @@ Pass `colorScheme="light"` or `colorScheme="dark"` to `Tungsten` or
 `TungstenEditor`. Omitted choices inherit `TungstenThemeProvider`, otherwise light.
 The application resolves system preferences and owns persistence. Theme changes
 preserve edits, errors, focus and editor drafts.
+The default design uses a green Sprout palette in dark mode. The Editor's authoring
+controls share the default form palette in both schemes; selecting Bootstrap or
+Material changes its live preview while the authoring controls remain Tungsten.
 
 ```tsx
 import { TungstenThemeProvider } from '@myoonhq/tungsten/react'

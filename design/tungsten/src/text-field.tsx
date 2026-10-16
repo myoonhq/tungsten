@@ -50,6 +50,11 @@ export function TungstenTextField({
       fallbackLabel={field.key}
       required={required}
       errors={state.errors}
+      control={{
+        kind: 'input',
+        disabled: disabled || !!state.loadingSources?.length,
+        filled: !!state.value,
+      }}
     >
       {field.textarea === true ? (
         <Textarea

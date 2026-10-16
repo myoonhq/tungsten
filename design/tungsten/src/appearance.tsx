@@ -5,13 +5,26 @@ import {
   type ComponentPropsWithRef,
   type ComponentType,
   type CSSProperties,
+  type ReactNode,
 } from 'react'
+
+export type FieldControlProps = PropsWithChildren<{
+  inputId: string
+  label: string
+  required: boolean
+  invalid: boolean
+  kind: 'input' | 'select'
+  disabled: boolean
+  filled: boolean
+  labelAction?: ReactNode
+}>
 
 /** Presentation only: adapters share the same controlled inputs and interactions. */
 export type RendererAppearance = {
   classes: Readonly<Record<string, string>>
   colorSchemeAttribute?: `data-${string}`
   rootStyle?: CSSProperties
+  FieldControl?: ComponentType<FieldControlProps>
   components?: {
     Input: ComponentType<ComponentPropsWithRef<'input'>>
     Textarea: ComponentType<ComponentPropsWithRef<'textarea'>>

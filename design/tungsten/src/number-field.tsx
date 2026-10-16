@@ -32,6 +32,7 @@ export function TungstenNumberField({
       fallbackLabel={field.key}
       required={required}
       errors={state.errors}
+      control={{ kind: 'input', disabled, filled: state.value !== null }}
     >
       <Input
         className={classes('tg-input')}

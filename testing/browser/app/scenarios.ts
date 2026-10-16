@@ -11,6 +11,54 @@ const form = (...components: TungstenComponent[]): TungstenSchema => ({
   form: components,
 })
 export function scenario(name: string, count = 10, mounted = 100, affected = 1): TungstenSchema {
+  if (name === 'presentation-spacing')
+    return form(
+      {
+        type: 'group',
+        key: 'contact',
+        variant: 'basic',
+        view: {
+          label: 'A longer contact section heading that must wrap on small screens',
+          description: 'Group descriptions should stay separate from the fields below.',
+        },
+        render: { type: 'card', settings: {} },
+        subform: [
+          {
+            type: 'group',
+            key: 'contact.details',
+            variant: 'basic',
+            view: { label: 'Nested details with a longer fieldset legend' },
+            render: { type: 'fieldset', settings: { gap: 0 } },
+            subform: [
+              text('contact.details.name', {
+                view: {
+                  label: 'A longer name label that should fit within its control',
+                  placeholder: 'Your name',
+                  description: 'An explanatory hint beneath the field.',
+                },
+                current_value: 'Ada',
+              }),
+              text('contact.details.notes', {
+                textarea: true,
+                rows: 3,
+                view: {
+                  label: 'Additional notes',
+                  description: 'Text and hint stay apart even with a zero group gap.',
+                },
+              }),
+            ],
+          },
+        ],
+      },
+      {
+        type: 'repeater',
+        key: 'people',
+        reorder: true,
+        view: { label: 'People with a longer heading and accessible add and reorder actions' },
+        render: { type: 'undereachother', settings: {} },
+        template: [text('people.name', { view: { label: 'Name' } })],
+      },
+    )
   if (name === 'theme-controls')
     return form(
       text('editable', { current_value: 'Editable' }),
@@ -259,7 +307,11 @@ export function scenario(name: string, count = 10, mounted = 100, affected = 1):
       type: 'group',
       key: 'details',
       variant: 'basic',
-      view: { label: 'Details' },
+      view: {
+        label: 'Details',
+        description:
+          'Details about these fields should stay below the heading and clear of the close button.',
+      },
       render: {
         type,
         settings: ['modal', 'drawer', 'sheet'].includes(type)
@@ -366,7 +418,10 @@ export function scenario(name: string, count = 10, mounted = 100, affected = 1):
       })
     case 'fields':
       return form(
-        text('plain', { validators: [{ kind: 'required' }, { kind: 'min_length', value: 2 }] }),
+        text('plain', {
+          view: { label: 'plain', placeholder: 'Your name' },
+          validators: [{ kind: 'required' }, { kind: 'min_length', value: 2 }],
+        }),
         text('email', { variant: 'email' }),
         text('password', { variant: 'password' }),
         text('tel', { variant: 'tel' }),

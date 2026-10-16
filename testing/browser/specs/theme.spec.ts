@@ -27,11 +27,14 @@ test('Theme: field, error and action colors stay readable in both schemes', asyn
   open,
   page,
   driver,
+  design,
   designColorScheme: colorScheme,
 }) => {
   await open('fields')
   const form = driver.field('plain').locator('xpath=ancestor::form')
   const surface = await colors(form)
+  if (design === 'tungsten' && colorScheme === 'dark')
+    expect(surface.background).toBe('rgb(27, 37, 27)')
   expect(surface.scheme).toBe(colorScheme)
   expect(luminance(surface.background) < 0.1).toBe(colorScheme === 'dark')
   const input = await colors(driver.field('plain'))
@@ -43,7 +46,15 @@ test('Theme: field, error and action colors stay readable in both schemes', asyn
   await expect(error).toBeVisible()
   expect(contrast((await colors(error)).foreground, surface.background)).toBeGreaterThanOrEqual(4.5)
   await driver.field('plain').focus()
-  await expect(driver.field('plain')).toHaveCSS('box-shadow', /^(?!none$).+/)
+  if (design === 'material') {
+    const outline = form
+      .locator('.MuiOutlinedInput-root')
+      .filter({ has: driver.field('plain') })
+      .locator('fieldset')
+    await expect(outline).toHaveCSS('border-top-width', '2px')
+    // Focus follows the notched outline rather than painting through the floating label.
+    await expect(driver.field('plain')).toHaveCSS('box-shadow', 'none')
+  } else await expect(driver.field('plain')).toHaveCSS('box-shadow', /^(?!none$).+/)
   await driver.submit().hover()
   await expect
     .poll(async () => {
@@ -125,7 +136,7 @@ test('Theme: editor settings, JSON drafts and preview inherit and survive a mode
   page,
   design,
   designColorScheme: colorScheme,
-}) => {
+}, testInfo) => {
   await page.goto(`/?scenario=fields&editor=1&design=${design}&colorScheme=${colorScheme}`)
   await expect(page.locator('.te-status')).toHaveText('Schema accepted')
   const editor = page.locator('.te-root')
@@ -157,9 +168,22 @@ test('Theme: editor settings, JSON drafts and preview inherit and survive a mode
   await expect(json).toHaveValue('{unfinished')
   await expect(json).toBeFocused()
   await page.getByRole('tab', { name: 'Preview', exact: true }).click()
-  await expect(
-    page.getByRole('textbox', { name: /^plain/ }).locator('xpath=ancestor::form'),
-  ).toHaveAttribute('data-tg-color-scheme', next)
+  const preview = page.getByRole('textbox', { name: /^plain/ }).locator('xpath=ancestor::form')
+  await expect(preview).toHaveAttribute('data-tg-color-scheme', next)
+  if (design === 'tungsten') {
+    // Authoring and rendered forms use one palette, including after a theme change.
+    expect(await colors(preview)).toEqual(await colors(editor))
+    const previewAction = await colors(preview.getByRole('button', { name: 'Submit', exact: true }))
+    const editorAction = await editor.evaluate((node) =>
+      getComputedStyle(node).getPropertyValue('--te-color-action').trim(),
+    )
+    const formAction = await preview.evaluate((node) =>
+      getComputedStyle(node).getPropertyValue('--tg-color-action').trim(),
+    )
+    expect(editorAction).toBe(formAction)
+    expect(contrast(previewAction.foreground, previewAction.background)).toBeGreaterThanOrEqual(4.5)
+    await editor.screenshot({ path: testInfo.outputPath(`sprout-editor-${next}.png`) })
+  }
 })
 
 test('Theme: disabled/read-only controls, choices, chips and files use their state palettes', async ({

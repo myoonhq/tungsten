@@ -3,6 +3,11 @@
   border-radius: var(--tm-radius);
 }
 
+/* Reserve the floating label's height even when empty, including tightly spaced groups. */
+.tm-root .tg-field:has(> .tm-floating-input, > .tm-floating-select) {
+  padding-top: 9px;
+}
+
 .tm-root .tg-group--card,
 .tm-root .tg-group--panel,
 .tm-root .tg-repeater-instance,
@@ -26,10 +31,132 @@
   color: var(--tg-color-ink);
   font: inherit;
   box-sizing: border-box;
+  min-height: 40px;
+  padding: 8.5px 14px;
+  box-shadow: none;
+}
+
+/* Date inputs sit inside a picker wrapper, so MUI's adjacent-sibling rule cannot hide their hints. */
+.tm-root .tm-floating-input:not([data-shrink='true']) .tg-input::placeholder {
+  opacity: 0;
+}
+
+.tm-root .tm-floating-input[data-shrink='true'] .tg-input::placeholder {
+  opacity: 0.42;
+}
+
+.tm-root .MuiOutlinedInput-root .tg-date-input {
+  padding-inline-end: 42px;
+}
+
+.tm-root .MuiOutlinedInput-root.MuiInputBase-multiline {
+  padding: 8.5px 14px;
+}
+
+.tm-root .MuiOutlinedInput-root textarea.tg-input {
+  min-height: 0;
+  padding: 0;
+}
+
+/* Custom comboboxes keep their keyboard/chip logic inside a Material floating outline. */
+.tm-root .tm-floating-select > .tg-select-wrap > .tg-select {
+  border: 0;
+  border-radius: var(--tm-radius);
+  box-shadow: none;
+  min-height: 40px;
+  padding: 8.5px 38px 8.5px 14px;
+  font-size: 1rem;
+}
+
+.tm-root .tm-floating-select[data-clearable='true'] > .tg-select-wrap > .tg-select {
+  padding-inline-end: 70px;
+}
+
+/* Raise the complete field, so an open menu doesn't put its trigger over the label/clear action. */
+.tm-root .tg-select-field:has(.tg-select-menu) {
+  position: relative;
+  z-index: 40;
+}
+
+.tm-root .tm-floating-select > .tg-select-wrap:has(.tg-select-menu) {
+  z-index: auto;
+}
+
+.tm-root .tm-select-clear-action {
+  position: absolute;
+  inset-inline-end: 34px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.tm-root .tg-select-clear.MuiIconButton-root {
+  width: 24px;
+  height: 24px;
+  padding: 2px;
+  color: var(--tg-color-accent-deep);
+}
+
+.tm-root .tg-select-clear.MuiIconButton-root:focus-visible {
+  outline: 2px solid var(--tg-color-accent);
+  outline-offset: 1px;
+}
+
+.tm-root
+  .tm-floating-select:not([data-shrink='true'])
+  :is(.tg-select-value, .tg-select-placeholder) {
+  visibility: hidden;
+}
+
+.tm-root .tm-select-outline {
+  position: absolute;
+  pointer-events: none;
+  inset: -5px 0 0;
+  margin: 0;
+  padding: 0 8px;
+  min-width: 0;
+  border: 1px solid var(--tg-color-border-hover);
+  border-radius: var(--tm-radius);
+}
+
+.tm-root .tm-select-outline legend {
+  width: auto;
+  max-width: 0.01px;
+  height: 11px;
+  padding: 0;
+  font-size: 0.75rem;
+  visibility: hidden;
+  white-space: nowrap;
+  transition: max-width 150ms ease;
+}
+
+.tm-root .tm-select-outline legend span {
+  display: inline-block;
+  padding: 0 5px;
+}
+
+.tm-root
+  .tm-floating-select[data-shrink='true'][data-has-label='true']
+  > .tm-select-outline
+  legend {
+  max-width: 100%;
+}
+
+.tm-root .tm-floating-select[data-focused='true'] > .tm-select-outline {
+  border-width: 2px;
+  border-color: var(--tg-color-accent);
+}
+
+.tm-root .tm-floating-select[data-invalid='true'] > .tm-select-outline {
+  border-color: var(--tg-color-danger);
+}
+
+.tm-root .tm-floating-select[data-disabled='true'] > .tm-select-outline {
+  border-color: var(--tg-color-disabled-border);
 }
 
 .tm-root .MuiOutlinedInput-root .tg-input:focus-visible {
-  box-shadow: var(--tg-shadow-focus);
+  box-shadow: none;
   outline: none;
 }
 
@@ -80,6 +207,7 @@
 .tm-root .MuiButton-root.Mui-disabled {
   color: var(--tg-color-disabled-ink);
   box-shadow: none;
+  opacity: 1;
 }
 
 .tm-root .tg-submit.Mui-disabled {

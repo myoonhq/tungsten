@@ -268,6 +268,7 @@ export function TungstenSelectField({
         fallbackLabel={field.key}
         required={required}
         errors={state.errors}
+        control={{ kind: 'select', disabled: disabled || loading, filled: values.some(Boolean) }}
         labelAction={
           multiple && values.length ? (
             <Button

@@ -517,7 +517,7 @@ dependencies = [
 
 [[package]]
 name = "tungsten-core"
-version = "1.0.0-Q.1"
+version = "1.0.0-Q.2"
 dependencies = [
  "chrono",
  "console_error_panic_hook",

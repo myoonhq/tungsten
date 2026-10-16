@@ -165,6 +165,7 @@ export function TungstenDateField({
         fallbackLabel={field.key}
         required={required}
         errors={dateErrors}
+        control={{ kind: 'input', disabled: disabled || invalidZone, filled: !!displayValue }}
       >
         <div
           className={classes('tg-select-wrap tg-date-wrap')}

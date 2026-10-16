@@ -1,4 +1,5 @@
 import { test, expect } from '../fixtures.js'
+import { expectClearFieldLayout } from '../presentation.js'
 
 const basic = [
   'group',
@@ -24,12 +25,21 @@ for (const renderer of basic) {
     open,
     page,
     driver,
-  }) => {
+  }, testInfo) => {
     await open(`group-${renderer}`)
     await driver.submit().click()
     await expect(driver.field('Value')).toBeVisible()
     await expect(driver.field('Value')).toBeFocused()
     await driver.field('Value').fill('Nested value')
+    await expectClearFieldLayout(page)
+    if (['modal', 'drawer', 'sheet'].includes(renderer)) {
+      const header = page.locator('.tg-group-dialog-header')
+      const title = await header.locator('.tg-group-title').boundingBox()
+      const description = await header.locator('.tg-description').boundingBox()
+      expect(description!.y).toBeGreaterThanOrEqual(title!.y + title!.height)
+    }
+    if (['card', 'fieldset', 'drawer'].includes(renderer))
+      await page.screenshot({ path: testInfo.outputPath(`group-${renderer}.png`), fullPage: true })
     if (['modal', 'drawer', 'sheet'].includes(renderer))
       await page.getByRole('button', { name: 'Close', exact: true }).click()
     await driver.submit().click()
@@ -50,6 +60,7 @@ for (const renderer of sections) {
     await expect(driver.field('flow.second.email')).toBeVisible()
     await expect(driver.field('flow.second.email')).toBeFocused()
     await driver.field('flow.second.email').fill('ada@example.com')
+    await expectClearFieldLayout(page)
     await driver.submit().click()
     await expect(page.getByLabel('Submitted values')).toHaveText(
       JSON.stringify({ 'flow.first.name': 'Ada', 'flow.second.email': 'ada@example.com' }),
@@ -66,6 +77,7 @@ for (const renderer of ['undereachother', 'tabs']) {
     await page.getByRole('button', { name: 'Add to People', exact: true }).click()
     await expect(page.getByLabel('Name', { exact: true }).first()).toBeVisible()
     await page.getByLabel('Name', { exact: true }).first().fill('Ada')
+    await expectClearFieldLayout(page)
     await page.getByRole('button', { name: 'Add to People', exact: true }).click()
     await expect
       .poll(() => page.evaluate(() => window.fixture.snapshot!.values.people))
@@ -86,7 +98,7 @@ test('Repeater / nested: parent reorder keeps child data attached; child add/rem
   open,
   page,
   driver,
-}) => {
+}, testInfo) => {
   await open('nested-repeater', {
     draft: JSON.stringify({
       people: [
@@ -104,6 +116,8 @@ test('Repeater / nested: parent reorder keeps child data attached; child add/rem
   await page.getByRole('button', { name: 'Add to Children', exact: true }).first().click()
   await expect(page.getByLabel('Child name', { exact: true })).toHaveCount(3)
   await page.getByLabel('Child name', { exact: true }).nth(1).fill('Second child')
+  await expectClearFieldLayout(page)
+  await page.screenshot({ path: testInfo.outputPath('nested-repeaters.png'), fullPage: true })
   await driver.submit().click()
   await expect
     .poll(() => page.evaluate(() => window.fixture.submissions.at(-1)))

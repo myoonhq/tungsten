@@ -61,7 +61,9 @@ function Overlay(props: GroupRendererProps & { kind: string }) {
         }}
       >
         <div className={classes('tg-group-dialog-header')}>
-          <GroupHeading group={group} groupId={groupId} />
+          <div className={classes('tg-group-dialog-copy')}>
+            <GroupHeading group={group} groupId={groupId} />
+          </div>
           <Button
             type="button"
             className={classes('tg-group-close')}

@@ -1,4 +1,4 @@
-import { useRendererClasses } from './appearance.js'
+import { useRendererAppearance, useRendererClasses, type FieldControlProps } from './appearance.js'
 import { TungstenLang } from '../../../framework/react/src/i18n.js'
 import type { TungstenText } from '../../../api/src/i18n.js'
 import type { PropsWithChildren, ReactNode } from 'react'
@@ -12,6 +12,7 @@ type TungstenFieldShellProps = PropsWithChildren<{
   errors: readonly TungstenText[]
   checkbox?: boolean
   labelAction?: ReactNode
+  control?: Pick<FieldControlProps, 'kind' | 'disabled' | 'filled'>
 }>
 
 export function TungstenFieldShell({
@@ -22,9 +23,11 @@ export function TungstenFieldShell({
   errors,
   checkbox = false,
   labelAction,
+  control,
   children,
 }: TungstenFieldShellProps) {
   const classes = useRendererClasses()
+  const { FieldControl } = useRendererAppearance()
   const descriptionId = view?.description ? `${inputId}-description` : undefined
   const errorId = errors.length > 0 ? `${inputId}-errors` : undefined
 
@@ -52,6 +55,19 @@ export function TungstenFieldShell({
             ) : null}
           </label>
         </div>
+      ) : FieldControl && control ? (
+        <>
+          <FieldControl
+            {...control}
+            inputId={inputId}
+            label={view?.label ?? fallbackLabel}
+            required={required}
+            invalid={errors.length > 0}
+            labelAction={labelAction}
+          >
+            {children}
+          </FieldControl>
+        </>
       ) : (
         <>
           <div className={classes('tg-label-row')}>

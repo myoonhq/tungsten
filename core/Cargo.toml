@@ -1,6 +1,6 @@
 [package]
 name = "tungsten-core"
-version = "1.0.0-Q.1"
+version = "1.0.0-Q.2"
 license = "AGPL-3.0-only"
 authors = ["Daniel Gablyasz <daniel.gablyasz@gmail.com>"]
 edition = "2018"
