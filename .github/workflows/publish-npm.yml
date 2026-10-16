@@ -2,9 +2,7 @@ name: Tungsten public npm
 
 on:
   push:
-    branches: [main]
     tags: ["[0-9]*.[0-9]*.[0-9]*"]
-  pull_request:
   workflow_dispatch:
     inputs:
       release_tag:
