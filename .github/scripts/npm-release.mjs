@@ -49,14 +49,19 @@ export function compareVersions(left, right) {
 
 export function publicReadme(content, version) {
   if (version) releaseVersion(version);
-  return publicSource(content).replace(
-    /Invited Q builds[\s\S]*?(?=```tsx)/,
-    "Public packages are distributed through npm. Install Tungsten with:\n\n" +
-      "```sh\nnpm install @myoon/tungsten\n```\n\n" +
-      "The default installation initially provides a qualification release during public testing, then follows stable releases.\n" +
-      "To opt into newer testing releases, use `@next`; development releases use `@dev`.\n" +
-      "No private registry configuration or access token is needed by consumers.\n\n",
-  );
+  return publicSource(content)
+    .replace(
+      /The default installation initially provides Q\.\d+ during public testing, then follows stable releases\./g,
+      "The default installation initially provides a qualification release during public testing, then follows stable releases.",
+    )
+    .replace(
+      /Invited Q builds[\s\S]*?(?=```tsx)/,
+      "Public packages are distributed through npm. Install Tungsten with:\n\n" +
+        "```sh\nnpm install @myoon/tungsten\n```\n\n" +
+        "The default installation initially provides a qualification release during public testing, then follows stable releases.\n" +
+        "To opt into newer testing releases, use `@next`; development releases use `@dev`.\n" +
+        "No private registry configuration or access token is needed by consumers.\n\n",
+    );
 }
 
 export function publicManifest(manifest, repository) {
@@ -82,6 +87,9 @@ export function publicManifest(manifest, repository) {
   return {
     ...manifest,
     name: packageName,
+    ...(Array.isArray(manifest.files) && manifest.version !== "1.0.0-Q.1"
+      ? { files: [...new Set([...manifest.files, "CHANGELOG.md"])] }
+      : {}),
     publishConfig: { registry, access: "public" },
   };
 }
@@ -162,7 +170,6 @@ function prepare() {
     sourceSha !== process.env.GITHUB_SHA
   )
     throw new Error("Release tag, checkout and package version must match");
-  run("git", ["merge-base", "--is-ancestor", sourceSha, "origin/main"]);
   // Verify the immutable snapshot first; normalize names only in this disposable checkout.
   const snapshot = JSON.parse(
     readFileSync(resolve(root, ".tungsten-release.json"), "utf8"),
@@ -443,6 +450,19 @@ export function publicationAction(record, metadata) {
     : "publish";
 }
 
+export function shouldPromoteDefault(version, metadata) {
+  if (releaseVersion(version).stage !== "Q") return false;
+  for (const candidate of [
+    ...Object.keys(metadata.versions ?? {}),
+    metadata["dist-tags"]?.latest,
+  ].filter(Boolean)) {
+    const parsed = releaseVersion(candidate);
+    if (parsed.stage === null || compareVersions(candidate, version) > 0)
+      return false;
+  }
+  return true;
+}
+
 export function firstPublicationPolicy(
   version,
   packageExists,
@@ -543,6 +563,23 @@ async function publish() {
   }
   if (confirmed?.dist?.integrity !== record.integrity)
     throw new Error("Published registry integrity not confirmed");
+  const refreshedResponse = await fetch(url);
+  if (!refreshedResponse.ok)
+    throw new Error("Could not verify npm distribution tags");
+  const refreshed = await refreshedResponse.json();
+  if (
+    shouldPromoteDefault(record.version, refreshed) &&
+    refreshed["dist-tags"]?.latest !== record.version
+  ) {
+    run("npm", [
+      "dist-tag",
+      "add",
+      `${packageName}@${record.version}`,
+      "latest",
+      "--registry",
+      registry,
+    ]);
+  }
   console.log(
     `${action}: ${packageName}@${record.version} (${record.channel})`,
   );

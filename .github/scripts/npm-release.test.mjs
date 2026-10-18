@@ -18,6 +18,7 @@ import {
   publicationAction,
   publicationEvent,
   firstPublicationPolicy,
+  shouldPromoteDefault,
   publicManifest,
   publicReadme,
   publicSource,
@@ -372,5 +373,37 @@ test("packed publication must contain public exports and runtime assets, without
         exports: { "./missing": "./missing.js" },
       }),
     /Missing export/,
+  );
+});
+
+test("versionless installation follows the newest Q until a stable version exists", () => {
+  assert.equal(
+    shouldPromoteDefault(
+      "1.0.0-Q.2",
+      metadata(["1.0.0-Q.1", "1.0.0-Q.2"], { latest: "1.0.0-Q.1" }),
+    ),
+    true,
+  );
+  assert.equal(
+    shouldPromoteDefault("1.0.0-Q.1", metadata(["1.0.0-Q.1", "1.0.0-Q.2"])),
+    false,
+  );
+  assert.equal(shouldPromoteDefault("1.0.0-Q.3", metadata(["1.0.0"])), false);
+  assert.equal(shouldPromoteDefault("1.1.0-Q.1", metadata(["1.0.0"])), false);
+  assert.equal(shouldPromoteDefault("1.1.0-D.1", metadata([])), false);
+  const files = ["dist", "README.md"];
+  assert.equal(
+    publicManifest(
+      { ...manifest, version: "1.0.0-Q.2", files },
+      "myoonhq/tungsten",
+    ).files.includes("CHANGELOG.md"),
+    true,
+  );
+  assert.equal(
+    publicManifest(
+      { ...manifest, version: "1.0.0-Q.1", files },
+      "myoonhq/tungsten",
+    ).files.includes("CHANGELOG.md"),
+    false,
   );
 });

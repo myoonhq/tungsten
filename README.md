@@ -16,7 +16,7 @@ Public packages are distributed through npm. Install Tungsten with:
 npm install @myoon/tungsten
 ```
 
-The default installation initially provides Q.1 during public testing, then follows stable releases.
+The default installation initially provides a qualification release during public testing, then follows stable releases.
 To opt into newer testing releases, use `@next`; development releases use `@dev`.
 No private registry configuration or access token is needed by consumers.
 

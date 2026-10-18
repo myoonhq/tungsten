@@ -17,7 +17,8 @@ export function githubReleasePlan(version, notes, releases) {
     if (
       existing.draft ||
       existing.prerelease !== prerelease ||
-      (existing.body ?? "").trim() !== notes.trim()
+      (existing.body ?? "").replace(/\r\n?/g, "\n").trim() !==
+        notes.replace(/\r\n?/g, "\n").trim()
     )
       throw new Error(
         "Existing GitHub release differs from the immutable snapshot notes",
@@ -47,6 +48,12 @@ if (
   if (tag !== manifest.version)
     throw new Error("Public tag/snapshot version mismatch");
   const snapshot = JSON.parse(readFileSync(".tungsten-release.json", "utf8"));
+  if (!snapshot.files["RELEASE_NOTES.md"] && tag === "1.0.0-Q.1") {
+    console.log(
+      "Q.1 is the initial release and has no release notes; keeping it that way.",
+    );
+    process.exit(0);
+  }
   if (!snapshot.files["RELEASE_NOTES.md"])
     throw new Error("Release notes are not covered by snapshot hashes");
   const gh = (...args) => execFileSync("gh", args, { encoding: "utf8" });

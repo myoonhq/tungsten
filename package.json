@@ -23,7 +23,8 @@
     "COMMERCIAL-LICENSING.md",
     "CONTRIBUTING.md",
     "design/bootstrap/README.md",
-    "design/material/README.md"
+    "design/material/README.md",
+    "CHANGELOG.md"
   ],
   "exports": {
     "./react": {

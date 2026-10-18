@@ -47,7 +47,13 @@ jobs:
         with:
           targets: wasm32-unknown-unknown
       - name: Install WASM build tool
-        run: cargo install wasm-pack --version 0.15.0 --locked
+        run: |
+          curl --fail --location --retry 3 --output "$RUNNER_TEMP/wasm-pack.tar.gz" \
+            https://github.com/wasm-bindgen/wasm-pack/releases/download/v0.15.0/wasm-pack-v0.15.0-x86_64-unknown-linux-musl.tar.gz
+          echo "c09f971ecaed9a2efc80fdcea7a00ef6b53c7fadc8c57d1f61b53a6aa66b668a  $RUNNER_TEMP/wasm-pack.tar.gz" | sha256sum --check
+          tar -xzf "$RUNNER_TEMP/wasm-pack.tar.gz" -C "$RUNNER_TEMP"
+          install "$RUNNER_TEMP/wasm-pack-v0.15.0-x86_64-unknown-linux-musl/wasm-pack" "$HOME/.cargo/bin/wasm-pack"
+          wasm-pack --version
       # The monorepo qualifies library code before exporting this release snapshot.
       - name: Build the qualified release
         working-directory: release

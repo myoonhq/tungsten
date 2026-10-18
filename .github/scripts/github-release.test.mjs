@@ -109,6 +109,12 @@ test("retries preserve existing release notes and reject conflicting publication
     draft: false,
   };
   assert.equal(githubReleasePlan(version, notes, [existing]), null);
+  assert.equal(
+    githubReleasePlan(version, notes, [
+      { ...existing, body: notes.replaceAll("\n", "\r\n") },
+    ]),
+    null,
+  );
   for (const change of [
     { body: "Other" },
     { prerelease: false },
