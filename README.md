@@ -10,15 +10,37 @@ npm install @myoon/tungsten
 ```
 
 React 18.3 or 19 is a peer dependency.
-Public packages are distributed through npm. Install Tungsten with:
-
-```sh
-npm install @myoon/tungsten
-```
+Public packages are distributed through npm.
 
 The default installation initially provides a qualification release during public testing, then follows stable releases.
 To opt into newer testing releases, use `@next`; development releases use `@dev`.
 No private registry configuration or access token is needed by consumers.
+
+## First form
+
+Create `form.schema.json` next to your form component:
+
+```json
+{
+  "schemaVersion": "sprout",
+  "form": [
+    {
+      "type": "text",
+      "key": "name",
+      "view": {
+        "label": "Your name"
+      },
+      "validators": [
+        {
+          "kind": "required"
+        }
+      ]
+    }
+  ]
+}
+```
+
+Then create `Form.tsx`:
 
 ```tsx
 import { Tungsten } from '@myoon/tungsten/react'
@@ -29,7 +51,8 @@ export function Form() {
 }
 ```
 
-The default design is included. An explicit adapter can be imported from
+Render `<Form />` in your application. The default design and its styles load
+automatically. An explicit adapter can be imported from
 `@myoon/tungsten/react/design/tungsten`, and its stylesheet from
 `@myoon/tungsten/react/design/tungsten.css`.
 
@@ -144,18 +167,18 @@ See the [repeater documentation](https://tungsten.myoon.sk/documentation/?guide=
 - `design/bootstrap/`: optional Bootstrap presentation adapter and scoped styling.
 - `design/material/`: optional Material UI presentation adapter, local themes and shared widgets.
 
-These are internal layers of one installable package. The website and examples
-are available at https://tungsten.myoon.sk/.
+These are internal layers of one installable package, not separate workspace
+packages. The website, editor, documentation and examples live in `apps/tungsten` at the repository root.
 
 ## Development
 
-Install the Node version in `.nvmrc`, pnpm, Rust with the `wasm32-unknown-unknown`
-target, and wasm-pack 0.15.0. From this repository, run `pnpm install --frozen-lockfile`,
-`pnpm build`, `pnpm test`, and `pnpm test:core`. Browser tests are development
-tooling: install their browsers with `pnpm exec playwright install`, then run
-`pnpm test:integration`. Chrome and Edge projects also require those applications.
-For the complete serial matrix, use `pnpm test:integration:run --workers=1 --global-timeout=5400000`.
-Playwright, tests and reports are excluded from the installed package.
+From the repository root, run `pnpm build:library`, `pnpm test`, `pnpm test:core`,
+and `pnpm test:package`. See the root README for toolchain setup and site commands.
+
+Package metadata is configured directly in this package.json. Private development
+builds use GitHub Packages; public release installation uses npm as shown above.
+Local workspace consumers do not need registry credentials. See the versioning
+guide for development builds and release commands.
 
 See the [architecture documentation](https://tungsten.myoon.sk/documentation/?guide=core)
 and [release support](https://tungsten.myoon.sk/documentation/?guide=support).
@@ -271,13 +294,13 @@ licenses are agreed case by case, with no fixed public pricing. Custom developme
 integrations, custom components/features, priority support, and consulting are
 available directly from the developer.
 
-This repository contains the official public release history of Tungsten. Development takes place in a private monorepo.
-
-External contributions need the rights workflow described in [CONTRIBUTING.md](CONTRIBUTING.md).
+Development takes place in the private Myoon monorepo. A separate public release
+repository is being prepared; external contributions need the rights workflow
+described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Build quality
 
-Development uses the Node version in the repository `.nvmrc` and wasm-pack 0.15.0.
+Development uses the Node version in the workspace `.nvmrc` and wasm-pack 0.15.0.
 Use a wasm-bindgen CLI matching `core/Cargo.lock` when installing the CLI manually.
 Lint rejects warnings, builds reject warnings and JavaScript chunks above 500 kB,
 and unit/browser tests reject unexpected console warnings, errors and exceptions.

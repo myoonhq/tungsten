@@ -430,3 +430,12 @@ test("public README conversion keeps one standard installation command", () => {
     1,
   );
 });
+
+test("public README conversion preserves the complete first-form JSON example", () => {
+  const input =
+    '# Tungsten\nInvited Q builds need private credentials.\n## First form\n\n```json\n{"schemaVersion":"sprout","form":[]}\n```\n\n```tsx\nimport { Tungsten } from \'@myoonhq/tungsten/react\';\n```';
+  const result = publicReadme(input, "1.0.0-Q.3");
+  assert.match(result, /## First form/);
+  assert.match(result, /\"schemaVersion\":\"sprout\"/);
+  assert.doesNotMatch(result, /need private credentials/);
+});

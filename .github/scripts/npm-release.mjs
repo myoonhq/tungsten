@@ -55,7 +55,7 @@ export function publicReadme(content, version) {
       "The default installation initially provides a qualification release during public testing, then follows stable releases.",
     )
     .replace(
-      /Invited Q builds[\s\S]*?(?=```tsx)/,
+      /Invited Q builds[\s\S]*?(?=## First form\n|```tsx)/,
       "Public packages are distributed through npm. Install Tungsten with:\n\n" +
         "```sh\nnpm install @myoon/tungsten\n```\n\n" +
         "The default installation initially provides a qualification release during public testing, then follows stable releases.\n" +
