@@ -1,18 +1,18 @@
 # Material design
 
-The optional `@myoonhq/tungsten/react/design/material` adapter uses Material UI
+The optional `@myoon/tungsten/react/design/material` adapter uses Material UI
 9.5 and later 9.x versions, with Emotion 11. Qualification uses MUI 9.5.0, Emotion React 11.14.0 and
 Emotion Styled 11.14.1. These remain external optional peers, so applications
 using the default design need none of them.
 
 ```sh
-npm install @myoonhq/tungsten @mui/material@^9.5.0 @emotion/react@^11.14.0 @emotion/styled@^11.14.1
+npm install @myoon/tungsten @mui/material@^9.5.0 @emotion/react@^11.14.0 @emotion/styled@^11.14.1
 ```
 
 ```tsx
-import { Tungsten, TungstenEditor } from '@myoonhq/tungsten/react'
-import material from '@myoonhq/tungsten/react/design/material'
-import '@myoonhq/tungsten/react/design/material.css'
+import { Tungsten, TungstenEditor } from '@myoon/tungsten/react'
+import material from '@myoon/tungsten/react/design/material'
+import '@myoon/tungsten/react/design/material.css'
 
 <Tungsten schema={schema} design={material} colorScheme="dark" language="de" />
 <TungstenEditor initialSchema={schema} design={material} colorScheme="light" />
@@ -46,7 +46,7 @@ than inheriting an unrelated surrounding MUI theme;
 pass your application's theme options explicitly when sharing branding.
 
 ```tsx
-import { createMaterialDesign } from '@myoonhq/tungsten/react/design/material'
+import { createMaterialDesign } from '@myoon/tungsten/react/design/material'
 
 const branded = createMaterialDesign(mode => ({
   palette: { primary: { main: mode === 'dark' ? '#90caf9' : '#1976d2' } },

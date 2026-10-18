@@ -1,4 +1,4 @@
-import type { TungstenComponent, TungstenField, TungstenSchema } from '@myoonhq/tungsten/react'
+import type { TungstenComponent, TungstenField, TungstenSchema } from '@myoon/tungsten/react'
 
 const text = (key: string, extra: Partial<TungstenField> = {}): TungstenField => ({
   type: 'text',
@@ -273,12 +273,12 @@ export function scenario(name: string, count = 10, mounted = 100, affected = 1):
   }
   if (name.startsWith('section-')) {
     const schema = scenario('tabs')
-    const group = schema.form[0] as import('@myoonhq/tungsten/react').TungstenGroup
+    const group = schema.form[0] as import('@myoon/tungsten/react').TungstenGroup
     return form({ ...group, render: { type: name.slice(8), settings: {} } })
   }
   if (name === 'repeater-tabs') {
     const repeater = scenario('repeater')
-      .form[0] as import('@myoonhq/tungsten/react').TungstenRepeater
+      .form[0] as import('@myoon/tungsten/react').TungstenRepeater
     return form({ ...repeater, render: { type: 'tabs', settings: {} } })
   }
   if (name === 'nested-repeater') {

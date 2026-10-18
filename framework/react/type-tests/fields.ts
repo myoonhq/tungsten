@@ -1,4 +1,4 @@
-import type { TextSettings, BooleanSettings } from '@myoonhq/tungsten/react'
+import type { TextSettings, BooleanSettings } from '@myoon/tungsten/react'
 const textarea: TextSettings = { textarea: true, rows: 3, resizable: false }
 const password: TextSettings = { variant: 'password' }
 const radio: BooleanSettings = { variant: 'radio', direction: 'row', options: [{ value: false, label: 'No' }] }

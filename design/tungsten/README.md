@@ -5,7 +5,7 @@ renderer is deliberately easy to locate under `src/`; shared form chrome,
 field shell behavior, installation, and scoped CSS live alongside them.
 
 This design is bundled as
-`@myoonhq/tungsten/react/design/tungsten`. The Bootstrap design is a sibling adapter using shared presentation primitives
+`@myoon/tungsten/react/design/tungsten`. The Bootstrap design is a sibling adapter using shared presentation primitives
 and interaction code. Its class mapping and palette live in `design/bootstrap`;
 the default design does not import Bootstrap. Material remains deferred.
 

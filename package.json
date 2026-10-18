@@ -1,5 +1,5 @@
 {
-  "name": "@myoonhq/tungsten",
+  "name": "@myoon/tungsten",
   "version": "1.0.0-Q.1",
   "description": "Installable Tungsten React integration with Tungsten, Bootstrap and Material designs.",
   "license": "AGPL-3.0-only",
@@ -9,7 +9,8 @@
     "url": "git+https://github.com/myoonhq/tungsten.git"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   },
   "sideEffects": [
     "**/*.css"

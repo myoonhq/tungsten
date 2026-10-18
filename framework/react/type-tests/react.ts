@@ -1,4 +1,4 @@
-import material, { createMaterialDesign, MaterialForm, MaterialLoading, MaterialFailure } from '@myoonhq/tungsten/react/design/material'
+import material, { createMaterialDesign, MaterialForm, MaterialLoading, MaterialFailure } from '@myoon/tungsten/react/design/material'
 import {
   Tungsten,
   TungstenThemeProvider,
@@ -19,9 +19,9 @@ import {
   type TungstenDesign,
   type TungstenSchema,
   type TungstenValues,
-} from '@myoonhq/tungsten/react'
-import bootstrap from '@myoonhq/tungsten/react/design/bootstrap'
-import tungsten from '@myoonhq/tungsten/react/design/tungsten'
+} from '@myoon/tungsten/react'
+import bootstrap from '@myoon/tungsten/react/design/bootstrap'
+import tungsten from '@myoon/tungsten/react/design/tungsten'
 
 const schema: TungstenSchema = { schemaVersion: 'sprout', form: [] }
 const design: TungstenDesign = tungsten

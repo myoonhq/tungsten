@@ -1,0 +1,108 @@
+name: Tungsten public npm
+
+on:
+  push:
+    tags: ["[0-9]*.[0-9]*.[0-9]*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Serialize releases; the publishing helper also prevents older channel promotion.
+concurrency:
+  group: tungsten-public-npm
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.repository == 'myoonhq/tungsten' && github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    outputs:
+      source_sha: ${{ steps.release.outputs.source_sha }}
+    steps:
+      - name: Check out release automation
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          path: automation
+          persist-credentials: false
+      - name: Check out source snapshot
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ github.sha }}
+          path: release
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: release/.nvmrc
+      - name: Verify snapshot and prepare public metadata
+        id: release
+        working-directory: release
+        run: node ../automation/.github/scripts/npm-release.mjs prepare
+      - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
+        with:
+          package_json_file: release/package.json
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - name: Install WASM build tool
+        run: |
+          curl --fail --location --retry 3 --output "$RUNNER_TEMP/wasm-pack.tar.gz" \
+            https://github.com/wasm-bindgen/wasm-pack/releases/download/v0.15.0/wasm-pack-v0.15.0-x86_64-unknown-linux-musl.tar.gz
+          echo "c09f971ecaed9a2efc80fdcea7a00ef6b53c7fadc8c57d1f61b53a6aa66b668a  $RUNNER_TEMP/wasm-pack.tar.gz" | sha256sum --check
+          tar -xzf "$RUNNER_TEMP/wasm-pack.tar.gz" -C "$RUNNER_TEMP"
+          install "$RUNNER_TEMP/wasm-pack-v0.15.0-x86_64-unknown-linux-musl/wasm-pack" "$HOME/.cargo/bin/wasm-pack"
+          wasm-pack --version
+      # The monorepo qualifies library code before exporting this release snapshot.
+      - name: Build the qualified release
+        working-directory: release
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm build
+      - name: Pack the release and check its contents
+        working-directory: release
+        run: node ../automation/.github/scripts/npm-release.mjs pack
+      - name: Save verified npm artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: tungsten-npm-release
+          path: release/npm-release/
+          if-no-files-found: error
+          retention-days: 30
+
+  publish:
+    needs: build
+    if: github.ref_type == 'tag' && vars.TUNGSTEN_NPM_PUBLISH_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: npm
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          path: automation
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: automation/.nvmrc
+          registry-url: https://registry.npmjs.org
+      - name: Install npm with trusted publishing and dist-tag support
+        run: npm install --global npm@11.21.0 --registry=https://registry.npmjs.org
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: tungsten-npm-release
+          path: publication/npm-release
+      - name: Publish the verified tarball
+        working-directory: publication
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          EXPECTED_SOURCE_SHA: ${{ needs.build.outputs.source_sha }}
+          # Daniel approved an initial Q release as the default install until stable.
+          ALLOW_FIRST_PRERELEASE_LATEST: "true"
+        run: node ../automation/.github/scripts/npm-release.mjs publish
+      - name: Verify unauthenticated public registry installation
+        working-directory: publication
+        run: node ../automation/.github/scripts/npm-release.mjs consumer registry
