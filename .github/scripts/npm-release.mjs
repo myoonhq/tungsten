@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import {
   appendFileSync,
   existsSync,
@@ -49,7 +49,7 @@ export function compareVersions(left, right) {
 
 export function publicReadme(content, version) {
   if (version) releaseVersion(version);
-  return publicSource(content)
+  const result = publicSource(content)
     .replace(
       /The default installation initially provides Q\.\d+ during public testing, then follows stable releases\./g,
       "The default installation initially provides a qualification release during public testing, then follows stable releases.",
@@ -62,6 +62,18 @@ export function publicReadme(content, version) {
         "To opt into newer testing releases, use `@next`; development releases use `@dev`.\n" +
         "No private registry configuration or access token is needed by consumers.\n\n",
     );
+  const publicIntro =
+    "Public packages are distributed through npm. Install Tungsten with:\n\n```sh\nnpm install @myoon/tungsten\n```\n\n";
+  const introIndex = result.indexOf(publicIntro);
+  if (
+    introIndex > 0 &&
+    result.slice(0, introIndex).includes("npm install @myoon/tungsten")
+  )
+    return result.replace(
+      publicIntro,
+      "Public packages are distributed through npm.\n\n",
+    );
+  return result;
 }
 
 export function publicManifest(manifest, repository) {
@@ -311,7 +323,7 @@ export function anonymousEnvironment(source, directory) {
   return env;
 }
 
-function consumer(spec) {
+async function consumer(spec) {
   const manifest = JSON.parse(readFileSync("package.json", "utf8"));
   const dir = mkdtempSync(resolve(tmpdir(), "tungsten-npm-consumer-"));
   try {
@@ -342,13 +354,29 @@ function consumer(spec) {
         },
       }),
     );
-    execute("npm", [
-      "install",
-      "--ignore-scripts",
-      "--no-audit",
-      "--no-fund",
-      "--package-lock=false",
-    ]);
+    for (let attempt = 0; ; attempt++) {
+      const install = spawnSync(
+        "npm",
+        [
+          "install",
+          "--ignore-scripts",
+          "--no-audit",
+          "--no-fund",
+          "--package-lock=false",
+          "--prefer-online",
+        ],
+        { cwd: dir, env, encoding: "utf8" },
+      );
+      if (install.status === 0) break;
+      if (attempt >= 11 || !install.stderr?.includes("ETARGET"))
+        throw new Error(
+          `Public registry installation failed: ${install.stderr || install.error || install.status}`,
+        );
+      console.log(
+        "npm installation metadata is still propagating; retrying in five seconds.",
+      );
+      await new Promise((resolve) => setTimeout(resolve, 5000));
+    }
     for (const name of [
       "bootstrap",
       "@mui/material",
@@ -600,7 +628,7 @@ if (
   else if (command === "pack") pack();
   else if (command === "consumer") {
     const record = JSON.parse(readFileSync("npm-release/release.json", "utf8"));
-    consumer(
+    await consumer(
       process.argv[3] === "registry"
         ? record.version
         : resolve("npm-release", record.filename),

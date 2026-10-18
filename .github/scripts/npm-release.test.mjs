@@ -414,3 +414,19 @@ test("versionless installation follows the newest Q until a stable version exist
     false,
   );
 });
+
+test("public README conversion keeps one standard installation command", () => {
+  const input =
+    "# Tungsten\n\n```sh\nnpm install @myoonhq/tungsten\n```\n\nInvited Q builds require private authentication.\n```tsx\nimport { Tungsten } from '@myoonhq/tungsten/react';\n```";
+  const readme = publicReadme(input, "1.0.0-Q.3");
+  assert.equal((readme.match(/npm install @myoon\/tungsten/g) ?? []).length, 1);
+  assert.match(readme, /from '@myoon\/tungsten\/react'/);
+  assert.equal(publicReadme(readme, "1.0.0-Q.3"), readme);
+  const duplicated =
+    "```sh\nnpm install @myoon/tungsten\n```\n\nPublic packages are distributed through npm. Install Tungsten with:\n\n```sh\nnpm install @myoon/tungsten\n```\n\n";
+  assert.equal(
+    (publicReadme(duplicated).match(/npm install @myoon\/tungsten/g) ?? [])
+      .length,
+    1,
+  );
+});
