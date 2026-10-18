@@ -456,7 +456,13 @@ export function shouldPromoteDefault(version, metadata) {
     ...Object.keys(metadata.versions ?? {}),
     metadata["dist-tags"]?.latest,
   ].filter(Boolean)) {
-    const parsed = releaseVersion(candidate);
+    // npm can create a staging placeholder before the first real version.
+    let parsed;
+    try {
+      parsed = releaseVersion(candidate);
+    } catch {
+      continue;
+    }
     if (parsed.stage === null || compareVersions(candidate, version) > 0)
       return false;
   }
@@ -553,7 +559,7 @@ async function publish() {
   }
   // Allow npm's metadata cache a bounded propagation interval after publication.
   let confirmed;
-  for (let attempt = 0; attempt < 6; attempt++) {
+  for (let attempt = 0; attempt < 60; attempt++) {
     const result = await fetch(`${url}/${record.version}`);
     if (result.ok) {
       confirmed = await result.json();
@@ -596,7 +602,7 @@ if (
     const record = JSON.parse(readFileSync("npm-release/release.json", "utf8"));
     consumer(
       process.argv[3] === "registry"
-        ? `${packageName}@${record.version}`
+        ? record.version
         : resolve("npm-release", record.filename),
     );
   } else if (command === "publish") await publish();

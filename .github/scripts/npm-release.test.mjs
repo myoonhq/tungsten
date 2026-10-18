@@ -380,6 +380,13 @@ test("versionless installation follows the newest Q until a stable version exist
   assert.equal(
     shouldPromoteDefault(
       "1.0.0-Q.2",
+      metadata(["0.0.0-stage", "1.0.0-Q.1", "1.0.0-Q.2"]),
+    ),
+    true,
+  );
+  assert.equal(
+    shouldPromoteDefault(
+      "1.0.0-Q.2",
       metadata(["1.0.0-Q.1", "1.0.0-Q.2"], { latest: "1.0.0-Q.1" }),
     ),
     true,

@@ -98,7 +98,6 @@ jobs:
       - name: Publish the verified tarball
         working-directory: publication
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           EXPECTED_SOURCE_SHA: ${{ needs.build.outputs.source_sha }}
           # Daniel approved an initial Q release as the default install until stable.
           ALLOW_FIRST_PRERELEASE_LATEST: "true"
