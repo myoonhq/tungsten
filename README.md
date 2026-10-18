@@ -1,19 +1,19 @@
 # Tungsten
 
 Deterministic schema-driven forms, powered by a Rust/WASM engine and rendered
-through React. Install the `@myoonhq/tungsten` package in your React application.
+through React. Install the `@myoon/tungsten` package in your React application.
 
 ## Install
 
 ```sh
-npm install @myoonhq/tungsten
+npm install @myoon/tungsten
 ```
 
 React 18.3 or 19 is a peer dependency.
 Public packages are distributed through npm. Install Tungsten with:
 
 ```sh
-npm install @myoonhq/tungsten
+npm install @myoon/tungsten
 ```
 
 The default installation initially provides Q.1 during public testing, then follows stable releases.
@@ -21,7 +21,7 @@ To opt into newer testing releases, use `@next`; development releases use `@dev`
 No private registry configuration or access token is needed by consumers.
 
 ```tsx
-import { Tungsten } from '@myoonhq/tungsten/react'
+import { Tungsten } from '@myoon/tungsten/react'
 import schema from './form.schema.json'
 
 export function Form() {
@@ -30,8 +30,8 @@ export function Form() {
 ```
 
 The default design is included. An explicit adapter can be imported from
-`@myoonhq/tungsten/react/design/tungsten`, and its stylesheet from
-`@myoonhq/tungsten/react/design/tungsten.css`.
+`@myoon/tungsten/react/design/tungsten`, and its stylesheet from
+`@myoon/tungsten/react/design/tungsten.css`.
 
 ## Bootstrap design
 
@@ -39,10 +39,10 @@ The optional Bootstrap adapter ships in the same package. Install
 `bootstrap@^5.3.8` only when using it, then load Bootstrap CSS before the adapter CSS:
 
 ```tsx
-import { Tungsten } from '@myoonhq/tungsten/react'
-import bootstrap from '@myoonhq/tungsten/react/design/bootstrap'
+import { Tungsten } from '@myoon/tungsten/react'
+import bootstrap from '@myoon/tungsten/react/design/bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import '@myoonhq/tungsten/react/design/bootstrap.css'
+import '@myoon/tungsten/react/design/bootstrap.css'
 
 <Tungsten schema={schema} design={bootstrap} colorScheme="dark" onSubmit={save} />
 ```
@@ -59,13 +59,13 @@ Tungsten design. Bootstrap's global Reboot styles are part of its stylesheet.
 The optional `material` adapter also ships with Tungsten. Install its external peers:
 
 ```sh
-npm install @myoonhq/tungsten @mui/material@^9.5.0 @emotion/react@^11.14.0 @emotion/styled@^11.14.1
+npm install @myoon/tungsten @mui/material@^9.5.0 @emotion/react@^11.14.0 @emotion/styled@^11.14.1
 ```
 
 ```tsx
-import { Tungsten } from '@myoonhq/tungsten/react'
-import material from '@myoonhq/tungsten/react/design/material'
-import '@myoonhq/tungsten/react/design/material.css'
+import { Tungsten } from '@myoon/tungsten/react'
+import material from '@myoon/tungsten/react/design/material'
+import '@myoon/tungsten/react/design/material.css'
 
 <Tungsten schema={schema} design={material} colorScheme="dark" language="de" />
 ```
@@ -86,7 +86,7 @@ controls share the default form palette in both schemes; selecting Bootstrap or
 Material changes its live preview while the authoring controls remain Tungsten.
 
 ```tsx
-import { TungstenThemeProvider } from '@myoonhq/tungsten/react'
+import { TungstenThemeProvider } from '@myoon/tungsten/react'
 
 <TungstenThemeProvider colorScheme={appColorScheme}>
   <Tungsten schema={schema} onSubmit={handleSubmit} />
@@ -174,7 +174,7 @@ records the current behavior and the starting point for freezing the API.
 ## Sprout editor and discovery
 
 ```tsx
-import { TungstenEditor, getAuthoringCatalog } from '@myoonhq/tungsten/react'
+import { TungstenEditor, getAuthoringCatalog } from '@myoon/tungsten/react'
 
 <TungstenEditor initialSchema={schema} onChange={acceptedSchema => save(acceptedSchema)} />
 const catalog = await getAuthoringCatalog()
@@ -254,10 +254,10 @@ Non-English catalogs load separately when selected or used as the fallback.
 The [Localization (i18n) guide](https://tungsten.myoon.sk/documentation/?guide=localization)
 contains the supported-language list, custom labels, overrides, parameters,
 plurals, a searchable reference for every system key and a blank template download.
-The template is also exported as `@myoonhq/tungsten/locales/template.json`; every
+The template is also exported as `@myoon/tungsten/locales/template.json`; every
 value is `""`, so using it unchanged intentionally empties all system messages.
 Official catalogs, language names and the key reference are available under
-`@myoonhq/tungsten/locales/*.json`. `supportedLanguages` is exported from the React
+`@myoon/tungsten/locales/*.json`. `supportedLanguages` is exported from the React
 entry point. RTL layout remains future work.
 
 ## Licensing and services

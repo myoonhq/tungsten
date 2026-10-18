@@ -101,7 +101,7 @@ for (const [file, value] of [
   const content = `${JSON.stringify(value, null, 2)}\n`
   if (process.argv.includes('--write')) writeFileSync(path, content)
   else if (!isDeepStrictEqual(JSON.parse(readFileSync(path, 'utf8')), value)) {
-    throw new Error(`${file} is stale; run pnpm --filter @myoonhq/tungsten generate:locales.`)
+    throw new Error(`${file} is stale; run pnpm --filter @myoon/tungsten generate:locales.`)
   }
 }
 console.log('Translation template and message reference match the English catalog.')

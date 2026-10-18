@@ -15,7 +15,11 @@ import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 export const registry = "https://registry.npmjs.org";
-export const packageName = "@myoonhq/tungsten";
+export const packageName = "@myoon/tungsten";
+const legacyPackageName = "@myoonhq/tungsten";
+
+export const publicSource = (content) =>
+  content.replaceAll(legacyPackageName, packageName);
 const versionPattern =
   /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-([DQ])\.([1-9]\d*))?$/;
 
@@ -45,11 +49,11 @@ export function compareVersions(left, right) {
 
 export function publicReadme(content, version) {
   if (version) releaseVersion(version);
-  return content.replace(
+  return publicSource(content).replace(
     /Invited Q builds[\s\S]*?(?=```tsx)/,
     "Public packages are distributed through npm. Install Tungsten with:\n\n" +
-      "```sh\nnpm install @myoonhq/tungsten\n```\n\n" +
-      "The default installation initially provides Q.1 during public testing, then follows stable releases.\n" +
+      "```sh\nnpm install @myoon/tungsten\n```\n\n" +
+      "The default installation initially provides a qualification release during public testing, then follows stable releases.\n" +
       "To opt into newer testing releases, use `@next`; development releases use `@dev`.\n" +
       "No private registry configuration or access token is needed by consumers.\n\n",
   );
@@ -57,7 +61,10 @@ export function publicReadme(content, version) {
 
 export function publicManifest(manifest, repository) {
   releaseVersion(manifest.version);
-  if (manifest.name !== packageName || manifest.private)
+  if (
+    ![packageName, legacyPackageName].includes(manifest.name) ||
+    manifest.private
+  )
     throw new Error("Unexpected package name or private package");
   if (
     repository !== "myoonhq/tungsten" ||
@@ -72,7 +79,11 @@ export function publicManifest(manifest, repository) {
     throw new Error("Unexpected publication registry");
   // Older immutable source snapshots still contain the private registry setting.
   // Only distribution metadata is normalized in the disposable build checkout.
-  return { ...manifest, publishConfig: { registry, access: "public" } };
+  return {
+    ...manifest,
+    name: packageName,
+    publishConfig: { registry, access: "public" },
+  };
 }
 
 export function verifySnapshot(root) {
@@ -133,26 +144,35 @@ const output = (values) => {
 function prepare() {
   const root = process.cwd();
   const manifest = verifySnapshot(root);
-  const expectedTag = process.env.RELEASE_TAG || "";
-  const automatic =
-    process.env.GITHUB_EVENT_NAME === "push" &&
-    process.env.GITHUB_REF_TYPE === "tag";
-  const tag = expectedTag || (automatic ? process.env.GITHUB_REF_NAME : "");
-  const sourceSha = run("git", ["rev-parse", "HEAD"]).trim();
-  if (tag) {
-    releaseVersion(tag);
-    if (
-      tag !== manifest.version ||
-      run("git", ["rev-parse", `refs/tags/${tag}^{commit}`]).trim() !==
-        sourceSha
-    )
-      throw new Error("Release tag, checkout and package version must match");
-    run("git", ["merge-base", "--is-ancestor", sourceSha, "origin/main"]);
-  }
-  if (automatic && sourceSha !== process.env.GITHUB_SHA)
+  if (
+    process.env.GITHUB_REPOSITORY !== "myoonhq/tungsten" ||
+    process.env.GITHUB_REF_TYPE !== "tag" ||
+    !["push", "workflow_dispatch"].includes(process.env.GITHUB_EVENT_NAME)
+  )
     throw new Error(
-      "Automatic publication must build the event's exact commit",
+      "Select a version tag to publish; branch runs are not supported",
     );
+  const tag = process.env.GITHUB_REF_NAME;
+  releaseVersion(tag);
+  const sourceSha = run("git", ["rev-parse", "HEAD"]).trim();
+  if (
+    tag !== manifest.version ||
+    run("git", ["rev-parse", `refs/tags/${tag}^{commit}`]).trim() !==
+      sourceSha ||
+    sourceSha !== process.env.GITHUB_SHA
+  )
+    throw new Error("Release tag, checkout and package version must match");
+  run("git", ["merge-base", "--is-ancestor", sourceSha, "origin/main"]);
+  // Verify the immutable snapshot first; normalize names only in this disposable checkout.
+  const snapshot = JSON.parse(
+    readFileSync(resolve(root, ".tungsten-release.json"), "utf8"),
+  );
+  for (const path of Object.keys(snapshot.files)) {
+    const file = resolve(root, path);
+    const content = readFileSync(file, "utf8");
+    const normalized = publicSource(content);
+    if (normalized !== content) writeFileSync(file, normalized);
+  }
   writeFileSync(
     "package.json",
     JSON.stringify(
@@ -168,7 +188,6 @@ function prepare() {
   output({
     version: manifest.version,
     channel: releaseVersion(manifest.version).channel,
-    release: automatic,
     source_sha: sourceSha,
   });
 }
@@ -177,7 +196,7 @@ export function validatePack(pack, manifest) {
   if (
     pack.name !== packageName ||
     pack.version !== manifest.version ||
-    !/^myoonhq-tungsten-[\w.-]+\.tgz$/.test(pack.filename) ||
+    !/^myoon-tungsten-[\w.-]+\.tgz$/.test(pack.filename) ||
     !pack.integrity?.startsWith("sha512-")
   )
     throw new Error("Unexpected packed artifact");
@@ -292,7 +311,7 @@ function consumer(spec) {
     // Isolate the install from workspace/private registry configuration and tokens.
     writeFileSync(
       resolve(dir, ".npmrc"),
-      `registry=${registry}\n@myoonhq:registry=${registry}\n`,
+      `registry=${registry}\n@myoon:registry=${registry}\n`,
     );
     writeFileSync(resolve(dir, "anonymous-npmrc"), `registry=${registry}\n`);
     writeFileSync(resolve(dir, "global-npmrc"), "");
@@ -346,8 +365,8 @@ function consumer(spec) {
     writeFileSync(
       resolve(dir, "main.tsx"),
       `import { createRoot } from 'react-dom/client';
-import { Tungsten, TungstenEditor, type TungstenSchema } from '@myoonhq/tungsten/react';
-import '@myoonhq/tungsten/react/design/tungsten.css';
+import { Tungsten, TungstenEditor, type TungstenSchema } from '@myoon/tungsten/react';
+import '@myoon/tungsten/react/design/tungsten.css';
 const schema: TungstenSchema = { schemaVersion: 'sprout', form: [{ type: 'text', key: 'name' }] };
 createRoot(document.getElementById('root')!).render(<><Tungsten schema={schema}/><TungstenEditor initialSchema={schema}/></>);`,
     );
@@ -436,36 +455,31 @@ export function firstPublicationPolicy(
 }
 
 export function publicationEvent(record, env) {
-  const bootstrap =
-    env.GITHUB_EVENT_NAME === "workflow_dispatch" &&
-    env.GITHUB_REF === "refs/heads/main" &&
-    env.BOOTSTRAP_PUBLISH === "true";
-  const automatic =
-    env.GITHUB_EVENT_NAME === "push" && env.GITHUB_REF_TYPE === "tag";
   if (
     env.GITHUB_REPOSITORY !== "myoonhq/tungsten" ||
-    (!automatic && !bootstrap)
+    env.GITHUB_REF_TYPE !== "tag" ||
+    !["push", "workflow_dispatch"].includes(env.GITHUB_EVENT_NAME)
   )
     throw new Error(
-      "Publication requires a release tag push or explicit first-publication dispatch",
+      "Publication requires a version tag; branch runs are not supported",
     );
+  releaseVersion(env.GITHUB_REF_NAME);
   if (
-    record.sourceSha !==
-      (bootstrap ? env.EXPECTED_SOURCE_SHA : env.GITHUB_SHA) ||
-    record.version !== (bootstrap ? env.RELEASE_TAG : env.GITHUB_REF_NAME) ||
-    !/^myoonhq-tungsten-[\w.-]+\.tgz$/.test(record.filename)
+    record.name !== packageName ||
+    record.sourceSha !== env.GITHUB_SHA ||
+    (env.EXPECTED_SOURCE_SHA && record.sourceSha !== env.EXPECTED_SOURCE_SHA) ||
+    record.version !== env.GITHUB_REF_NAME ||
+    record.filename !== `myoon-tungsten-${record.version}.tgz`
   )
     throw new Error(
       "Release artifact does not match the triggering tag/commit",
     );
-  if (bootstrap && !env.NODE_AUTH_TOKEN)
-    throw new Error("First publication requires NPM_TOKEN");
-  return { bootstrap };
+  return { tag: record.version };
 }
 
 async function publish() {
   const record = JSON.parse(readFileSync("npm-release/release.json", "utf8"));
-  const { bootstrap } = publicationEvent(record, process.env);
+  publicationEvent(record, process.env);
   const archive = resolve("npm-release", record.filename);
   const integrity =
     "sha512-" +
@@ -493,21 +507,13 @@ async function publish() {
     response.status !== 404,
     process.env.ALLOW_FIRST_PRERELEASE_LATEST === "true",
   );
-  if (
-    bootstrap &&
-    response.status !== 404 &&
-    !metadata.versions?.[record.version]
-  )
-    throw new Error(
-      "Package already exists; first-publication mode can only retry its existing exact version",
-    );
   const action = publicationAction(record, metadata);
   if (action === "publish") {
     run("npm", [
       "publish",
       archive,
       "--ignore-scripts",
-      ...(bootstrap ? [] : ["--provenance"]),
+      "--provenance",
       "--access",
       "public",
       "--tag",

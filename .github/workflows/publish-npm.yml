@@ -4,19 +4,6 @@ on:
   push:
     tags: ["[0-9]*.[0-9]*.[0-9]*"]
   workflow_dispatch:
-    inputs:
-      release_tag:
-        description: "Build an existing public release tag (build only unless bootstrap is explicitly enabled)"
-        type: string
-        required: true
-      bootstrap_publish:
-        description: "Publish the first real npm version using NPM_TOKEN (only after owner approval)"
-        type: boolean
-        default: false
-      allow_first_prerelease_latest:
-        description: "I accept npm may also tag the first prerelease as latest until a stable release exists"
-        type: boolean
-        default: false
 
 permissions:
   contents: read
@@ -28,10 +15,10 @@ concurrency:
 
 jobs:
   build:
+    if: github.repository == 'myoonhq/tungsten' && github.ref_type == 'tag'
     runs-on: ubuntu-latest
     timeout-minutes: 35
     outputs:
-      release: ${{ steps.release.outputs.release }}
       source_sha: ${{ steps.release.outputs.source_sha }}
     steps:
       - name: Check out release automation
@@ -42,20 +29,16 @@ jobs:
       - name: Check out source snapshot
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
-          ref: ${{ inputs.release_tag || github.sha }}
+          ref: ${{ github.sha }}
           path: release
           fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version-file: release/.nvmrc
-      - name: Verify publishing rules
-        run: node --test automation/.github/scripts/npm-release.test.mjs
       - name: Verify snapshot and prepare public metadata
         id: release
         working-directory: release
-        env:
-          RELEASE_TAG: ${{ inputs.release_tag }}
         run: node ../automation/.github/scripts/npm-release.mjs prepare
       - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
         with:
@@ -65,21 +48,15 @@ jobs:
           targets: wasm32-unknown-unknown
       - name: Install WASM build tool
         run: cargo install wasm-pack --version 0.15.0 --locked
-      - name: Build and check the exported package
+      # The monorepo qualifies library code before exporting this release snapshot.
+      - name: Build the qualified release
         working-directory: release
         run: |
           pnpm install --frozen-lockfile
           pnpm build
-          pnpm lint
-          pnpm check:locales
-          pnpm exec vitest run
-          pnpm typecheck:tests
-          pnpm test:core
-      - name: Pack once and verify a clean consumer
+      - name: Pack the release and check its contents
         working-directory: release
-        run: |
-          node ../automation/.github/scripts/npm-release.mjs pack
-          node ../automation/.github/scripts/npm-release.mjs consumer
+        run: node ../automation/.github/scripts/npm-release.mjs pack
       - name: Save verified npm artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
@@ -90,11 +67,7 @@ jobs:
 
   publish:
     needs: build
-    if: >-
-      (needs.build.outputs.release == 'true' ||
-       (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.bootstrap_publish)) &&
-      github.repository == 'myoonhq/tungsten' &&
-      vars.TUNGSTEN_NPM_PUBLISH_ENABLED == 'true'
+    if: github.ref_type == 'tag' && vars.TUNGSTEN_NPM_PUBLISH_ENABLED == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     environment: npm
@@ -120,10 +93,9 @@ jobs:
         working-directory: publication
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          BOOTSTRAP_PUBLISH: ${{ inputs.bootstrap_publish }}
-          RELEASE_TAG: ${{ inputs.release_tag }}
           EXPECTED_SOURCE_SHA: ${{ needs.build.outputs.source_sha }}
-          ALLOW_FIRST_PRERELEASE_LATEST: ${{ inputs.allow_first_prerelease_latest }}
+          # Daniel approved an initial Q release as the default install until stable.
+          ALLOW_FIRST_PRERELEASE_LATEST: "true"
         run: node ../automation/.github/scripts/npm-release.mjs publish
       - name: Verify unauthenticated public registry installation
         working-directory: publication

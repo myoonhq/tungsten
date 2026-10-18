@@ -2,7 +2,7 @@
 
 Framework-neutral TypeScript schema/state DTOs, worker protocol, and the WASM
 transport live here. This is an internal source boundary; it is
-bundled into `@myoonhq/tungsten` rather than published independently.
+bundled into `@myoon/tungsten` rather than published independently.
 
 Do not add React components or design-system styling to this directory.
 

@@ -32,7 +32,7 @@ const packed = JSON.parse(
     pkg,
   ),
 )[0]
-const installed = resolve(consumer, 'node_modules/@myoonhq/tungsten')
+const installed = resolve(consumer, 'node_modules/@myoon/tungsten')
 mkdirSync(installed, { recursive: true })
 run(
   'tar',

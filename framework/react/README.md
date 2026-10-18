@@ -1,7 +1,7 @@
-# `@myoonhq/tungsten/react`
+# `@myoon/tungsten/react`
 
 React bindings and the default design for the Tungsten form engine, published
-from the private `@myoonhq/tungsten` GitHub package.
+from the private `@myoon/tungsten` GitHub package.
 
 The package contains the Rust/WASM runtime and runs it in a dedicated worker.
 Consumers pass a schema object directly; no repository source imports or
@@ -10,7 +10,7 @@ separate core installation are required.
 ## Usage
 
 ```tsx
-import { Tungsten } from '@myoonhq/tungsten/react'
+import { Tungsten } from '@myoon/tungsten/react'
 import schema from './form.schema.json'
 
 export function Form() {
@@ -48,7 +48,7 @@ The application resolves system preferences and owns persistence. Theme changes
 preserve edits, errors, focus and editor drafts.
 
 ```tsx
-import { TungstenThemeProvider } from '@myoonhq/tungsten/react'
+import { TungstenThemeProvider } from '@myoon/tungsten/react'
 
 <TungstenThemeProvider colorScheme={appColorScheme}>
   <Tungsten schema={schema} onSubmit={handleSubmit} />
@@ -60,8 +60,8 @@ import { TungstenThemeProvider } from '@myoonhq/tungsten/react'
 The built-in adapter is available as a nested export:
 
 ```tsx
-import { Tungsten } from '@myoonhq/tungsten/react';
-import tungsten from '@myoonhq/tungsten/react/design/tungsten';
+import { Tungsten } from '@myoon/tungsten/react';
+import tungsten from '@myoon/tungsten/react/design/tungsten';
 
 <Tungsten schema={schema} design={tungsten} onSubmit={handleSubmit} />
 ```
@@ -69,15 +69,15 @@ import tungsten from '@myoonhq/tungsten/react/design/tungsten';
 Design-only consumers can import the stylesheet explicitly:
 
 ```ts
-import '@myoonhq/tungsten/react/design/tungsten.css'
+import '@myoon/tungsten/react/design/tungsten.css'
 ```
 
 Future adapters follow the same host-first hierarchy:
 
 ```text
-@myoonhq/tungsten/react/design/bootstrap
-@myoonhq/tungsten/react/design/material
-@myoonhq/tungsten/angular/design/tungsten
+@myoon/tungsten/react/design/bootstrap
+@myoon/tungsten/react/design/material
+@myoon/tungsten/angular/design/tungsten
 ```
 
 The design object owns React components and field renderer registration. The

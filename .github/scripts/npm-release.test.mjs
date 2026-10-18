@@ -20,6 +20,7 @@ import {
   firstPublicationPolicy,
   publicManifest,
   publicReadme,
+  publicSource,
   registry,
   releaseVersion,
   validatePack,
@@ -88,42 +89,43 @@ test("first prereleases are blocked unless the npm initial-latest exception was 
   assert.doesNotThrow(() => firstPublicationPolicy("1.0.0", false, false));
 });
 
-test("manual publication requires an explicit bootstrap, token and matching reviewed source", () => {
+test("manual and automatic publications use the selected tag and reject branches or mismatched artifacts", () => {
   const artifact = {
     ...record(),
-    filename: "myoonhq-tungsten-1.0.0-Q.1.tgz",
+    filename: "myoon-tungsten-1.0.0-Q.1.tgz",
     sourceSha: "a".repeat(40),
   };
-  const env = {
-    GITHUB_REPOSITORY: "myoonhq/tungsten",
-    GITHUB_EVENT_NAME: "workflow_dispatch",
-    GITHUB_REF: "refs/heads/main",
-    BOOTSTRAP_PUBLISH: "true",
-    RELEASE_TAG: artifact.version,
-    EXPECTED_SOURCE_SHA: artifact.sourceSha,
-    NODE_AUTH_TOKEN: "test-only-not-a-real-token",
-  };
-  assert.deepEqual(publicationEvent(artifact, env), { bootstrap: true });
-  for (const mutation of [
-    { BOOTSTRAP_PUBLISH: "false" },
-    { NODE_AUTH_TOKEN: "" },
-    { GITHUB_REF: "refs/heads/feature" },
-    { GITHUB_EVENT_NAME: "pull_request" },
-    { GITHUB_REPOSITORY: "other/fork" },
-    { EXPECTED_SOURCE_SHA: "b".repeat(40) },
-    { RELEASE_TAG: "1.0.0" },
-  ])
-    assert.throws(() => publicationEvent(artifact, { ...env, ...mutation }));
-  assert.deepEqual(
-    publicationEvent(artifact, {
+  for (const event of ["push", "workflow_dispatch"]) {
+    const env = {
       GITHUB_REPOSITORY: "myoonhq/tungsten",
-      GITHUB_EVENT_NAME: "push",
+      GITHUB_EVENT_NAME: event,
       GITHUB_REF_TYPE: "tag",
-      GITHUB_SHA: artifact.sourceSha,
       GITHUB_REF_NAME: artifact.version,
-    }),
-    { bootstrap: false },
-  );
+      GITHUB_SHA: artifact.sourceSha,
+      EXPECTED_SOURCE_SHA: artifact.sourceSha,
+    };
+    assert.deepEqual(publicationEvent(artifact, env), {
+      tag: artifact.version,
+    });
+    for (const mutation of [
+      { GITHUB_REF_TYPE: "branch", GITHUB_REF_NAME: "main" },
+      { GITHUB_EVENT_NAME: "pull_request" },
+      { GITHUB_REPOSITORY: "other/fork" },
+      { EXPECTED_SOURCE_SHA: "b".repeat(40) },
+      { GITHUB_SHA: "b".repeat(40) },
+      { GITHUB_REF_NAME: "1.0.0" },
+    ])
+      assert.throws(() => publicationEvent(artifact, { ...env, ...mutation }));
+    assert.throws(() =>
+      publicationEvent({ ...artifact, name: "@myoonhq/tungsten" }, env),
+    );
+    assert.throws(() =>
+      publicationEvent(
+        { ...artifact, filename: "myoon-tungsten-1.0.0.tgz" },
+        env,
+      ),
+    );
+  }
 });
 
 test("D and Q are installable public channels, and only stable targets latest", () => {
@@ -227,6 +229,27 @@ test("only public distribution metadata is normalized, without mutating the priv
   assert.deepEqual(publicPackage.publishConfig, { registry, access: "public" });
   assert.equal(manifest.publishConfig.registry, "https://npm.pkg.github.com");
   assert.equal(publicPackage.version, manifest.version);
+  assert.equal(publicPackage.name, "@myoon/tungsten");
+  const legacy = { ...manifest, name: "@myoonhq/tungsten" };
+  assert.equal(
+    publicManifest(legacy, "myoonhq/tungsten").name,
+    "@myoon/tungsten",
+  );
+  assert.equal(legacy.name, "@myoonhq/tungsten");
+  assert.throws(
+    () =>
+      publicManifest(
+        { ...manifest, name: "@other/tungsten" },
+        "myoonhq/tungsten",
+      ),
+    /package name/,
+  );
+  assert.equal(
+    publicSource(
+      "import '@myoonhq/tungsten/react'; // github.com/myoonhq/tungsten",
+    ),
+    "import '@myoon/tungsten/react'; // github.com/myoonhq/tungsten",
+  );
   assert.throws(() => publicManifest(manifest, "other/fork"), /repository/);
   assert.throws(
     () => publicManifest({ ...manifest, private: true }, "myoonhq/tungsten"),
@@ -243,20 +266,20 @@ test("only public distribution metadata is normalized, without mutating the priv
   const readme = publicReadme(
     "# Tungsten\nInvited Q builds require private auth.\n```tsx\nexample\n```",
   );
-  assert.match(readme, /npm install @myoonhq\/tungsten\n/);
+  assert.match(readme, /npm install @myoon\/tungsten\n/);
   assert.doesNotMatch(readme, /require private auth/);
   assert.match(readme, /```tsx\nexample/);
   assert.equal(
     publicReadme("npm install @myoonhq/tungsten\n", "1.0.0-Q.1"),
-    "npm install @myoonhq/tungsten\n",
+    "npm install @myoon/tungsten\n",
   );
   assert.equal(
     publicReadme("npm install @myoonhq/tungsten bootstrap\n", "1.1.0-D.1"),
-    "npm install @myoonhq/tungsten bootstrap\n",
+    "npm install @myoon/tungsten bootstrap\n",
   );
   assert.equal(
     publicReadme("npm install @myoonhq/tungsten\n", "1.0.0"),
-    "npm install @myoonhq/tungsten\n",
+    "npm install @myoon/tungsten\n",
   );
 });
 
@@ -309,7 +332,7 @@ test("packed publication must contain public exports and runtime assets, without
   ];
   const packed = {
     ...record(),
-    filename: "myoonhq-tungsten-1.0.0-Q.1.tgz",
+    filename: "myoon-tungsten-1.0.0-Q.1.tgz",
     files: paths.map((path) => ({ path })),
   };
   const pkg = {

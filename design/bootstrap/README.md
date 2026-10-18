@@ -1,18 +1,18 @@
 # Bootstrap design
 
-The optional `@myoonhq/tungsten/react/design/bootstrap` adapter supports Bootstrap
+The optional `@myoon/tungsten/react/design/bootstrap` adapter supports Bootstrap
 5.3.8 and later 5.x versions. Qualification uses Bootstrap 5.3.8. Install Bootstrap
 in the application and load its CSS before Tungsten's adapter styles:
 
 ```sh
-npm install @myoonhq/tungsten bootstrap@^5.3.8
+npm install @myoon/tungsten bootstrap@^5.3.8
 ```
 
 ```tsx
-import { Tungsten, TungstenEditor } from '@myoonhq/tungsten/react'
-import bootstrap from '@myoonhq/tungsten/react/design/bootstrap'
+import { Tungsten, TungstenEditor } from '@myoon/tungsten/react'
+import bootstrap from '@myoon/tungsten/react/design/bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import '@myoonhq/tungsten/react/design/bootstrap.css'
+import '@myoon/tungsten/react/design/bootstrap.css'
 
 <Tungsten schema={schema} design={bootstrap} colorScheme="dark" onSubmit={save} />
 <TungstenEditor initialSchema={schema} design={bootstrap} colorScheme="dark" />

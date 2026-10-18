@@ -10,10 +10,10 @@ import {
   type TungstenValues,
   type FieldRendererProps,
   type TungstenDiagnostic,
-} from '@myoonhq/tungsten/react'
+} from '@myoon/tungsten/react'
 import { designs } from './designs.js'
 import { scenario } from './scenarios.js'
-import template from '@myoonhq/tungsten/locales/template.json'
+import template from '@myoon/tungsten/locales/template.json'
 
 const params = new URLSearchParams(location.search)
 const session = params.get('session') ?? 'manual'
