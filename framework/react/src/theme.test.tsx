@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { Tungsten } from './Tungsten.js'
-import { TungstenThemeProvider, useTungstenColorScheme } from './theme.js'
+import { TungstenThemeProvider, useTungstenColorScheme, useTungstenColorProfile } from './theme.js'
 import tungsten from '../../../design/tungsten/src/index.js'
 import bootstrap from '../../../design/bootstrap/src/index.js'
 import material from '../../../design/material/src/index.js'
@@ -61,11 +61,19 @@ describe.each([tungsten, bootstrap, material])('$name color schemes', (design) =
     const emissions = observer.mock.calls.length
     const form = field.closest('form')!
     expect(form).toHaveAttribute('data-tg-color-scheme', 'light')
+    expect(form).toHaveAttribute('data-tg-color-profile', 'sprout')
     view.rerender(
-      <Tungsten design={design} schema={schema} colorScheme="dark" onStateChange={observer} />,
+      <Tungsten
+        design={design}
+        schema={schema}
+        colorScheme="dark"
+        colorProfile="ocean"
+        onStateChange={observer}
+      />,
     )
     expect(field.closest('form')).toBe(form)
     expect(form).toHaveAttribute('data-tg-color-scheme', 'dark')
+    expect(form).toHaveAttribute('data-tg-color-profile', 'ocean')
     expect(field).toHaveValue('Ada')
     expect(field).toHaveFocus()
     expect(screen.getByText('Check this name')).toBeVisible()
@@ -97,9 +105,11 @@ describe.each([tungsten, bootstrap, material])('$name color schemes', (design) =
 
   it('themes loading and failure feedback even when no form is available', async () => {
     engine.load.mockRejectedValue(new Error('Cannot load this form'))
-    render(<Tungsten design={design} schema={schema} colorScheme="dark" />)
+    render(<Tungsten design={design} schema={schema} colorScheme="dark" colorProfile="ocean" />)
     expect(screen.getByRole('status')).toHaveAttribute('data-tg-color-scheme', 'dark')
+    expect(screen.getByRole('status')).toHaveAttribute('data-tg-color-profile', 'ocean')
     expect(await screen.findByRole('alert')).toHaveAttribute('data-tg-color-scheme', 'dark')
+    expect(screen.getByRole('alert')).toHaveAttribute('data-tg-color-profile', 'ocean')
   })
 
   it('lets standalone design components inherit the selected scheme', () => {
@@ -119,4 +129,29 @@ describe.each([tungsten, bootstrap, material])('$name color schemes', (design) =
     expect(screen.getByRole('status')).toHaveAttribute('data-tg-color-scheme', 'dark')
     expect(screen.getByRole('alert')).toHaveAttribute('data-tg-color-scheme', 'dark')
   })
+})
+
+it('inherits profiles independently of schemes, including an explicit Sprout sibling', () => {
+  function Profile({ label }: { label: string }) {
+    return (
+      <output aria-label={label}>
+        {useTungstenColorProfile()}:{useTungstenColorScheme()}
+      </output>
+    )
+  }
+  const view = render(
+    <TungstenThemeProvider colorProfile="ocean" colorScheme="dark">
+      <TungstenThemeProvider colorScheme="light">
+        <Profile label="Inherited profile" />
+      </TungstenThemeProvider>
+      <TungstenThemeProvider colorProfile="sprout">
+        <Profile label="Sprout sibling" />
+      </TungstenThemeProvider>
+    </TungstenThemeProvider>,
+  )
+  expect(screen.getByLabelText('Inherited profile')).toHaveTextContent('ocean:light')
+  expect(screen.getByLabelText('Sprout sibling')).toHaveTextContent('sprout:dark')
+  view.unmount()
+  render(<Profile label="Default profile" />)
+  expect(screen.getByLabelText('Default profile')).toHaveTextContent('sprout:light')
 })

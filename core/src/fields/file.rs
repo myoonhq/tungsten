@@ -55,21 +55,42 @@ impl FileSettings {
                 ),
             })?;
         let upload = &settings.upload;
-        if upload.api.trim().is_empty()
-            || upload.endpoint.trim().is_empty()
-            || upload.field_name.trim().is_empty()
-            || !["POST", "PUT", "PATCH"].contains(&upload.method.as_str())
-            || !["submit", "selection"].contains(&upload.timing.as_str())
-            || (!upload.result_path.is_empty() && !upload.result_path.starts_with('/'))
-            || settings.max_files == Some(0)
-            || settings
-                .accept
-                .iter()
-                .any(|s| s.is_empty() || (!s.starts_with('.') && !s.contains('/')))
+        let invalid = |setting: &str, reason: &str| FieldCompileError::InvalidConfiguration {
+            message: crate::messages::diagnostic(
+                "tg_schema_invalid_file_setting",
+                serde_json::json!({"setting": setting, "reason": {"messageKey": reason}}),
+            ),
+        };
+        for (setting, value) in [
+            ("upload.api", &upload.api),
+            ("upload.endpoint", &upload.endpoint),
+            ("upload.fieldName", &upload.field_name),
+        ] {
+            if value.trim().is_empty() {
+                return Err(invalid(setting, "tg_catalog_a_nonempty_string_is_required"));
+            }
+        }
+        if !["POST", "PUT", "PATCH"].contains(&upload.method.as_str()) {
+            return Err(invalid("upload.method", "tg_schema_file_upload_method"));
+        }
+        if !["submit", "selection"].contains(&upload.timing.as_str()) {
+            return Err(invalid("upload.timing", "tg_schema_file_upload_timing"));
+        }
+        if !upload.result_path.is_empty() && !upload.result_path.starts_with('/') {
+            return Err(invalid(
+                "upload.resultPath",
+                "tg_api_result_path_must_be_a_json_pointer",
+            ));
+        }
+        if settings.max_files == Some(0) {
+            return Err(invalid("maxFiles", "tg_schema_file_max_files"));
+        }
+        if settings
+            .accept
+            .iter()
+            .any(|s| s.is_empty() || (!s.starts_with('.') && !s.contains('/')))
         {
-            return Err(FieldCompileError::InvalidConfiguration {
-                message: "tg_schema_invalid_upload_descriptor_or_file_constraints".into(),
-            });
+            return Err(invalid("accept", "tg_schema_file_accept"));
         }
         Ok(settings)
     }
@@ -189,5 +210,66 @@ impl FieldBehavior for FileBehavior {
             errors.push(ValidationError::new("file_type", "tg_validation_file_type"));
         }
         errors
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json::{json, Value};
+
+    #[test]
+    fn invalid_settings_name_the_property_and_localizable_reason() {
+        for (config, property, reason) in [
+            (
+                json!({"upload":{"api":"","endpoint":"files"}}),
+                "upload.api",
+                "tg_catalog_a_nonempty_string_is_required",
+            ),
+            (
+                json!({"upload":{"api":"main","endpoint":""}}),
+                "upload.endpoint",
+                "tg_catalog_a_nonempty_string_is_required",
+            ),
+            (
+                json!({"upload":{"api":"main","endpoint":"files","fieldName":""}}),
+                "upload.fieldName",
+                "tg_catalog_a_nonempty_string_is_required",
+            ),
+            (
+                json!({"upload":{"api":"main","endpoint":"files","method":"GET"}}),
+                "upload.method",
+                "tg_schema_file_upload_method",
+            ),
+            (
+                json!({"upload":{"api":"main","endpoint":"files","timing":"later"}}),
+                "upload.timing",
+                "tg_schema_file_upload_timing",
+            ),
+            (
+                json!({"upload":{"api":"main","endpoint":"files","resultPath":"data"}}),
+                "upload.resultPath",
+                "tg_api_result_path_must_be_a_json_pointer",
+            ),
+            (
+                json!({"upload":{"api":"main","endpoint":"files"},"maxFiles":0}),
+                "maxFiles",
+                "tg_schema_file_max_files",
+            ),
+            (
+                json!({"upload":{"api":"main","endpoint":"files"},"accept":["pdf"]}),
+                "accept",
+                "tg_schema_file_accept",
+            ),
+        ] {
+            let mut raw: RawField =
+                serde_json::from_value(json!({"type":"file","key":"attachment"})).unwrap();
+            raw.configuration = serde_json::from_value(config).unwrap();
+            let error = FileSettings::read(&raw).unwrap_err();
+            let value: Value = serde_json::from_str(&error.to_string()).unwrap();
+            assert_eq!(value["messageKey"], "tg_schema_invalid_file_setting");
+            assert_eq!(value["params"]["setting"], property);
+            assert_eq!(value["params"]["reason"]["messageKey"], reason);
+        }
     }
 }

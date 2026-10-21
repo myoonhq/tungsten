@@ -34,12 +34,20 @@ test('Theme: field, error and action colors stay readable in both schemes', asyn
   const form = driver.field('plain').locator('xpath=ancestor::form')
   const surface = await colors(form)
   if (design === 'tungsten' && colorScheme === 'dark')
-    expect(surface.background).toBe('rgb(27, 37, 27)')
+    expect(surface.background).toBe('rgb(29, 41, 30)')
   expect(surface.scheme).toBe(colorScheme)
   expect(luminance(surface.background) < 0.1).toBe(colorScheme === 'dark')
   const input = await colors(driver.field('plain'))
   expect(contrast(input.foreground, input.background)).toBeGreaterThanOrEqual(4.5)
   const action = await colors(driver.submit())
+  if (design === 'tungsten') {
+    expect(surface.background).toBe(
+      colorScheme === 'dark' ? 'rgb(29, 41, 30)' : 'rgb(255, 254, 249)',
+    )
+    expect(action.background).toBe(
+      colorScheme === 'dark' ? 'rgb(164, 208, 173)' : 'rgb(37, 77, 57)',
+    )
+  }
   expect(contrast(action.foreground, action.background)).toBeGreaterThanOrEqual(4.5)
   await driver.submit().click()
   const error = page.locator('.tg-errors').first()
@@ -232,4 +240,60 @@ test('Theme: an explicit package scheme remains independent of browser preferenc
   const palette = await colors(driver.field('plain').locator('xpath=ancestor::form'))
   expect(palette.scheme).toBe(colorScheme)
   expect(luminance(palette.background) < 0.1).toBe(colorScheme === 'dark')
+})
+
+test('Theme: custom CSS profiles reach editor settings and preview without resetting drafts', async ({
+  page,
+  design,
+  designColorScheme: colorScheme,
+}) => {
+  await page.goto(
+    `/?scenario=fields&editor=1&design=${design}&colorScheme=${colorScheme}&colorProfile=ocean`,
+  )
+  await page.addStyleTag({
+    content: `
+    :is(.tg-root, .te-root)[data-tg-color-profile='ocean'] {
+      --tg-color-action: #174578;
+      --tg-color-action-hover: #11365f;
+      --tg-color-on-action: #ffffff;
+    }
+    :is(.tg-root, .te-root)[data-tg-color-profile='ocean'][data-tg-color-scheme='dark'] {
+      --tg-color-action: #9ec5ff;
+      --tg-color-action-hover: #bad6ff;
+      --tg-color-on-action: #10243e;
+    }
+  `,
+  })
+  const editor = page.locator('.te-root')
+  await expect(page.locator('.te-status')).toHaveText('Schema accepted')
+  await expect(editor).toHaveAttribute('data-tg-color-profile', 'ocean')
+  await page.getByRole('button', { name: 'plain plain', exact: true }).first().click()
+  const dialog = page.getByRole('dialog')
+  const settings = dialog.locator('.tg-root')
+  await expect(settings).toHaveAttribute('data-tg-color-profile', 'ocean')
+  const action = dialog.getByRole('button', { name: 'Apply changes', exact: true })
+  await expect(action).toHaveCSS(
+    'background-color',
+    colorScheme === 'dark' ? 'rgb(158, 197, 255)' : 'rgb(23, 69, 120)',
+  )
+  expect(
+    contrast((await colors(action)).foreground, (await colors(action)).background),
+  ).toBeGreaterThanOrEqual(4.5)
+  await page.getByRole('button', { name: 'Close settings', exact: true }).click()
+  await page.getByRole('tab', { name: 'Preview', exact: true }).click()
+  const field = page.getByRole('textbox', { name: /^plain/ })
+  await field.fill('Saved edit')
+  await expect(field).toHaveValue('Saved edit')
+  const form = field.locator('xpath=ancestor::form')
+  await expect(form).toHaveAttribute('data-tg-color-profile', 'ocean')
+  await page.getByRole('tab', { name: 'JSON', exact: true }).click()
+  const json = page.getByLabel('Schema JSON')
+  await json.fill('{unfinished')
+  await page.evaluate(() => window.fixture.setColorProfile('sprout'))
+  await expect(editor).toHaveAttribute('data-tg-color-profile', 'sprout')
+  await expect(json).toHaveValue('{unfinished')
+  await expect(json).toBeFocused()
+  await page.getByRole('tab', { name: 'Preview', exact: true }).click()
+  await expect(field).toHaveValue('Saved edit')
+  await expect(form).toHaveAttribute('data-tg-color-profile', 'sprout')
 })

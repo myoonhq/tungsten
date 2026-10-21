@@ -95,6 +95,9 @@ const fixture = {
   setColorScheme: (scheme: TungstenColorScheme): void => {
     throw new Error(`Fixture theme controller unavailable: ${scheme}`)
   },
+  setColorProfile: (profile: string): void => {
+    throw new Error(`Fixture profile controller unavailable: ${profile}`)
+  },
   saves: [] as { values: TungstenValues; at: number }[],
   snapshot: null as TungstenSnapshot | null,
   controller: null as TungstenController | null,
@@ -111,6 +114,10 @@ declare global {
 window.fixture = fixture
 
 function App() {
+  const [colorProfile, setColorProfile] = useState(params.get('colorProfile') ?? 'sprout')
+  useEffect(() => {
+    fixture.setColorProfile = setColorProfile
+  }, [])
   const [colorScheme, setColorScheme] = useState<TungstenColorScheme>(
     (params.get('theme') ?? params.get('colorScheme')) === 'dark' ? 'dark' : 'light',
   )
@@ -227,7 +234,7 @@ function App() {
           </select>
         </label>
       ) : null}
-      <TungstenThemeProvider colorScheme={colorScheme}>
+      <TungstenThemeProvider colorScheme={colorScheme} colorProfile={colorProfile}>
         {params.has('editor') ? (
           <TungstenEditor initialSchema={schema} design={design} />
         ) : mounted ? (

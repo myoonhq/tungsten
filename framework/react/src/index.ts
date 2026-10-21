@@ -1,6 +1,6 @@
 export { Tungsten } from './Tungsten.js'
-export { TungstenThemeProvider, useTungstenColorScheme } from './theme.js'
-export type { TungstenColorScheme } from './theme.js'
+export { TungstenThemeProvider, useTungstenColorScheme, useTungstenColorProfile } from './theme.js'
+export type { TungstenColorScheme, TungstenColorProfile } from './theme.js'
 export { SCHEMA_VERSION, fieldsOf, isGroup, isRepeater } from '../../../api/src/types.js'
 export { getAuthoringCatalog } from '../../../api/src/engine/client.js'
 export { TungstenEditor } from './editor/TungstenEditor.js'

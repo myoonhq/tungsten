@@ -3,7 +3,9 @@ import { TungstenLang, TungstenLanguageProvider, useTungstenLang } from '../i18n
 import {
   TungstenThemeProvider,
   useTungstenColorScheme,
+  useTungstenColorProfile,
   type TungstenColorScheme,
+  type TungstenColorProfile,
 } from '../theme.js'
 import { useEffect, useId, useMemo, useRef, useState, type DragEvent } from 'react'
 import { EngineClient } from '../../../../api/src/engine/client.js'
@@ -18,6 +20,7 @@ import type {
   TungstenValues,
 } from '../types.js'
 import { editorDesign } from './design.js'
+import { TungstenTextField } from '../../../../design/tungsten/src/index.js'
 import { arrange, type DropLocation, type EditorDrag } from './arrangement.js'
 import { EditorCanvas, EDITOR_DRAG_MIME, type DragHandlers } from './canvas.js'
 import { initialValuesTemplate } from './initial-values.js'
@@ -34,6 +37,7 @@ import {
 
 export type TungstenEditorProps = {
   colorScheme?: TungstenColorScheme
+  colorProfile?: TungstenColorProfile
   language?: string
   initialSchema?: TungstenSchema
   initialValues?: TungstenValues | null
@@ -46,6 +50,38 @@ export type TungstenEditorProps = {
 }
 const pretty = (value: unknown) => JSON.stringify(value, null, 2)
 const message = messageOf
+
+function JSONInput({
+  inputId,
+  label,
+  value,
+  onChange,
+}: {
+  inputId: string
+  label: string
+  value: string
+  onChange: (value: string) => void
+}) {
+  return (
+    <div className="tg-root">
+      <TungstenTextField
+        inputId={inputId}
+        field={{
+          type: 'text',
+          key: inputId,
+          textarea: true,
+          rows: 10,
+          view: { label, format: 'json' },
+        }}
+        state={{ value, hidden: false, errors: [] }}
+        required={false}
+        disabled={false}
+        readOnly={false}
+        onValueChange={(next) => onChange(String(next ?? ''))}
+      />
+    </div>
+  )
+}
 
 function Outline({
   components,
@@ -133,7 +169,9 @@ export function TungstenEditor(props: TungstenEditorProps) {
       config={config.i18n}
       transport={transport}
     >
-      <TungstenThemeProvider colorScheme={props.colorScheme}>{content}</TungstenThemeProvider>
+      <TungstenThemeProvider colorScheme={props.colorScheme} colorProfile={props.colorProfile}>
+        {content}
+      </TungstenThemeProvider>
     </TungstenLanguageProvider>
   )
 }
@@ -150,6 +188,7 @@ function TungstenEditorContent({
 }: TungstenEditorProps) {
   const { t, language } = useTungstenLang()
   const colorScheme = useTungstenColorScheme()
+  const colorProfile = useTungstenColorProfile()
 
   const editorId = useId().replaceAll(':', '')
   const [catalog, setCatalog] = useState<AuthoringCatalog | null>(suppliedCatalog ?? null)
@@ -241,7 +280,12 @@ function TungstenEditorContent({
     }
   }, [catalog, document, selected])
 
-  function apply(candidate: TungstenSchema, path: ComponentPath = selection, remember = true) {
+  function apply(
+    candidate: TungstenSchema,
+    path: ComponentPath = selection,
+    remember = true,
+    options: { closeSettings?: boolean } = {},
+  ) {
     if (!client.current || pending) return
     if (remember) {
       setHistory((history) => [...history.slice(-49), document])
@@ -251,12 +295,13 @@ function TungstenEditorContent({
     setJSON(pretty(candidate))
     setJSONDirty(false)
     setSelection(path)
-    setPending(true)
+    if (options.closeSettings) setSettingsOpen(false)
     setError(null)
+    setPending(true)
     setStatus('tg_editor_checking_schema')
     const request = ++revision.current
     let resetValues = false
-    void client.current
+    return client.current
       .load(candidate, loadedValues)
       .catch(async (originalError) => {
         if (loadedValues === null || request !== revision.current || !client.current)
@@ -428,7 +473,12 @@ function TungstenEditorContent({
   const target =
     selected && (isGroup(selected) || isRepeater(selected)) ? selected.key : 'tg_editor_form_root'
   return (
-    <div className="te-root" lang={language} data-tg-color-scheme={colorScheme}>
+    <div
+      className="te-root"
+      lang={language}
+      data-tg-color-scheme={colorScheme}
+      data-tg-color-profile={colorProfile}
+    >
       <div className="te-toolbar">
         <div className="te-mode-switch" role="tablist" aria-label={t('tg_editor_editor_mode')}>
           {(['editor', 'preview', 'json'] as const).map((tab, index, tabs) => (
@@ -496,10 +546,14 @@ function TungstenEditorContent({
           <strong>
             <TungstenLang>tg_editor_check_your_draft</TungstenLang>
           </strong>
-          <TungstenLang>{error}</TungstenLang>
-          <TungstenLang>
-            {preview ? 'tg_editor_the_preview_shows_the_last_accepted_schema' : ''}
-          </TungstenLang>
+          <p>
+            <TungstenLang>{error}</TungstenLang>
+          </p>
+          {preview ? (
+            <p>
+              <TungstenLang>tg_editor_the_preview_shows_the_last_accepted_schema</TungstenLang>
+            </p>
+          ) : null}
         </div>
       ) : null}
       <div className={`te-workspace te-workspace--${mode}`}>
@@ -508,17 +562,15 @@ function TungstenEditorContent({
           id={`${editorId}-view-panel-editor`}
           role="tabpanel"
           aria-labelledby={`${editorId}-view-editor`}
-          hidden={mode !== 'editor'}
+          aria-hidden={mode !== 'editor'}
+          inert={mode !== 'editor'}
         >
           <aside className="te-palette" aria-label={t('tg_editor_field_palette_and_outline')}>
-            <p className="te-kicker">
-              <TungstenLang>tg_editor_grow_your_form</TungstenLang>
-            </p>
             <h2>
               <TungstenLang>tg_editor_components</TungstenLang>
             </h2>
             <p className="te-muted te-add-target">
-              <TungstenLang>tg_editor_adding_to</TungstenLang>
+              <TungstenLang>tg_editor_adding_to</TungstenLang>{' '}
               <strong>
                 <TungstenLang>{target}</TungstenLang>
               </strong>
@@ -619,11 +671,9 @@ function TungstenEditorContent({
           id={`${editorId}-view-panel-json`}
           role="tabpanel"
           aria-labelledby={`${editorId}-view-json`}
-          hidden={mode !== 'json'}
+          aria-hidden={mode !== 'json'}
+          inert={mode !== 'json'}
         >
-          <p className="te-kicker">
-            <TungstenLang>tg_editor_your_portable_schema</TungstenLang>
-          </p>
           <h2>
             <TungstenLang>tg_editor_json_editor</TungstenLang>
           </h2>
@@ -632,16 +682,12 @@ function TungstenEditorContent({
               tg_editor_import_or_edit_a_sprout_schema_invalid_drafts_stay_editable
             </TungstenLang>
           </p>
-          <label htmlFor={`${editorId}-schema-json`}>
-            <TungstenLang>tg_editor_schema_json</TungstenLang>
-          </label>
-          <textarea
-            id={`${editorId}-schema-json`}
-            className="te-json-editor"
-            spellCheck={false}
+          <JSONInput
+            inputId={`${editorId}-schema-json`}
+            label="tg_editor_schema_json"
             value={json}
-            onChange={(event) => {
-              setJSON(event.target.value)
+            onChange={(value) => {
+              setJSON(value)
               setJSONDirty(true)
             }}
           />
@@ -665,13 +711,11 @@ function TungstenEditorContent({
           id={`${editorId}-view-panel-preview`}
           role="tabpanel"
           aria-labelledby={`${editorId}-view-preview`}
-          hidden={mode !== 'preview'}
+          aria-hidden={mode !== 'preview'}
+          inert={mode !== 'preview'}
         >
           <div className="te-preview-heading">
             <div>
-              <p className="te-kicker">
-                <TungstenLang>tg_editor_see_it_take_shape</TungstenLang>
-              </p>
               <h2>
                 <TungstenLang>tg_editor_live_preview</TungstenLang>
               </h2>
@@ -728,17 +772,13 @@ function TungstenEditorContent({
                     tg_editor_the_keys_are_filled_from_your_schema_empty_collections_include_one_sample_item_to_show
                   </TungstenLang>
                 </p>
-                <label htmlFor={`${editorId}-initial-values`}>
-                  <TungstenLang>tg_editor_initial_values_json</TungstenLang>
-                </label>
-                <textarea
-                  id={`${editorId}-initial-values`}
-                  className="te-code-input"
-                  rows={6}
+                <JSONInput
+                  inputId={`${editorId}-initial-values`}
+                  label="tg_editor_initial_values_json"
                   value={valueJSON}
-                  onChange={(event) => {
+                  onChange={(value) => {
                     valueJSONDirty.current = true
-                    setValueJSON(event.target.value)
+                    setValueJSON(value)
                   }}
                 />
                 <button
@@ -961,11 +1001,6 @@ function TungstenEditorContent({
             </div>
             <div className="te-inspector-heading">
               <div>
-                <p className="te-kicker">
-                  <TungstenLang>
-                    {selected ? fieldTypeOf(selected) : 'tg_editor_schema'}
-                  </TungstenLang>
-                </p>
                 <h2 id={`${editorId}-settings-title`}>
                   <TungstenLang>
                     {selected?.view?.label || (selected ? selected.key : 'tg_editor_your_form')}
@@ -980,16 +1015,15 @@ function TungstenEditorContent({
                   : 'tg_editor_use_the_component_list_to_arrange_your_form_select_a_field_in_the_outline_to_edit_it'}
               </TungstenLang>
             </p>
-            {error ? (
-              <p className="te-error" role="alert">
-                <TungstenLang>{error}</TungstenLang>
-              </p>
-            ) : null}
             {settings.error ? (
-              <p role="alert">
-                <TungstenLang>tg_editor_use_json_mode_to_repair_this_draft</TungstenLang>
-                <TungstenLang>{settings.error}</TungstenLang>
-              </p>
+              <div className="te-error" role="alert">
+                <p>
+                  <TungstenLang>tg_editor_use_json_mode_to_repair_this_draft</TungstenLang>
+                </p>
+                <p>
+                  <TungstenLang>{settings.error}</TungstenLang>
+                </p>
+              </div>
             ) : null}
             {settings.form ? (
               <Tungsten
@@ -999,7 +1033,14 @@ function TungstenEditorContent({
                 initialValues={settings.form.values}
                 design={editorDesign}
                 onSubmit={(values) => {
-                  apply(applyInspector(document, selection, values, catalog!))
+                  return apply(
+                    applyInspector(document, selection, values, catalog!),
+                    selection,
+                    true,
+                    {
+                      closeSettings: true,
+                    },
+                  )
                 }}
               />
             ) : null}

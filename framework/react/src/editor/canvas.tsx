@@ -192,9 +192,6 @@ export function EditorCanvas(props: CanvasProps) {
     >
       <div className="te-canvas-heading">
         <div>
-          <p className="te-kicker">
-            <TungstenLang>tg_editor_arrange_your_form</TungstenLang>
-          </p>
           <h2>
             <TungstenLang>tg_editor_form_layout</TungstenLang>
           </h2>

@@ -541,5 +541,15 @@
   "tg_ui_submit_pending": "Submitting…",
   "tg_ui_submit_success": "Form submitted.",
   "tg_ui_submit_error": "Form could not be submitted.",
-  "tg_ui_save_dirty": "Unsaved changes."
+  "tg_ui_save_dirty": "Unsaved changes.",
+  "tg_editor_label_translation_hint": "Text or translation key. Matching keys change with the form language.",
+  "tg_editor_keep_parent_key_prefix": "Keep the “{prefix}” prefix; it links this field to its parent.",
+  "tg_ui_format_json": "Format JSON",
+  "tg_ui_invalid_json_format": "Enter valid JSON before formatting.",
+  "tg_editor_file_upload_help": "Set upload.api to an API name from your host configuration and upload.endpoint to a relative upload path, such as files. Both are required. The editor does not create an upload server.",
+  "tg_schema_invalid_file_setting": "{setting}: {reason}",
+  "tg_schema_file_upload_method": "Use POST, PUT or PATCH.",
+  "tg_schema_file_upload_timing": "Use submit or selection.",
+  "tg_schema_file_max_files": "Use an integer greater than zero.",
+  "tg_schema_file_accept": "Use file extensions such as .pdf or MIME types such as image/*."
 }

@@ -373,6 +373,53 @@ it('round-trips a file default through the JSON settings inspector', () => {
   expect(updated.form[0]).toMatchObject(document.form[0])
   load(updated)
 })
+
+it('keeps common flags out of custom JSON and normalizes explicitly authored flags into their controls', () => {
+  const document: TungstenSchema = {
+    schemaVersion: 'sprout',
+    form: [
+      {
+        type: 'file',
+        key: 'attachment',
+        upload: { api: 'main', endpoint: 'files' },
+        disabled: false,
+        readOnly: false,
+      },
+    ],
+  }
+  const { values } = roundTrip(document, [0])
+  expect(JSON.parse(String(values['typeOptions.file.json']))).toEqual({
+    upload: { api: 'main', endpoint: 'files' },
+  })
+  const updated = applyInspector(
+    document,
+    [0],
+    {
+      ...values,
+      'typeOptions.file.json': JSON.stringify({
+        upload: { api: 'main', endpoint: 'files' },
+        disabled: true,
+        readOnly: true,
+      }),
+    },
+    catalog,
+  )
+  expect(updated.form[0]).toMatchObject({ disabled: true, readOnly: true })
+  load(updated)
+  const reopened = roundTrip(updated, [0]).values
+  expect(reopened).toMatchObject({ disabled: true, readOnly: true })
+  expect(JSON.parse(String(reopened['typeOptions.file.json']))).toEqual({
+    upload: { api: 'main', endpoint: 'files' },
+  })
+  const enabled = applyInspector(
+    updated,
+    [0],
+    { ...reopened, disabled: false, readOnly: false },
+    catalog,
+  )
+  expect(enabled.form[0]).toMatchObject({ disabled: false, readOnly: false })
+  load(enabled)
+})
 it('round-trips a multiple select array default through the JSON settings inspector', () => {
   const document: TungstenSchema = {
     schemaVersion: 'sprout',

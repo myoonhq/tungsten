@@ -11,6 +11,7 @@ import type {
 
 export type ComponentPath = readonly number[]
 export const emptySchema: TungstenSchema = { schemaVersion: 'sprout', form: [] }
+
 export const childrenOf = (component: TungstenComponent): readonly TungstenComponent[] =>
   isGroup(component) ? component.subform : isRepeater(component) ? component.template : []
 export function componentAt(
@@ -277,6 +278,7 @@ export function newComponent(
     type,
     key,
     view: { label: catalog.fields.find((field) => field.type === type)?.label ?? type },
+    ...(type === 'file' ? { upload: { api: 'uploads', endpoint: 'files' } } : {}),
   }
 }
 const field = (key: string, label: string, extras: Partial<TungstenField> = {}): TungstenField => ({
@@ -298,6 +300,50 @@ const select = (
   })
 const jsonField = (key: string, label: string, initial = 'null') =>
   field(key, label, { view: { label, editorControl: 'json' }, current_value: initial })
+
+// Catalog hints describe authoring controls; the resulting inspector is an
+// ordinary Tungsten schema rendered by the same design as every other form.
+function formControls(components: readonly TungstenComponent[]): TungstenComponent[] {
+  return components.map((component) => {
+    if (isGroup(component)) return { ...component, subform: formControls(component.subform) }
+    if (isRepeater(component)) return { ...component, template: formControls(component.template) }
+    if (component.key === 'view.label' || component.key === 'components.label')
+      return {
+        ...component,
+        view: {
+          ...component.view,
+          label: component.view?.label ?? 'tg_catalog_label',
+          description: 'tg_editor_label_translation_hint',
+        },
+      }
+    const control = component.view?.editorControl
+    if (control === 'select')
+      return {
+        ...component,
+        type: 'select',
+        options: (
+          (component.view?.options ?? []) as readonly (string | { value: string; label: string })[]
+        ).map((option) => (typeof option === 'string' ? { value: option, label: option } : option)),
+      }
+    if (control === 'json' || control === 'textarea')
+      return {
+        ...component,
+        textarea: true,
+        rows: control === 'json' ? 10 : 2,
+        view: { ...component.view!, ...(control === 'json' ? { format: 'json' as const } : {}) },
+      }
+    return component
+  })
+}
+
+function parentKey(components: readonly TungstenComponent[], key: string): string | undefined {
+  for (const component of components) {
+    const children = childrenOf(component)
+    if (children.some((child) => child.key === key)) return component.key
+    const nested = parentKey(children, key)
+    if (nested) return nested
+  }
+}
 function mappedSettings(
   components: readonly TungstenComponent[],
   prefix: string,
@@ -363,7 +409,18 @@ function itemsEditor(
       template: [
         select('components.type', 'tg_editor_component_type', options),
         { type: 'text', key: 'components.identity', hidden: true },
-        field('components.key', 'tg_editor_component_key', { validators: [{ kind: 'required' }] }),
+        field('components.key', 'tg_editor_component_key', {
+          validators: [{ kind: 'required' }],
+          ...(parent
+            ? {
+                view: {
+                  label: 'tg_editor_component_key',
+                  description: 'tg_editor_keep_parent_key_prefix',
+                  descriptionParams: { prefix: `${parent.key}.` },
+                },
+              }
+            : {}),
+        }),
         field('components.label', 'tg_editor_component_label'),
       ],
     },
@@ -385,13 +442,28 @@ export function inspector(
   const list = itemsEditor(component ? childrenOf(component) : schema.form, catalog, component)
   if (!component)
     return {
-      schema: { schemaVersion: catalog.schemaVersion, form: [list.schema] },
+      schema: { schemaVersion: catalog.schemaVersion, form: formControls([list.schema]) },
       values: { components: list.values },
     }
   values.key = component.key
   values['view.label'] = component.view?.label ?? null
   values['view.description'] = component.view?.description ?? null
-  form.push(...catalog.commonSettings)
+  const parent = parentKey(schema.form, component.key)
+  form.push(
+    ...catalog.commonSettings.map((setting) =>
+      setting.key === 'key' && parent
+        ? {
+            ...setting,
+            view: {
+              ...setting.view,
+              label: setting.view?.label ?? 'tg_catalog_field_key',
+              description: 'tg_editor_keep_parent_key_prefix',
+              descriptionParams: { prefix: `${parent}.` },
+            },
+          }
+        : setting,
+    ),
+  )
   if (isGroup(component) || isRepeater(component)) {
     const renderers = isGroup(component) ? catalog.groupRenderers : catalog.repeaterRenderers
     values['render.type'] = component.render.type
@@ -489,7 +561,20 @@ export function inspector(
       const prefix = `typeOptions.${definition.type}`
       form.push(
         ...mappedSettings(
-          definition.settings ?? [jsonField('json', 'tg_editor_custom_field_settings_json', '{}')],
+          definition.settings ?? [
+            {
+              ...jsonField('json', 'tg_editor_custom_field_settings_json', '{}'),
+              ...(definition.type === 'file'
+                ? {
+                    view: {
+                      label: 'tg_editor_custom_field_settings_json',
+                      editorControl: 'json',
+                      description: 'tg_editor_file_upload_help',
+                    },
+                  }
+                : {}),
+            },
+          ],
           prefix,
           { property: 'type', value: definition.type },
         ),
@@ -505,11 +590,25 @@ export function inspector(
             rules: _rules,
             current_value: _default,
             hidden: _hidden,
+            disabled: _disabled,
+            readOnly: _readOnly,
             errors: _errors,
             ...config
           } = component
-          void [_key, _type, _alias, _view, _validators, _rules, _default, _hidden, _errors]
-          values[`${prefix}.json`] = JSON.stringify(config)
+          void [
+            _key,
+            _type,
+            _alias,
+            _view,
+            _validators,
+            _rules,
+            _default,
+            _hidden,
+            _disabled,
+            _readOnly,
+            _errors,
+          ]
+          values[`${prefix}.json`] = JSON.stringify(config, null, 2)
         } else
           for (const setting of definition.settings)
             if (!isGroup(setting) && !isRepeater(setting)) {
@@ -625,7 +724,7 @@ export function inspector(
       }
     })
   }
-  return { schema: { schemaVersion: catalog.schemaVersion, form }, values }
+  return { schema: { schemaVersion: catalog.schemaVersion, form: formControls(form) }, values }
 }
 function settingsValues(values: TungstenValues, prefix: string): Record<string, unknown> {
   return Object.fromEntries(
@@ -907,8 +1006,8 @@ export function applyInspector(
       type,
       view: { ...view, placeholder: String(values['view.placeholder'] ?? '') },
       hidden: !!values.hidden,
-      disabled: !!values.disabled,
-      readOnly: !!values.readOnly,
+      disabled: typeof settings.disabled === 'boolean' ? settings.disabled : !!values.disabled,
+      readOnly: typeof settings.readOnly === 'boolean' ? settings.readOnly : !!values.readOnly,
       validators,
       rules,
       ...(values.hasDefault

@@ -1,4 +1,5 @@
-import { test as base, expect, type ConsoleMessage } from '@playwright/test'
+import { test as base, expect } from './base-test.js'
+import type { ConsoleMessage } from '@playwright/test'
 
 type ConsoleChecks = {
   expectError: (messageKey: string) => void

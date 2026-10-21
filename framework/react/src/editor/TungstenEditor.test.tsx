@@ -71,15 +71,212 @@ const schema: TungstenSchema = {
 }
 
 describe('TungstenEditor', () => {
+  it('keeps draft validation errors out of unrelated component settings', async () => {
+    const onChange = vi.fn()
+    render(
+      <TungstenEditor
+        initialSchema={{
+          ...schema,
+          form: [
+            ...schema.form,
+            {
+              type: 'file',
+              key: 'file1',
+              view: { label: 'File' },
+              upload: { api: '', endpoint: '' },
+            },
+          ],
+        }}
+        onChange={onChange}
+      />,
+    )
+    await waitFor(() =>
+      expect(screen.getByRole('status')).toHaveTextContent('Draft needs attention'),
+    )
+    fireEvent.click(screen.getByRole('button', { name: 'Number', exact: true }))
+    await waitFor(() =>
+      expect(screen.getByRole('status')).toHaveTextContent('Draft needs attention'),
+    )
+    fireEvent.click(
+      within(screen.getByRole('complementary')).getByRole('button', { name: /Name.*name/ }),
+    )
+    const dialog = within(await screen.findByRole('dialog'))
+    expect(dialog.queryByRole('alert')).not.toBeInTheDocument()
+    fireEvent.change(await dialog.findByRole('textbox', { name: 'Label', exact: true }), {
+      target: { value: 'Full name' },
+    })
+    fireEvent.click(dialog.getByRole('button', { name: 'Apply changes' }))
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+    expect(await screen.findByRole('alert')).toHaveTextContent(
+      'upload.api: A nonempty string is required.',
+    )
+    expect(screen.getByRole('status')).toHaveClass('te-status-error')
+    expect(onChange).not.toHaveBeenCalled()
+    await waitFor(() =>
+      expect(screen.getByRole('button', { name: 'File', exact: true })).toBeEnabled(),
+    )
+    fireEvent.click(
+      within(screen.getByRole('complementary')).getByRole('button', { name: /File.*file1/ }),
+    )
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+    expect(await screen.findByText(/Set upload.api to an API name/)).toBeVisible()
+  })
+
+  it('shows the parent key prefix beside nested field keys in groups and repeaters', async () => {
+    render(
+      <TungstenEditor
+        initialSchema={{
+          schemaVersion: 'sprout',
+          form: [
+            {
+              type: 'group',
+              key: 'contact',
+              variant: 'basic',
+              render: { type: 'group', settings: {} },
+              subform: [{ type: 'text', key: 'contact.name', view: { label: 'Name' } }],
+            },
+            {
+              type: 'repeater',
+              key: 'people',
+              render: { type: 'undereachother', settings: {} },
+              template: [{ type: 'text', key: 'people.name', view: { label: 'Person' } }],
+            },
+          ],
+        }}
+      />,
+    )
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('Schema accepted'))
+    for (const prefix of ['contact', 'people']) {
+      fireEvent.click(
+        within(screen.getByRole('complementary')).getByRole('button', {
+          name: new RegExp(`${prefix}\\.name`),
+        }),
+      )
+      const dialog = within(await screen.findByRole('dialog'))
+      expect(await dialog.findByRole('textbox', { name: 'Field key' })).toHaveAccessibleDescription(
+        `Keep the “${prefix}.” prefix; it links this field to its parent.`,
+      )
+      fireEvent.click(dialog.getByRole('button', { name: 'Close settings' }))
+      await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+    }
+  })
+
+  it('adds a file without opening settings, then closes accepted settings and supports undo', async () => {
+    const onChange = vi.fn()
+    render(<TungstenEditor initialSchema={schema} onChange={onChange} />)
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('Schema accepted'))
+    fireEvent.click(screen.getByRole('button', { name: 'File', exact: true }))
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+    await waitFor(() => expect(onChange).toHaveBeenCalledOnce())
+    const openFile = () =>
+      fireEvent.click(
+        within(screen.getByRole('complementary')).getByRole('button', {
+          name: /File.*file1/,
+        }),
+      )
+    openFile()
+    const dialog = within(await screen.findByRole('dialog'))
+    const settings = await dialog.findByRole('textbox', { name: 'Custom field settings (JSON)' })
+    expect((settings as HTMLTextAreaElement).value).toContain('\n')
+    expect(JSON.parse((settings as HTMLTextAreaElement).value).upload).toEqual({
+      api: 'uploads',
+      endpoint: 'files',
+    })
+    fireEvent.click(dialog.getByRole('button', { name: 'Close settings' }))
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+    openFile()
+    const reopened = within(await screen.findByRole('dialog'))
+    fireEvent.change(
+      await reopened.findByRole('textbox', { name: 'Custom field settings (JSON)' }),
+      {
+        target: { value: JSON.stringify({ upload: { api: 'main', endpoint: 'attachments' } }) },
+      },
+    )
+    fireEvent.click(reopened.getByRole('button', { name: 'Apply changes' }))
+    await waitFor(() =>
+      expect(onChange).toHaveBeenCalledWith(
+        expect.objectContaining({
+          form: [
+            schema.form[0],
+            expect.objectContaining({
+              type: 'file',
+              key: 'file1',
+              upload: expect.objectContaining({ api: 'main', endpoint: 'attachments' }),
+            }),
+          ],
+        }),
+      ),
+    )
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: 'Undo schema change' }))
+    await waitFor(() => expect(onChange).toHaveBeenCalledTimes(3))
+    fireEvent.click(screen.getByRole('button', { name: 'Undo schema change' }))
+    await waitFor(() => expect(onChange).toHaveBeenLastCalledWith(schema))
+  })
+
+  it('saves invalid component settings as a draft, closes the modal and translates the core cause', async () => {
+    render(
+      <TungstenEditor
+        initialSchema={schema}
+        config={{
+          i18n: {
+            translations: {
+              en: {
+                tg_schema_failed_to_load_form: 'Could not load form.\n{error}',
+              },
+            },
+          },
+        }}
+      />,
+    )
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('Schema accepted'))
+    fireEvent.click(screen.getByRole('button', { name: 'File', exact: true }))
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('Schema accepted'))
+    fireEvent.click(
+      within(screen.getByRole('complementary')).getByRole('button', {
+        name: /File.*file1/,
+      }),
+    )
+    const dialog = within(await screen.findByRole('dialog'))
+    fireEvent.change(await dialog.findByRole('textbox', { name: 'Custom field settings (JSON)' }), {
+      target: {
+        value: JSON.stringify({ upload: { api: 'main', endpoint: 'files', method: 'GET' } }),
+      },
+    })
+    fireEvent.click(dialog.getByRole('button', { name: 'Apply changes' }))
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+    const error = await screen.findByRole('alert')
+    expect(error).toHaveTextContent(
+      "invalid file field 'file1': upload.method: Use POST, PUT or PATCH.",
+    )
+    expect(error.textContent).toContain('Could not load form.\n')
+    expect(error.textContent).not.toMatch(/messageKey|tg_schema_|\{"/)
+    fireEvent.click(
+      within(screen.getByRole('complementary')).getByRole('button', { name: /File.*file1/ }),
+    )
+    const saved = await within(await screen.findByRole('dialog')).findByRole('textbox', {
+      name: 'Custom field settings (JSON)',
+    })
+    expect(JSON.parse((saved as HTMLTextAreaElement).value).upload.method).toBe('GET')
+  })
+
   it('inherits dark mode through settings and preview while retaining an unfinished JSON draft', async () => {
     const onChange = vi.fn()
     const view = render(
-      <TungstenEditor initialSchema={schema} colorScheme="dark" onChange={onChange} />,
+      <TungstenEditor
+        initialSchema={schema}
+        colorScheme="dark"
+        colorProfile="ocean"
+        onChange={onChange}
+      />,
     )
     await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('Schema accepted'))
     fireEvent.click(screen.getByRole('tab', { name: 'Preview', exact: true }))
     const field = await screen.findByRole('textbox', { name: 'Name', exact: true })
     expect(field.closest('form')).toHaveAttribute('data-tg-color-scheme', 'dark')
+    expect(field.closest('form')).toHaveAttribute('data-tg-color-profile', 'ocean')
     fireEvent.change(field, { target: { value: 'Ada' } })
     await waitFor(() => expect(field).toHaveValue('Ada'))
     fireEvent.click(screen.getByRole('tab', { name: 'JSON', exact: true }))
@@ -91,10 +288,12 @@ describe('TungstenEditor', () => {
     expect(json).toHaveValue('{unfinished')
     expect(json).toHaveFocus()
     expect(json.closest('.te-root')).toHaveAttribute('data-tg-color-scheme', 'light')
+    expect(json.closest('.te-root')).toHaveAttribute('data-tg-color-profile', 'sprout')
     expect(onChange).toHaveBeenCalledTimes(count)
     fireEvent.click(screen.getByRole('tab', { name: 'Preview', exact: true }))
     expect(field).toHaveValue('Ada')
     expect(field.closest('form')).toHaveAttribute('data-tg-color-scheme', 'light')
+    expect(field.closest('form')).toHaveAttribute('data-tg-color-profile', 'sprout')
   })
 
   it('retains the accepted preview for invalid JSON rules, then supports undo and redo', async () => {
@@ -156,9 +355,8 @@ describe('TungstenEditor', () => {
     fireEvent.change(screen.getByRole('textbox', { name: 'Comparison value (JSON)' }), {
       target: { value: '"Ada"' },
     })
-    fireEvent.change(screen.getByRole('combobox', { name: 'Action', exact: true }), {
-      target: { value: 'show' },
-    })
+    fireEvent.click(screen.getByRole('combobox', { name: 'Action', exact: true }))
+    fireEvent.click(screen.getByRole('option', { name: 'show', exact: true }))
     fireEvent.click(screen.getByRole('button', { name: 'Apply changes' }))
     await waitFor(() =>
       expect(onChange).toHaveBeenCalledWith(
@@ -387,7 +585,7 @@ describe('editor view isolation', () => {
         }),
       ),
     )
-    fireEvent.click(screen.getByRole('button', { name: 'Close settings' }))
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
     fireEvent.click(screen.getByRole('tab', { name: 'Preview', exact: true }))
     expect(await screen.findByRole('textbox', { name: 'Full name', exact: true })).toBeVisible()
   })

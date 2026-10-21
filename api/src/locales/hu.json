@@ -541,5 +541,15 @@
   "tg_ui_submit_pending": "Küldés…",
   "tg_ui_submit_success": "Az űrlap elküldve.",
   "tg_ui_submit_error": "Az űrlap küldése sikertelen.",
-  "tg_ui_save_dirty": "Nem mentett módosítások."
+  "tg_ui_save_dirty": "Nem mentett módosítások.",
+  "tg_editor_label_translation_hint": "Szöveg vagy fordítási kulcs. Az ismert kulcsok a form nyelve szerint jelennek meg.",
+  "tg_editor_keep_parent_key_prefix": "Tartsd meg a(z) „{prefix}” előtagot; ez kapcsolja a mezőt a szülőhöz.",
+  "tg_ui_format_json": "JSON formázása",
+  "tg_ui_invalid_json_format": "Formázás előtt adj meg érvényes JSON-t.",
+  "tg_editor_file_upload_help": "Az upload.api a gazdaalkalmazásban beállított API neve, az upload.endpoint pedig egy relatív feltöltési útvonal, például files. Mindkettő kötelező. A szerkesztő nem hoz létre feltöltési szervert.",
+  "tg_schema_invalid_file_setting": "{setting}: {reason}",
+  "tg_schema_file_upload_method": "Használd a POST, PUT vagy PATCH metódust.",
+  "tg_schema_file_upload_timing": "Használd a submit vagy selection értéket.",
+  "tg_schema_file_max_files": "Nullánál nagyobb egész számot adj meg.",
+  "tg_schema_file_accept": "Használj fájlkiterjesztéseket, például .pdf, vagy MIME-típusokat, például image/*."
 }

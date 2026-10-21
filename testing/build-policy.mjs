@@ -32,3 +32,10 @@ export function javascriptSizeBudget() {
     },
   }
 }
+
+// Build timing varies with the runner and does not indicate an invalid bundle.
+// Keep all code/asset warnings flowing to the strict logger.
+export function onBuildLog(level, log, defaultHandler) {
+  if (log.code === 'PLUGIN_TIMINGS' || log.code === 'BUNDLER_TIMINGS') return
+  defaultHandler(level, log)
+}

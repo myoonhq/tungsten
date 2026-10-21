@@ -1,32 +1,33 @@
-/* Complete palettes for forms, messages and the editor. Component rules use semantic tokens. */
+/* Sprout is the default color profile for forms, messages and the editor.
+   Custom data-tg-color-profile names inherit these tokens; override them in your CSS. */
 :where(.tg-root, .te-root) {
   color-scheme: light;
-  --tg-color-ink: #17141f;
-  --tg-color-muted: #716b7c;
-  --tg-color-subtle: #746d7f;
-  --tg-color-border: #dedbe4;
-  --tg-color-border-hover: #bbb5c5;
-  --tg-color-surface: #ffffff;
-  --tg-color-surface-raised: #f8f7fa;
-  --tg-color-accent: #a855f7;
-  --tg-color-accent-deep: #8b3dd1;
-  --tg-color-accent-soft: #f4e8ff;
+  --tg-color-ink: #233d2d;
+  --tg-color-muted: #6c796a;
+  --tg-color-subtle: #6c796a;
+  --tg-color-border: #d6ddcf;
+  --tg-color-border-hover: #aabf8d;
+  --tg-color-surface: #fffef9;
+  --tg-color-surface-raised: #edf2e5;
+  --tg-color-accent: #526f3c;
+  --tg-color-accent-deep: #254d39;
+  --tg-color-accent-soft: #e5ecd8;
   --tg-color-danger: #c12e49;
   --tg-color-danger-soft: #fff0f2;
   --tg-color-danger-border: #ffd0d7;
   --tg-color-danger-ink: #b42338;
   --tg-color-on-danger: #ffffff;
-  --tg-color-disabled-border: #e8e6eb;
-  --tg-color-disabled-surface: #f1f0f3;
-  --tg-color-disabled-ink: #aaa5b1;
-  --tg-color-readonly-ink: #4f4958;
-  --tg-color-divider: #ece9ef;
-  --tg-color-action: #8b3dd1;
-  --tg-color-action-hover: #7b32bc;
-  --tg-color-on-action: #ffffff;
-  --tg-color-switch-track: #e7e3ec;
-  --tg-color-switch-thumb: #ffffff;
-  --tg-color-backdrop: rgb(15 25 35 / 45%);
+  --tg-color-disabled-border: #dfe5d8;
+  --tg-color-disabled-surface: #edf2e5;
+  --tg-color-disabled-ink: #8a9785;
+  --tg-color-readonly-ink: #4f634d;
+  --tg-color-divider: #d6ddcf;
+  --tg-color-action: #254d39;
+  --tg-color-action-hover: #356049;
+  --tg-color-on-action: #f6f7ef;
+  --tg-color-switch-track: #d6ddcf;
+  --tg-color-switch-thumb: #fffef9;
+  --tg-color-backdrop: rgb(20 30 22 / 45%);
   /* The editor is part of Tungsten and shares its form palette in both schemes. */
   --te-color-ink: var(--tg-color-ink);
   --te-color-muted: var(--tg-color-muted);
@@ -45,10 +46,10 @@
   --te-color-danger-soft: var(--tg-color-danger-soft);
   --te-color-danger-hover: var(--tg-color-danger-soft);
   --te-color-backdrop: var(--tg-color-backdrop);
-  --tg-shadow-focus: 0 0 0 3px rgb(168 85 247 / 18%);
-  --tg-shadow-button: 0 8px 20px rgb(112 48 160 / 18%);
-  --tg-shadow-form: 0 18px 50px rgb(31 20 42 / 7%);
-  --tg-shadow-menu: 0 12px 30px rgb(31 20 42 / 12%);
+  --tg-shadow-focus: 0 0 0 3px #769e4924;
+  --tg-shadow-button: 0 5px 16px #254d391a;
+  --tg-shadow-form: 0 18px 50px rgb(41 68 36 / 7%);
+  --tg-shadow-menu: 0 12px 32px #233d2d20;
   --tg-shadow-invalid: 0 0 0 3px rgb(229 72 95 / 14%);
   --tg-shadow-card: 0 3px 12px rgb(0 0 0 / 5%);
   --tg-shadow-switch: 0 1px 3px #0002;
@@ -60,16 +61,16 @@
 
 :where(.tg-root, .te-root)[data-tg-color-scheme='dark'] {
   color-scheme: dark;
-  --tg-color-ink: #e3eddc;
-  --tg-color-muted: #abbba0;
-  --tg-color-subtle: #a0b393;
-  --tg-color-border: #45523f;
-  --tg-color-border-hover: #9abd7f;
-  --tg-color-surface: #1b251b;
-  --tg-color-surface-raised: #253225;
-  --tg-color-accent: #a8c987;
-  --tg-color-accent-deep: #9bcca6;
-  --tg-color-accent-soft: #3a4d32;
+  --tg-color-ink: #e1ebdc;
+  --tg-color-muted: #a8b7a0;
+  --tg-color-subtle: #a8b7a0;
+  --tg-color-border: #40513c;
+  --tg-color-border-hover: #7b9867;
+  --tg-color-surface: #1d291e;
+  --tg-color-surface-raised: #273727;
+  --tg-color-accent: #a6c881;
+  --tg-color-accent-deep: #a4d0ad;
+  --tg-color-accent-soft: #3a4e32;
   --tg-color-danger: #ffa999;
   --tg-color-danger-soft: #42271f;
   --tg-color-danger-border: #7e4941;
@@ -79,17 +80,17 @@
   --tg-color-disabled-surface: #222e22;
   --tg-color-disabled-ink: #8d9e83;
   --tg-color-readonly-ink: #c1d1b6;
-  --tg-color-divider: #3b4936;
-  --tg-color-action: #9bcca6;
-  --tg-color-action-hover: #acdbb6;
-  --tg-color-on-action: #152419;
+  --tg-color-divider: #40513c;
+  --tg-color-action: #a4d0ad;
+  --tg-color-action-hover: #b5dfbb;
+  --tg-color-on-action: #141e16;
   --tg-color-switch-track: #526849;
-  --tg-color-switch-thumb: #e3eddc;
+  --tg-color-switch-thumb: #e1ebdc;
   --tg-color-backdrop: rgb(3 10 3 / 75%);
-  --tg-shadow-focus: 0 0 0 3px rgb(168 201 135 / 30%);
-  --tg-shadow-button: 0 8px 20px rgb(0 0 0 / 30%);
+  --tg-shadow-focus: 0 0 0 3px rgb(166 200 129 / 30%);
+  --tg-shadow-button: 0 5px 16px rgb(0 0 0 / 30%);
   --tg-shadow-form: 0 18px 50px rgb(0 0 0 / 25%);
-  --tg-shadow-menu: 0 12px 30px rgb(0 0 0 / 40%);
+  --tg-shadow-menu: 0 12px 32px rgb(0 0 0 / 40%);
   --tg-shadow-invalid: 0 0 0 3px rgb(255 169 153 / 25%);
   --tg-shadow-card: 0 3px 12px rgb(0 0 0 / 25%);
   --tg-shadow-switch: 0 1px 3px rgb(0 0 0 / 40%);
@@ -177,6 +178,26 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 12px;
+}
+
+.tg-root .tg-text-action {
+  border: 0;
+  padding: 2px 0;
+  background: transparent;
+  color: var(--tg-color-accent-deep);
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+}
+
+.tg-root .tg-text-action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tg-root .tg-json-input {
+  font-family: ui-monospace, monospace;
+  line-height: 1.6;
 }
 
 .tg-root .tg-select-clear {
@@ -1419,14 +1440,21 @@
 }
 
 .te-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   color: var(--te-color-muted);
   font-size: 10px;
+  line-height: 1.4;
 }
 
-.te-status:before {
-  content: '●';
-  font-size: 6px;
-  margin-right: 7px;
+.te-status::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  flex: 0 0 5px;
+  border-radius: 50%;
+  background: currentColor;
 }
 
 .te-status-error {
@@ -1790,6 +1818,17 @@
   font-size: 11px;
   line-height: 1.8;
   overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.te-error > p {
+  margin: 6px 0 0;
+}
+
+.te-settings-dialog > .te-error {
+  margin-block: 16px;
+  border: 1px solid var(--te-color-danger-border);
+  border-radius: 8px;
 }
 
 .te-empty {
@@ -2058,7 +2097,7 @@
   border: 1px solid var(--te-color-border);
   border-radius: 4px;
   padding: 4px 7px;
-  margin: 0;
+  margin: 8px 0;
 }
 
 .te-root .te-property-panel {
@@ -2185,9 +2224,20 @@
   }
 }
 
-/* Dedicated authoring, testing, and JSON views. Hidden panels remain mounted to preserve drafts. */
+/* All views share one grid cell so the tallest view sets their common height. */
 .te-root .te-workspace {
-  display: block;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.te-workspace > [role='tabpanel'] {
+  grid-area: 1 / 1;
+  min-height: 590px;
+}
+
+.te-workspace > [role='tabpanel'][aria-hidden='true'] {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .te-authoring-view {
@@ -2227,7 +2277,25 @@
 }
 
 .te-root .te-json-view {
+  display: flex;
+  flex-direction: column;
   width: 100%;
+}
+
+.te-json-view > .tg-root,
+.te-json-view .tg-field {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.te-json-view .tg-json-input {
+  flex: 1;
+  min-height: 300px;
+}
+
+.te-json-view > .te-primary {
+  align-self: flex-start;
 }
 
 .te-settings-dialog {
@@ -2240,6 +2308,11 @@
   color: inherit;
   box-shadow: var(--te-shadow-dialog);
   overflow: auto;
+  overscroll-behavior: contain;
+}
+
+html:has(.te-settings-dialog[open]) {
+  overflow: hidden;
 }
 
 .te-settings-dialog::backdrop {
@@ -2283,7 +2356,7 @@
   background: var(--te-color-danger-hover);
 }
 
-.te-settings-dialog .te-settings-form .tg-fields {
+.te-settings-dialog .tg-fields {
   grid-template-columns: 1fr;
 }
 

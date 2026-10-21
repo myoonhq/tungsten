@@ -1,4 +1,4 @@
-import type { TungstenText } from './i18n.js'
+import type { TungstenText, MessageParameters } from './i18n.js'
 export type FileReference = {
   id: string
   name: string
@@ -59,6 +59,9 @@ export type FileSettings = {
 export type FieldView = {
   label: string
   description?: string
+  descriptionParams?: MessageParameters
+  /** Enables the shared JSON formatting action for a text area. */
+  format?: 'json'
   placeholder?: string
   [property: string]: unknown
 }

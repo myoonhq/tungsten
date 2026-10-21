@@ -535,5 +535,15 @@
   "tg_ui_submit_pending": "",
   "tg_ui_submit_success": "",
   "tg_ui_submit_error": "",
-  "tg_ui_save_dirty": ""
+  "tg_ui_save_dirty": "",
+  "tg_editor_label_translation_hint": "",
+  "tg_editor_keep_parent_key_prefix": "",
+  "tg_ui_format_json": "",
+  "tg_ui_invalid_json_format": "",
+  "tg_editor_file_upload_help": "",
+  "tg_schema_invalid_file_setting": "",
+  "tg_schema_file_upload_method": "",
+  "tg_schema_file_upload_timing": "",
+  "tg_schema_file_max_files": "",
+  "tg_schema_file_accept": ""
 }

@@ -68,7 +68,9 @@ export function Tungsten(props: TungstenProps) {
       config={config.i18n}
       transport={transport}
     >
-      <TungstenThemeProvider colorScheme={props.colorScheme}>{engine}</TungstenThemeProvider>
+      <TungstenThemeProvider colorScheme={props.colorScheme} colorProfile={props.colorProfile}>
+        {engine}
+      </TungstenThemeProvider>
     </TungstenLanguageProvider>
   )
 }

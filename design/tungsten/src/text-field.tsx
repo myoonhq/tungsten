@@ -1,6 +1,6 @@
 import { useRendererClasses, useRendererComponents } from './appearance.js'
 import { useTungstenLang } from '../../../framework/react/src/i18n.js'
-import type { ChangeEvent } from 'react'
+import { useRef, useState, type ChangeEvent } from 'react'
 import type { FieldRendererProps } from '../../../framework/react/src/types.js'
 import { describedBy, TungstenFieldShell } from './field-shell.js'
 
@@ -14,8 +14,12 @@ export function TungstenTextField({
   onValueChange,
 }: FieldRendererProps) {
   const classes = useRendererClasses()
-  const { Input, Textarea } = useRendererComponents()
+  const { Input, Textarea, Button } = useRendererComponents()
   const { t } = useTungstenLang()
+  const [draft, setDraft] = useState<string | null>(null)
+  const pending = useRef(0)
+  const [formatError, setFormatError] = useState(false)
+  const errors = formatError ? [...state.errors, 'tg_ui_invalid_json_format'] : state.errors
   if (state.value !== null && typeof state.value !== 'string') {
     throw new TypeError(
       JSON.stringify({
@@ -29,19 +33,37 @@ export function TungstenTextField({
     throw new TypeError(
       JSON.stringify({ messageKey: 'tg_ui_textarea_requires_the_plain_text_variant', params: {} }),
     )
+  function update(value: string) {
+    setFormatError(false)
+    setDraft(value)
+    pending.current += 1
+    const finish = () => {
+      pending.current -= 1
+      if (pending.current === 0) setDraft(null)
+    }
+    try {
+      const result = onValueChange(value)
+      if (result) void result.then(finish, finish)
+      else finish()
+    } catch (error) {
+      finish()
+      throw error
+    }
+  }
+  const json = field.textarea === true && field.view?.format === 'json'
   const props = {
-    className: classes('tg-input'),
+    className: classes(json ? 'tg-input tg-json-input' : 'tg-input'),
     id: inputId,
     name: field.key,
     placeholder: t(field.view?.placeholder),
-    value: state.value ?? '',
+    value: draft ?? state.value ?? '',
     required,
     disabled: disabled || !!state.loadingSources?.length,
     readOnly,
-    'aria-invalid': state.errors.length > 0,
-    'aria-describedby': describedBy(inputId, field.view, state.errors),
+    'aria-invalid': errors.length > 0,
+    'aria-describedby': describedBy(inputId, field.view, errors),
     onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-      onValueChange(event.target.value),
+      update(event.target.value),
   }
   return (
     <TungstenFieldShell
@@ -49,7 +71,28 @@ export function TungstenTextField({
       view={field.view}
       fallbackLabel={field.key}
       required={required}
-      errors={state.errors}
+      errors={errors}
+      labelAction={
+        json ? (
+          <Button
+            type="button"
+            className={classes('tg-text-action')}
+            disabled={disabled || readOnly || !!state.loadingSources?.length}
+            onClick={() => {
+              let formatted: string
+              try {
+                formatted = JSON.stringify(JSON.parse(draft ?? String(state.value ?? '')), null, 2)
+              } catch {
+                setFormatError(true)
+                return
+              }
+              update(formatted)
+            }}
+          >
+            {t('tg_ui_format_json')}
+          </Button>
+        ) : undefined
+      }
       control={{
         kind: 'input',
         disabled: disabled || !!state.loadingSources?.length,
@@ -60,6 +103,7 @@ export function TungstenTextField({
         <Textarea
           {...props}
           rows={field.rows as number}
+          spellCheck={json ? false : undefined}
           style={{ resize: field.resizable === false ? 'none' : 'vertical' }}
         />
       ) : (

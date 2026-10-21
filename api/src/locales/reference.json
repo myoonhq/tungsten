@@ -3770,5 +3770,75 @@
     "purpose": "Status indicating unsaved changes.",
     "default": "Unsaved changes.",
     "parameters": []
+  },
+  {
+    "key": "tg_editor_label_translation_hint",
+    "area": "Form editor",
+    "purpose": "Form editor: Text or translation key. Matching keys change with the form language.",
+    "default": "Text or translation key. Matching keys change with the form language.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_keep_parent_key_prefix",
+    "area": "Form editor",
+    "purpose": "Form editor: Keep the “{prefix}” prefix; it links this field to its parent.",
+    "default": "Keep the “{prefix}” prefix; it links this field to its parent.",
+    "parameters": ["prefix"]
+  },
+  {
+    "key": "tg_ui_format_json",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Format JSON",
+    "default": "Format JSON",
+    "parameters": []
+  },
+  {
+    "key": "tg_ui_invalid_json_format",
+    "area": "Form controls and accessibility",
+    "purpose": "Form controls and accessibility: Enter valid JSON before formatting.",
+    "default": "Enter valid JSON before formatting.",
+    "parameters": []
+  },
+  {
+    "key": "tg_editor_file_upload_help",
+    "area": "Form editor",
+    "purpose": "Form editor: Set upload.api to an API name from your host configuration and upload.endpoint to a relative upload path, such as files. Both are required. The editor does not create an upload server.",
+    "default": "Set upload.api to an API name from your host configuration and upload.endpoint to a relative upload path, such as files. Both are required. The editor does not create an upload server.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_invalid_file_setting",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: {setting}: {reason}",
+    "default": "{setting}: {reason}",
+    "parameters": ["reason", "setting"]
+  },
+  {
+    "key": "tg_schema_file_upload_method",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Use POST, PUT or PATCH.",
+    "default": "Use POST, PUT or PATCH.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_file_upload_timing",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Use submit or selection.",
+    "default": "Use submit or selection.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_file_max_files",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Use an integer greater than zero.",
+    "default": "Use an integer greater than zero.",
+    "parameters": []
+  },
+  {
+    "key": "tg_schema_file_accept",
+    "area": "Schema diagnostics and authoring metadata",
+    "purpose": "Schema diagnostics and authoring metadata: Use file extensions such as .pdf or MIME types such as image/*.",
+    "default": "Use file extensions such as .pdf or MIME types such as image/*.",
+    "parameters": []
   }
 ]

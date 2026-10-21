@@ -19,6 +19,31 @@ function props(
   }
 }
 describe('field variant presentation', () => {
+  it('formats JSON through the shared textarea without losing malformed input', () => {
+    const p = props(
+      {
+        type: 'text',
+        key: 'settings',
+        textarea: true,
+        rows: 10,
+        view: { label: 'Settings', format: 'json' },
+      },
+      '{"name":"Ada"}',
+    )
+    const view = render(<TungstenTextField {...p} />)
+    const input = screen.getByRole('textbox', { name: /^Settings/ })
+    expect(input).toHaveAttribute('rows', '10')
+    fireEvent.click(screen.getByRole('button', { name: 'Format JSON' }))
+    expect(p.onValueChange).toHaveBeenLastCalledWith('{\n  "name": "Ada"\n}')
+    view.rerender(<TungstenTextField {...p} state={{ ...p.state, value: '{unfinished' }} />)
+    fireEvent.click(screen.getByRole('button', { name: 'Format JSON' }))
+    expect(input).toHaveValue('{unfinished')
+    expect(screen.getByText('Enter valid JSON before formatting.')).toBeVisible()
+    expect(input).toHaveAttribute('aria-invalid', 'true')
+    view.rerender(<TungstenTextField {...p} readOnly />)
+    expect(screen.getByRole('button', { name: 'Format JSON' })).toBeDisabled()
+  })
+
   it('keeps native password masking across draft changes, disabled and read-only states', () => {
     const p = props(
       { type: 'text', variant: 'password', key: 'secret', view: { label: 'Password' } },

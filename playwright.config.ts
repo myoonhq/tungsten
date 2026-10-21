@@ -3,6 +3,10 @@ import { defineConfig, devices } from '@playwright/test'
 import { designs, type BrowserOptions } from './testing/browser/fixtures.js'
 import { firefoxMacOSLaunchOptions } from './testing/browser/firefox-macos.js'
 
+const batch = process.env.TUNGSTEN_TEST_BATCH
+if (batch && !/^[a-z0-9-]+$/.test(batch)) throw new Error('Invalid Tungsten test batch name')
+const report = batch ? `integration-${batch}` : 'integration'
+
 const browsers = {
   chromium: devices['Desktop Chrome'],
   chrome: { ...devices['Desktop Chrome'], channel: 'chrome' },
@@ -15,7 +19,7 @@ const browsers = {
 
 export default defineConfig<BrowserOptions>({
   testDir: './testing/browser/specs',
-  outputDir: 'test-results/integration',
+  outputDir: `test-results/${report}`,
   testIgnore: ['**/*.benchmark.ts', '**/*.profile.ts'],
   timeout: 30_000,
   expect: { timeout: 5_000 },
@@ -26,11 +30,10 @@ export default defineConfig<BrowserOptions>({
   fullyParallel: true,
   reporter: [
     ['list'],
-    ['html', { outputFolder: 'playwright-report/integration', open: 'never' }],
-    ['junit', { outputFile: 'test-results/integration.xml' }],
+    ['html', { outputFolder: `playwright-report/${report}`, open: 'never' }],
+    ['junit', { outputFile: `test-results/${report}.xml` }],
   ],
   use: {
-    baseURL: 'http://127.0.0.1:4187',
     actionTimeout: 5_000,
     navigationTimeout: 10_000,
     trace: 'retain-on-failure',
@@ -39,7 +42,9 @@ export default defineConfig<BrowserOptions>({
   },
   webServer: {
     command: 'node testing/browser/server.mjs',
-    url: 'http://127.0.0.1:4187',
+    wait: {
+      stdout: /Tungsten production fixture: (?<playwright_test_base_url>http:\/\/127\.0\.0\.1:\d+)/,
+    },
     reuseExistingServer: false,
     timeout: 30_000,
   },

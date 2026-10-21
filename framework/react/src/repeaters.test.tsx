@@ -136,7 +136,7 @@ describe('repeaters', () => {
         'true',
       ),
     )
-    expect(screen.getAllByLabelText('Name')[1]).toHaveFocus()
+    await waitFor(() => expect(screen.getAllByLabelText('Name')[1]).toHaveFocus())
     fireEvent.click(screen.getByRole('tab', { name: '#1 Person' }))
     expect(screen.getByRole('tab', { name: '#1 Person' })).toHaveAttribute('aria-selected', 'true')
   })
@@ -160,7 +160,7 @@ describe('repeaters', () => {
         'true',
       ),
     )
-    expect(screen.getAllByLabelText('Name')[1]).toHaveFocus()
+    await waitFor(() => expect(screen.getAllByLabelText('Name')[1]).toHaveFocus())
   })
   it('ignores a pending structural response after replacement data loads', async () => {
     let complete!: (value: unknown) => void

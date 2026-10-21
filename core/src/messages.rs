@@ -19,7 +19,7 @@ impl Message {
     pub fn with_params(mut self, params: Value) -> Self {
         if let Value::Object(mut params) = params {
             // Diagnostic causes are presentation data; paths/field keys/values are literal.
-            for name in ["message", "source", "e", "expected", "format"] {
+            for name in ["message", "source", "error", "e", "expected", "format"] {
                 if let Some(Value::String(value)) = params.get(name) {
                     let nested = serde_json::from_str::<Message>(value)
                         .ok()
@@ -69,4 +69,39 @@ impl From<Message> for Text {
 pub fn diagnostic(key: &str, params: Value) -> String {
     serde_json::to_string(&Message::new(key).with_params(params))
         .expect("message data is serializable")
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json::json;
+
+    #[test]
+    fn load_error_causes_are_structured_but_field_keys_remain_literal() {
+        let cause = diagnostic(
+            "tg_schema_invalid_file_configuration",
+            json!({"e": "missing field `upload`"}),
+        );
+        let field = diagnostic(
+            "tg_schema_invalid_field",
+            json!({"field_key": "tg_ui_submit", "field_type": "file", "source": cause}),
+        );
+        let error: Value = serde_json::from_str(&diagnostic(
+            "tg_schema_failed_to_load_form",
+            json!({"error": field}),
+        ))
+        .unwrap();
+        assert_eq!(
+            error["params"]["error"]["messageKey"],
+            "tg_schema_invalid_field"
+        );
+        assert_eq!(
+            error["params"]["error"]["params"]["field_key"],
+            "tg_ui_submit"
+        );
+        assert_eq!(
+            error["params"]["error"]["params"]["source"]["params"]["e"],
+            "missing field `upload`"
+        );
+    }
 }

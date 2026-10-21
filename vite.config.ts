@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
-import { strictBuildLogger, javascriptSizeBudget } from './testing/build-policy.mjs'
+import { strictBuildLogger, javascriptSizeBudget, onBuildLog } from './testing/build-policy.mjs'
 
 export default defineConfig({
   customLogger: strictBuildLogger(),
@@ -22,6 +22,7 @@ export default defineConfig({
       fileName: (_format, name) => `${name}.js`,
     },
     rollupOptions: {
+      onLog: onBuildLog,
       external: (id) =>
         ['react', 'react-dom', 'react/jsx-runtime'].includes(id) ||
         id.startsWith('@mui/') ||

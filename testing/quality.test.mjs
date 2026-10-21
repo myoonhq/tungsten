@@ -4,7 +4,7 @@ import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { test } from 'node:test'
 import { build } from 'vite'
-import { javascriptSizeBudget, strictBuildLogger } from './build-policy.mjs'
+import { javascriptSizeBudget, strictBuildLogger, onBuildLog } from './build-policy.mjs'
 import { npmEnvironment } from './npm-environment.mjs'
 
 const pkg = resolve(import.meta.dirname, '..')
@@ -117,5 +117,19 @@ test('unexpected unit-test console warnings/errors fail, while asserted diagnost
     assert.equal(expected.status, 0, expected.stdout + expected.stderr)
   } finally {
     rmSync(fixture, { recursive: true, force: true })
+  }
+})
+
+test('runner timing advice is informational while actionable build warnings remain fatal', () => {
+  const logger = strictBuildLogger()
+  const warn = (_level, log) => logger.warn(log.message)
+  for (const code of ['PLUGIN_TIMINGS', 'BUNDLER_TIMINGS']) {
+    assert.doesNotThrow(() => onBuildLog('warn', { code, message: 'runner timing advice' }, warn))
+  }
+  for (const code of ['UNRESOLVED_IMPORT', 'PLUGIN_WARNING', 'CIRCULAR_DEPENDENCY']) {
+    assert.throws(
+      () => onBuildLog('warn', { code, message: 'actionable build problem' }, warn),
+      /actionable build problem/,
+    )
   }
 })

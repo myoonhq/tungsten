@@ -145,7 +145,7 @@ describe('groups', () => {
     })
     fireEvent.keyDown(contact, { key: 'Home' })
     expect(personal).toHaveAttribute('aria-selected', 'true')
-    expect(screen.getByLabelText(/Email/)).toHaveValue('person.contact.email')
+    await waitFor(() => expect(screen.getByLabelText(/Email/)).toHaveValue('person.contact.email'))
   })
 
   it('reveals and focuses invalid nested inactive and collapsed sections on each submit', async () => {

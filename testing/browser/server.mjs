@@ -40,7 +40,7 @@ function json(res, value, status = 200) {
 }
 const server = createServer(async (req, res) => {
   try {
-    const url = new URL(req.url, 'http://127.0.0.1:4187')
+    const url = new URL(req.url, 'http://127.0.0.1')
     const match = /^\/(api|control)\/([\w-]+)(?:\/(\w+))?$/.exec(url.pathname)
     if (match) {
       const [, kind, id, endpoint] = match
@@ -142,8 +142,8 @@ const server = createServer(async (req, res) => {
     else res.destroy()
   }
 })
-server.listen(4187, '127.0.0.1', () =>
-  console.log('Tungsten production fixture: http://127.0.0.1:4187'),
+server.listen(0, '127.0.0.1', () =>
+  console.log(`Tungsten production fixture: http://127.0.0.1:${server.address().port}`),
 )
 function stop() {
   for (const state of sessions.values()) state.waiters.splice(0).forEach((release) => release())

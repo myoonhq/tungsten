@@ -1,6 +1,15 @@
-## 1.0.0-Q.2
+## 1.0.0-Q.3
+
+### Added
+
+- add color profiles and match Sprout to website palettes
 
 ### Fixes
 
-- Unify the Sprout dark-mode palette across forms and the Editor.
-- Correct Material floating labels, placeholders, focus borders and select actions, and fix shared group/repeater spacing.
+- explain invalid file settings and nested errors
+- unify editor controls and draft validation
+
+### Updated
+
+- wait for preview readiness after reload
+- Use the built-in Sprout profile throughout the website.

@@ -59,6 +59,7 @@ export type FieldRendererProps = {
 }
 
 export type DesignFormProps = PropsWithChildren<{
+  submitLabel?: TungstenText
   onSubmit: FormEventHandler<HTMLFormElement>
   submitting: boolean
   busy?: boolean
@@ -135,6 +136,8 @@ export type TungstenDiagnostic = {
 export type TungstenProps = {
   /** Presentation only; inherits the nearest theme provider, otherwise light. */
   colorScheme?: import('./theme.js').TungstenColorScheme
+  /** Built-in sprout or an application-supplied CSS profile; inherits the theme provider. */
+  colorProfile?: import('./theme.js').TungstenColorProfile
   onDiagnostic?: (diagnostic: TungstenDiagnostic) => void
   /** Per-instance presentation language; changing it preserves engine state. */
   language?: string

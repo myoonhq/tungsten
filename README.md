@@ -104,17 +104,77 @@ Pass `colorScheme="light"` or `colorScheme="dark"` to `Tungsten` or
 `TungstenEditor`. Omitted choices inherit `TungstenThemeProvider`, otherwise light.
 The application resolves system preferences and owns persistence. Theme changes
 preserve edits, errors, focus and editor drafts.
-The default design uses a green Sprout palette in dark mode. The Editor's authoring
+Sprout is the only built-in color profile. Its light and dark palettes match the
+Tungsten website. The Editor's authoring
 controls share the default form palette in both schemes; selecting Bootstrap or
 Material changes its live preview while the authoring controls remain Tungsten.
 
 ```tsx
 import { TungstenThemeProvider } from '@myoon/tungsten/react'
 
-<TungstenThemeProvider colorScheme={appColorScheme}>
+<TungstenThemeProvider colorProfile="sprout" colorScheme={appColorScheme}>
   <Tungsten schema={schema} onSubmit={handleSubmit} />
 </TungstenThemeProvider>
 ```
+
+## Color profiles
+
+`colorProfile` chooses a named CSS palette; `colorScheme` chooses its light or dark
+variant. Both props work on `TungstenThemeProvider`, `Tungsten` and `TungstenEditor`.
+Omitted profiles inherit the nearest provider, otherwise `sprout`. Explicit
+per-instance choices override the provider and pass through editor settings,
+preview forms, loading and error feedback without resetting form state.
+
+Create a custom profile by loading CSS after the built-in design stylesheet, then
+select its name. Names do not generate or load palettes: a custom name inherits
+Sprout until your CSS overrides its tokens. There is no single-color generation API.
+
+```tsx
+import '@myoon/tungsten/react/design/tungsten.css'
+import './ocean.css'
+
+<TungstenThemeProvider colorProfile="ocean" colorScheme={appColorScheme}>
+  <Tungsten schema={schema} />
+  <TungstenEditor initialSchema={schema} />
+  <Tungsten schema={anotherSchema} colorProfile="sprout" />
+</TungstenThemeProvider>
+```
+
+```css
+/* Load after Tungsten's design CSS. Unspecified tokens keep Sprout defaults. */
+:is(.tg-root, .te-root)[data-tg-color-profile='ocean'] {
+  --tg-color-accent: #245ca5;
+  --tg-color-accent-deep: #174578;
+  --tg-color-accent-soft: #e8f0fc;
+  --tg-color-action: #174578;
+  --tg-color-action-hover: #11365f;
+  --tg-color-on-action: #ffffff;
+  --tg-shadow-focus: 0 0 0 3px rgb(36 92 165 / 25%);
+  --tg-shadow-button: 0 5px 16px rgb(23 69 120 / 15%);
+}
+
+:is(.tg-root, .te-root)[data-tg-color-profile='ocean'][data-tg-color-scheme='dark'] {
+  --tg-color-accent: #9ec5ff;
+  --tg-color-accent-deep: #9ec5ff;
+  --tg-color-accent-soft: #233753;
+  --tg-color-action: #9ec5ff;
+  --tg-color-action-hover: #bad6ff;
+  --tg-color-on-action: #10243e;
+  --tg-shadow-focus: 0 0 0 3px rgb(158 197 255 / 30%);
+  --tg-shadow-button: 0 5px 16px rgb(0 0 0 / 30%);
+}
+```
+
+This example changes accents and actions while retaining Sprout's surfaces and
+state colors. To replace the whole palette, use the light/dark token blocks at the
+start of [the Sprout stylesheet](https://github.com/myoonhq/tungsten/blob/1.0.0-Q.3/design/tungsten/src/tungsten.css)
+as your template. Override `--tg-color-*` and `--tg-shadow-*` on **each rendered
+`.tg-root` and `.te-root`**, rather than a surrounding wrapper. Editor `--te-*`
+tokens derive from those form tokens, so settings, selection and preview stay
+consistent. Review text/action contrast, focus, errors and disabled states in both modes.
+Custom React designs can read `useTungstenColorProfile()` and
+`useTungstenColorScheme()`. Bootstrap and Material retain their own palette systems;
+use their design-specific theming APIs to customize their controls.
 
 ## Initial values
 
@@ -167,18 +227,18 @@ See the [repeater documentation](https://tungsten.myoon.sk/documentation/?guide=
 - `design/bootstrap/`: optional Bootstrap presentation adapter and scoped styling.
 - `design/material/`: optional Material UI presentation adapter, local themes and shared widgets.
 
-These are internal layers of one installable package, not separate workspace
-packages. The website, editor, documentation and examples live in `apps/tungsten` at the repository root.
+These are internal layers of one installable package. The website and examples
+are available at https://tungsten.myoon.sk/.
 
 ## Development
 
-From the repository root, run `pnpm build:library`, `pnpm test`, `pnpm test:core`,
-and `pnpm test:package`. See the root README for toolchain setup and site commands.
-
-Package metadata is configured directly in this package.json. Private development
-builds use GitHub Packages; public release installation uses npm as shown above.
-Local workspace consumers do not need registry credentials. See the versioning
-guide for development builds and release commands.
+Install the Node version in `.nvmrc`, pnpm, Rust with the `wasm32-unknown-unknown`
+target, and wasm-pack 0.15.0. From this repository, run `pnpm install --frozen-lockfile`,
+`pnpm build`, `pnpm test`, and `pnpm test:core`. Browser tests are development
+tooling: install their browsers with `pnpm exec playwright install`, then run
+`pnpm test:integration`. Chrome and Edge projects also require those applications.
+For the complete serial matrix, use `pnpm test:integration:run --workers=1 --global-timeout=5400000`.
+Playwright, tests and reports are excluded from the installed package.
 
 See the [architecture documentation](https://tungsten.myoon.sk/documentation/?guide=core)
 and [release support](https://tungsten.myoon.sk/documentation/?guide=support).
@@ -210,6 +270,23 @@ template editing are included. Invalid
 drafts retain the last accepted preview. Initialization props are read on mount;
 remount to replace an editing session. The optional design controls the live
 preview. No automatic storage or submission occurs.
+
+Adding components leaves settings closed. Add, Apply, Undo and Redo all validate
+normally. New file fields start with `upload: { api: 'uploads', endpoint: 'files' }`;
+replace this example with your app's configured API name and upload path.
+Apply saves component settings and closes the modal even when core validation
+fails; the preview retains the last accepted schema and the status becomes
+“Draft needs attention”. Disabled and read-only flags use their dedicated
+controls, rather than appearing in custom JSON. Settings use ordinary Tungsten
+fields and renderers.
+JSON settings textareas start at ten rows and provide a Format JSON action.
+The schema JSON view fills the shared height of the editor and preview. Invalid JSON
+stays editable. File settings explain the required API name and relative upload
+path, and configuration errors name the invalid property.
+
+The shared text renderer also supports `view.format: 'json'` on ordinary
+textarea fields. `view.descriptionParams` interpolates translated descriptions.
+These controls work outside the editor too.
 
 `Tungsten` also accepts `onStateChange`, which receives `{ schema, state, values,
 valid }` after evaluation. This includes nested arrays and validation errors.
@@ -294,13 +371,13 @@ licenses are agreed case by case, with no fixed public pricing. Custom developme
 integrations, custom components/features, priority support, and consulting are
 available directly from the developer.
 
-Development takes place in the private Myoon monorepo. A separate public release
-repository is being prepared; external contributions need the rights workflow
-described in [CONTRIBUTING.md](CONTRIBUTING.md).
+This repository contains the official public release history of Tungsten. Development takes place in a private monorepo.
+
+External contributions need the rights workflow described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Build quality
 
-Development uses the Node version in the workspace `.nvmrc` and wasm-pack 0.15.0.
+Development uses the Node version in the repository `.nvmrc` and wasm-pack 0.15.0.
 Use a wasm-bindgen CLI matching `core/Cargo.lock` when installing the CLI manually.
 Lint rejects warnings, builds reject warnings and JavaScript chunks above 500 kB,
 and unit/browser tests reject unexpected console warnings, errors and exceptions.

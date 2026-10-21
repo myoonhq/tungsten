@@ -541,5 +541,15 @@
   "tg_ui_submit_pending": "Wird gesendet…",
   "tg_ui_submit_success": "Formular gesendet.",
   "tg_ui_submit_error": "Formular konnte nicht gesendet werden.",
-  "tg_ui_save_dirty": "Ungespeicherte Änderungen."
+  "tg_ui_save_dirty": "Ungespeicherte Änderungen.",
+  "tg_editor_label_translation_hint": "Text oder Übersetzungsschlüssel. Passende Schlüssel folgen der Formularsprache.",
+  "tg_editor_keep_parent_key_prefix": "Behalte das Präfix „{prefix}“ bei; es verbindet dieses Feld mit seinem übergeordneten Element.",
+  "tg_ui_format_json": "JSON formatieren",
+  "tg_ui_invalid_json_format": "Gib vor dem Formatieren gültiges JSON ein.",
+  "tg_editor_file_upload_help": "Setze upload.api auf einen API-Namen aus der Host-Konfiguration und upload.endpoint auf einen relativen Upload-Pfad, etwa files. Beide sind erforderlich. Der Editor erstellt keinen Upload-Server.",
+  "tg_schema_invalid_file_setting": "{setting}: {reason}",
+  "tg_schema_file_upload_method": "Verwende POST, PUT oder PATCH.",
+  "tg_schema_file_upload_timing": "Verwende submit oder selection.",
+  "tg_schema_file_max_files": "Verwende eine ganze Zahl größer als null.",
+  "tg_schema_file_accept": "Verwende Dateiendungen wie .pdf oder MIME-Typen wie image/*."
 }

@@ -545,5 +545,15 @@
   "tg_ui_submit_pending": "Odosiela sa…",
   "tg_ui_submit_success": "Formulár bol odoslaný.",
   "tg_ui_submit_error": "Formulár sa nepodarilo odoslať.",
-  "tg_ui_save_dirty": "Neuložené zmeny."
+  "tg_ui_save_dirty": "Neuložené zmeny.",
+  "tg_editor_label_translation_hint": "Text alebo prekladový kľúč. Zodpovedajúce kľúče sa menia podľa jazyka formulára.",
+  "tg_editor_keep_parent_key_prefix": "Ponechajte predponu „{prefix}“; spája toto pole s jeho nadradeným prvkom.",
+  "tg_ui_format_json": "Formátovať JSON",
+  "tg_ui_invalid_json_format": "Pred formátovaním zadajte platný JSON.",
+  "tg_editor_file_upload_help": "Nastavte upload.api na názov API z konfigurácie aplikácie a upload.endpoint na relatívnu cestu nahrávania, napríklad files. Obe hodnoty sú povinné. Editor nevytvára server na nahrávanie.",
+  "tg_schema_invalid_file_setting": "{setting}: {reason}",
+  "tg_schema_file_upload_method": "Použite POST, PUT alebo PATCH.",
+  "tg_schema_file_upload_timing": "Použite submit alebo selection.",
+  "tg_schema_file_max_files": "Použite celé číslo väčšie ako nula.",
+  "tg_schema_file_accept": "Použite prípony súborov, napríklad .pdf, alebo typy MIME, napríklad image/*."
 }

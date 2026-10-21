@@ -87,7 +87,7 @@ export function TungstenFieldShell({
 
       {view?.description ? (
         <p className={classes('tg-description')} id={descriptionId}>
-          <TungstenLang>{view.description}</TungstenLang>
+          <TungstenLang params={view.descriptionParams}>{view.description}</TungstenLang>
         </p>
       ) : null}
 

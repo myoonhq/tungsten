@@ -5,10 +5,14 @@ import {
   useRendererComponents,
 } from './appearance.js'
 import { TungstenLang, useTungstenLang } from '../../../framework/react/src/i18n.js'
-import { useTungstenColorScheme } from '../../../framework/react/src/theme.js'
+import {
+  useTungstenColorScheme,
+  useTungstenColorProfile,
+} from '../../../framework/react/src/theme.js'
 import type { DesignFormProps, DesignMessageProps } from '../../../framework/react/src/types.js'
 
 export function SharedForm({
+  submitLabel = 'tg_ui_submit',
   children,
   onSubmit,
   submitting,
@@ -21,12 +25,14 @@ export function SharedForm({
   const { Button } = useRendererComponents()
   const { language } = useTungstenLang()
   const colorScheme = useTungstenColorScheme()
+  const colorProfile = useTungstenColorProfile()
   const { colorSchemeAttribute, rootStyle } = useRendererAppearance()
   return (
     <form
       lang={language}
       className={classes('tg-root tg-form')}
       data-tg-color-scheme={colorScheme}
+      data-tg-color-profile={colorProfile}
       style={rootStyle}
       {...(colorSchemeAttribute ? { [colorSchemeAttribute]: colorScheme } : {})}
       noValidate
@@ -64,7 +70,7 @@ export function SharedForm({
               <TungstenLang>{submitting ? 'tg_ui_submitting' : 'tg_ui_updating'}</TungstenLang>
             </>
           ) : (
-            <TungstenLang>tg_ui_submit</TungstenLang>
+            <TungstenLang>{submitLabel}</TungstenLang>
           )}
         </Button>
       </div>
@@ -76,12 +82,14 @@ export function SharedLoading({ message = 'tg_ui_preparing_form' }: DesignMessag
   const classes = useRendererClasses()
   const { language } = useTungstenLang()
   const colorScheme = useTungstenColorScheme()
+  const colorProfile = useTungstenColorProfile()
   const { colorSchemeAttribute, rootStyle } = useRendererAppearance()
   return (
     <div
       lang={language}
       className={classes('tg-root tg-message')}
       data-tg-color-scheme={colorScheme}
+      data-tg-color-profile={colorProfile}
       style={rootStyle}
       {...(colorSchemeAttribute ? { [colorSchemeAttribute]: colorScheme } : {})}
       role="status"
@@ -96,12 +104,14 @@ export function SharedFailure({ message = 'tg_ui_load_failed' }: DesignMessagePr
   const classes = useRendererClasses()
   const { language } = useTungstenLang()
   const colorScheme = useTungstenColorScheme()
+  const colorProfile = useTungstenColorProfile()
   const { colorSchemeAttribute, rootStyle } = useRendererAppearance()
   return (
     <div
       lang={language}
       className={classes('tg-root tg-failure')}
       data-tg-color-scheme={colorScheme}
+      data-tg-color-profile={colorProfile}
       style={rootStyle}
       {...(colorSchemeAttribute ? { [colorSchemeAttribute]: colorScheme } : {})}
       role="alert"
